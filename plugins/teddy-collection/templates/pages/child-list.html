@@ -1,0 +1,16 @@
+<style>
+.kind-group { display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--line); padding-top: 18px; }
+.kids { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.kids li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 12px; }
+@media (max-width: 520px) { .kids li { grid-template-columns: 1fr; gap: 2px; } }
+.d { font-family: var(--mono); font-size: 0.84rem; color: var(--muted); }
+</style>
+<div class="wrap">
+<header class="page-head">
+  <div class="eyebrow">{{SET}}</div>
+  <h1>Video analyses</h1>
+  <p class="lede">Each published analysis, grouped by video type and then by upload date. Each opens in its own tab.</p>
+</header>
+<!--CONTENT-->
+<!--FOOTER-->
+</div>

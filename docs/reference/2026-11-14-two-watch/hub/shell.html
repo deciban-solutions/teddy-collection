@@ -1,0 +1,162 @@
+<title>The Two-Watch Question</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
+<style>
+/* Layout: a fixed side panel listing the five views beside one reading column; below 900px the panel becomes a sticky top bar of scrolling chips. Views switch on the URL hash so each can be linked directly. */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --fg: #16202a; --muted: #5b6875; --line: #d9dfe5;
+  --accent: #1f4e8c; --tint: #e9eef4; --quote-bg: #e9eef4; --gold: #9a6b1f;
+  --l1: #6b4f9a; --l2: #1f4e8c; --l3: #2f7a5a;
+  --yes: #2f7a5a; --part: #9a6b1f; --no: #a3413a; --good: #2f7a5a; --warn: #9a6b1f; --bad: #a3413a;
+  --side-bg: #e7ebf0; --side-active: #ffffff;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#0f151b; --surface:#17212a; --fg:#e5ebf0; --muted:#9aa8b5; --line:#2a3742; --accent:#7fa8e0; --tint:#1c2833; --quote-bg:#1c2833; --gold:#d8ad62;
+    --l1:#b39ae0; --l2:#7fa8e0; --l3:#6fc29c; --yes:#6fc29c; --part:#d8ad62; --no:#e48a80; --good:#6fc29c; --warn:#d8ad62; --bad:#e48a80;
+    --side-bg:#131b22; --side-active:#1f2b36; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#0f151b; --surface:#17212a; --fg:#e5ebf0; --muted:#9aa8b5; --line:#2a3742; --accent:#7fa8e0; --tint:#1c2833; --quote-bg:#1c2833; --gold:#d8ad62;
+  --l1:#b39ae0; --l2:#7fa8e0; --l3:#6fc29c; --yes:#6fc29c; --part:#d8ad62; --no:#e48a80; --good:#6fc29c; --warn:#d8ad62; --bad:#e48a80;
+  --side-bg:#131b22; --side-active:#1f2b36; color-scheme: dark;
+}
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+.shell { display: grid; grid-template-columns: 270px minmax(0, 1fr); min-height: 100vh; }
+.side { position: sticky; top: env(safe-area-inset-top, 0px); align-self: start; height: calc(100vh - env(safe-area-inset-top, 0px)); overflow-y: auto;
+  background: var(--side-bg); border-right: 1px solid var(--line);
+  padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: 18px; padding-block: 26px 22px; display: flex; flex-direction: column; gap: 18px; }
+.brand { display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--fg); }
+.brand .k { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.brand .n { font-family: var(--display); font-weight: 600; font-size: 1.35rem; line-height: 1.15; }
+.side ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.side li a { display: flex; flex-direction: column; gap: 1px; padding: 9px 11px; border-radius: 5px; text-decoration: none; color: var(--fg); border-left: 3px solid transparent; }
+.side li a:hover { background: var(--side-active); }
+.side li a[aria-current="page"] { background: var(--side-active); border-left-color: var(--accent); }
+.side .nt { font-family: var(--display); font-weight: 600; font-size: 1rem; }
+.side .ns { font-size: 0.8rem; color: var(--muted); line-height: 1.35; }
+.side a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.side .foot { margin-top: auto; font-size: 0.78rem; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
+.side .foot a { color: var(--accent); }
+.main { min-width: 0; }
+@media (max-width: 899px) {
+  .shell { grid-template-columns: 1fr; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--side-bg); }
+  .side { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; height: auto; flex-direction: row; align-items: center; gap: 12px; border-right: none; border-bottom: 1px solid var(--line);
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 8px; overflow: visible; }
+  .brand .k, .side .ns, .side .foot { display: none; }
+  .brand .n { font-size: 1rem; white-space: nowrap; }
+  .side nav { min-width: 0; overflow-x: auto; }
+  .side ul { flex-direction: row; gap: 4px; }
+  .side li a { padding: 6px 10px; border-left: none; border-bottom: 2px solid transparent; border-radius: 4px; white-space: nowrap; }
+  .side li a[aria-current="page"] { border-bottom-color: var(--accent); }
+  .side .nt { font-size: 0.9rem; }
+}
+/* Overview view */
+#v-overview .wrap { max-width: 980px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 56px; display: flex; flex-direction: column; gap: 32px; }
+#v-overview h1 { font-family: var(--display); font-weight: 600; font-size: 2.4rem; line-height: 1.1; margin: 0; text-wrap: balance; }
+#v-overview h2 { font-family: var(--display); font-weight: 600; font-size: 1.4rem; margin: 0; }
+#v-overview p { margin: 0; max-width: 68ch; }
+#v-overview .eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+#v-overview .lede { color: var(--muted); font-size: 1.05rem; }
+#v-overview .strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; border-radius: 6px; overflow: hidden; }
+#v-overview .strip img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; max-width: 100%; }
+@media (max-width: 560px) { #v-overview .strip { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+#v-overview .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 680px) { #v-overview .cards { grid-template-columns: 1fr; } }
+#v-overview .card { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; text-decoration: none; color: var(--fg); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+#v-overview .card:hover { border-color: var(--accent); }
+#v-overview .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+#v-overview .card .k { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+#v-overview .card h3 { font-family: var(--display); font-weight: 600; font-size: 1.2rem; margin: 0; }
+#v-overview .card p { font-size: 0.93rem; color: var(--muted); }
+#v-overview .findings { display: flex; flex-direction: column; gap: 10px; }
+#v-overview .finding { border-left: 3px solid var(--accent); padding-left: 14px; max-width: 74ch; }
+#v-overview .finding b { font-family: var(--display); font-weight: 600; }
+#v-overview .order { font-family: var(--mono); font-size: 0.86rem; }
+/*PAGE_STYLES*/
+</style>
+
+<div class="shell">
+  <aside class="side">
+    <a class="brand" href="#overview" data-view="overview"><span class="k">A watch-collecting case study</span><span class="n">The Two-Watch Question</span></a>
+    <nav aria-label="Pages">
+      <ul>
+        <li><a href="#overview" data-view="overview"><span class="nt">Overview</span><span class="ns">The question and the short answer</span></a></li>
+        <!--NAV-->
+      </ul>
+    </nav>
+    <div class="foot"><span>Source video: <a href="https://youtu.be/bDePE9oVcV4">Teddy Baldassarre, two-watch challenge</a></span><span>Compiled 14 November 2026</span></div>
+  </aside>
+  <main class="main">
+    <section class="view" id="v-overview" data-title="Overview">
+      <div class="wrap">
+        <header style="display:flex;flex-direction:column;gap:12px">
+          <div class="eyebrow">If you could own only two watches</div>
+          <h1>The Two-Watch Question</h1>
+          <p class="lede">Six watch enthusiasts each picked the two watches they would keep if those two had to serve every day and every occasion. Three store staff ranked the pairs without knowing who picked them. Their reasons were brief, so these pages work out what they actually rewarded, and whether a collector's guidebook would agree.</p>
+        </header>
+        <div class="strip" aria-label="The six winning-to-last pairs, one watch from each">
+          <img src="img/brit_B.jpg" alt="Glashütte Original SeaQ, from the winning pair">
+          <img src="img/adrien_A.jpg" alt="Omega Aqua Terra, from the second-place pair">
+          <img src="img/teddy_B.jpg" alt="Breitling Premier B25 Datora, from the third-place pair">
+          <img src="img/marco_A.jpg" alt="Glashütte Original PanoMaticInverse, from the fourth-place pair">
+          <img src="img/james_A.jpg" alt="Doxa SUB 200T, from the fifth-place pair">
+          <img src="img/andrew_B.jpg" alt="IWC Portugieser Perpetual Calendar, from the last-place pair">
+        </div>
+        <section style="display:flex;flex-direction:column;gap:12px">
+          <h2>The short answer</h2>
+          <div class="findings">
+            <div class="finding"><b>The judges wanted two everyday watches, not one daily and one special.</b> Ranking by how many of the two watches are rated to 100 m or more, then by the simpler pair, reproduces their exact order: <span class="order">Brit, Adrien, Teddy, Marco, James, Andrew</span>.</div>
+            <div class="finding"><b>Their talk of “spice” did not decide it.</b> The most colourful, complicated pair came third; one panelist said on the spot, “They want spice but chose this.”</div>
+            <div class="finding"><b>A collector's guidebook would crown a different pair.</b> Blind scorers using collection-building criteria put James's dress GMT and dive watch first, the pair the judges put fifth, because together they cover the widest range of occasions.</div>
+            <div class="finding"><b>Everyone picked true to their own taste.</b> The winners were the two whose personal taste was most conventional, which is what a blind judge has to assume about the wearer.</div>
+          </div>
+        </section>
+        <section style="display:flex;flex-direction:column;gap:12px">
+          <h2>The pages</h2>
+          <div class="cards">
+            <a class="card" href="#lineup"><span class="k">1 · The lineup</span><h3>The Lineup</h3><p>All twelve watches in the judges' order, each with a photo, its reference number and a checked source link.</p></a>
+            <a class="card" href="#taxonomy"><span class="k">2 · The framework</span><h3>Collection Taxonomy</h3><p>The concepts and tests behind a two-watch collection, from the wearer to the pair, with sources.</p></a>
+            <a class="card" href="#judges"><span class="k">3 · The analysis</span><h3>What the Judges Rewarded</h3><p>Which criteria reproduce the ranking, how unique that answer is, and how blind experts and 600 viewer comments compare.</p></a>
+            <a class="card" href="#wearers"><span class="k">4 · The people</span><h3>The Pickers' Own Watches</h3><p>What each enthusiast wore to the shoot, what they said about it, and the reasons they gave for their picks.</p></a>
+          </div>
+        </section>
+      </div>
+    </section>
+    <!--VIEWS-->
+  </main>
+</div>
+
+<script>
+(function () {
+  var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.side a[data-view]'));
+  function show(id, anchor) {
+    views.forEach(function (v) { v.hidden = v.id !== 'v-' + id; });
+    links.forEach(function (a) {
+      if (a.classList.contains('brand')) return;
+      if (a.getAttribute('data-view') === id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    var v = document.getElementById('v-' + id);
+    document.title = (v && id !== 'overview' ? v.getAttribute('data-title') + ' · ' : '') + 'The Two-Watch Question';
+    if (anchor) { anchor.scrollIntoView(); } else { window.scrollTo(0, 0); }
+  }
+  function route() {
+    var h = (location.hash || '').slice(1);
+    if (h && document.getElementById('v-' + h)) { show(h, null); return; }
+    var el = h ? document.getElementById(h) : null;
+    var host = el ? el.closest('.view') : null;
+    if (host) { show(host.id.slice(2), el); return; }
+    show('overview', null);
+  }
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>

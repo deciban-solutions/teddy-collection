@@ -1,0 +1,276 @@
+{
+  "id": "shipped:value@1",
+  "category": "value",
+  "version": "1",
+  "label": "provisional",
+  "paradigm": "These criteria serve a buyer choosing what to purchase, new or pre-owned: an evidence-based, value-aware buyer who wants an informed view of history and context. They are one reasonable buyer's stance, not the only one, and this version is provisional: drafted from published sources, not yet compiled or ratified.",
+  "created": "2026-11-15",
+  "change_log": [
+    {
+      "date": "2026-11-15",
+      "reason": "Drafted from Time+Tide on lifetime servicing costs, WatchTime on movement serviceability, a European Watch Company buyer's guide (a retailer), and the Teddy content audit of 2026-11-14, whose 'mistakes' video supplies most of the practitioner rules.",
+      "additions": {
+        "criteria": 9
+      }
+    }
+  ],
+  "spec_fields": {
+    "band": "lower-case string describing the strap or bracelet, for example \"black alligator leather strap\""
+  },
+  "layers": {
+    "wearer": [
+      {
+        "key": "total_cost_budget",
+        "statement": "Budget for ownership, not just purchase: servicing over the years owned, insurance, storage, straps and import duties.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.youtube.com/watch?v=hzSAhDCB_qE",
+          "https://timeandtidewatches.com/watch-servicing-cost-education/"
+        ]
+      },
+      {
+        "key": "purchase_channel",
+        "statement": "Whether the buyer is buying new or pre-owned changes what to check: a pre-owned bargain can carry a service bill that erases the discount, and service records have to be read, not counted.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.youtube.com/watch?v=hzSAhDCB_qE",
+          "https://www.europeanwatch.com/blog/mistakes-watch-buyers-still-make-advice"
+        ]
+      }
+    ],
+    "watch": [
+      {
+        "key": "quality_per_price",
+        "statement": "What the money buys: finishing, engineering and specifications per unit of price, judged against peers in the same price band. Claims of 'diminishing returns' at the top are asserted, not measured.",
+        "kind": "more_is_better",
+        "evidence_class": "contested",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.youtube.com/watch?v=1Y1ePSRYmZE",
+          "https://www.youtube.com/watch?v=viCWyD1Pe9w"
+        ]
+      },
+      {
+        "key": "lifetime_service_cost",
+        "statement": "Expected service interval and price for the movement over the years the buyer will own it; entry-level movements may cost several times their price in servicing over a lifetime.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://timeandtidewatches.com/watch-servicing-cost-education/"
+        ]
+      },
+      {
+        "key": "parts_and_service_access",
+        "statement": "Widely used movements with parts in ready supply can be serviced cheaply and locally; in-house movements tend to cost more and go back to the brand.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://timeandtidewatches.com/watch-servicing-cost-education/",
+          "https://www.watchtime.com/brands/jaeger-lecoultre/buying-a-chrono-10-things-to-know"
+        ]
+      },
+      {
+        "key": "resale_liquidity",
+        "statement": "An existing market where the watch is traded, so it can be sold if tastes change. Buying for appreciation is fragile; buy a good watch and treat held value as a bonus.",
+        "kind": "more_is_better",
+        "evidence_class": "contested",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.youtube.com/watch?v=hzSAhDCB_qE",
+          "https://www.europeanwatch.com/blog/mistakes-watch-buyers-still-make-advice"
+        ]
+      },
+      {
+        "key": "documentation_premium",
+        "statement": "For pre-owned: pay a box-and-papers premium only on references whose resale market rewards it; one retailer puts the premium at 13 to 23 percent of resale value, unsourced.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.europeanwatch.com/blog/mistakes-watch-buyers-still-make-advice"
+        ]
+      },
+      {
+        "key": "service_history",
+        "statement": "For pre-owned: read what the service records say (what was done, by whom, which parts replaced), not just whether they exist; originality of dial, hands and parts matters.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.europeanwatch.com/blog/mistakes-watch-buyers-still-make-advice",
+          "https://www.youtube.com/watch?v=hzSAhDCB_qE"
+        ]
+      },
+      {
+        "key": "bracelet_included",
+        "statement": "Buy the version with the bracelet if the buyer might want one: a luxury bracelet bought later can cost four figures, and a bracelet may retain value better at resale.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "deterministic",
+          "rule": "'bracelet' in band",
+          "planted": {
+            "pass": [
+              {
+                "band": "steel bracelet, micro-adjust clasp"
+              }
+            ],
+            "fail": [
+              {
+                "band": "leather strap"
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.youtube.com/watch?v=hzSAhDCB_qE"
+        ]
+      }
+    ]
+  },
+  "coherence": [],
+  "teddy_principles": [
+    {
+      "quote": "a bargain or the least expensive example",
+      "video": "hzSAhDCB_qE",
+      "title": "Most Expensive Watch Collecting Mistakes to Avoid",
+      "timestamp": "2:33",
+      "url": "https://www.youtube.com/watch?v=hzSAhDCB_qE&t=153s",
+      "evidence_class": "practitioner",
+      "relevance": "purchase_channel: the pre-owned bargain that needs a service."
+    },
+    {
+      "quote": "service costs 500 to a,000 bucks to get it running again",
+      "video": "hzSAhDCB_qE",
+      "title": "Most Expensive Watch Collecting Mistakes to Avoid",
+      "timestamp": "4:27",
+      "url": "https://www.youtube.com/watch?v=hzSAhDCB_qE&t=267s",
+      "evidence_class": "practitioner",
+      "relevance": "purchase_channel and total_cost_budget (caption reads 'a,000' for 'a thousand')."
+    },
+    {
+      "quote": "Bracelets on a luxury watch can be four figures",
+      "video": "hzSAhDCB_qE",
+      "title": "Most Expensive Watch Collecting Mistakes to Avoid",
+      "timestamp": "5:26",
+      "url": "https://www.youtube.com/watch?v=hzSAhDCB_qE&t=326s",
+      "evidence_class": "practitioner",
+      "relevance": "bracelet_included."
+    },
+    {
+      "quote": "associated costs",
+      "video": "hzSAhDCB_qE",
+      "title": "Most Expensive Watch Collecting Mistakes to Avoid",
+      "timestamp": "12:56",
+      "url": "https://www.youtube.com/watch?v=hzSAhDCB_qE&t=776s",
+      "evidence_class": "practitioner",
+      "relevance": "total_cost_budget: insurance, service, storage, import duties."
+    },
+    {
+      "quote": "not considering the existing market of watch",
+      "video": "hzSAhDCB_qE",
+      "title": "Most Expensive Watch Collecting Mistakes to Avoid",
+      "timestamp": "18:48",
+      "url": "https://www.youtube.com/watch?v=hzSAhDCB_qE&t=1128s",
+      "evidence_class": "practitioner",
+      "relevance": "resale_liquidity."
+    },
+    {
+      "quote": "a quality or a lackluster watch can be obtained at any one of these tiers",
+      "video": "1Y1ePSRYmZE",
+      "title": "Understanding the Tiers of Dive Watches",
+      "timestamp": "0:37",
+      "url": "https://www.youtube.com/watch?v=1Y1ePSRYmZE&t=37s",
+      "evidence_class": "practitioner",
+      "relevance": "quality_per_price: price band does not settle quality."
+    },
+    {
+      "quote": "sometimes a watch is not judged merely on what it's delivering on paper, but also in the metal",
+      "video": "viCWyD1Pe9w",
+      "title": "The Watches We Were Wrong About",
+      "timestamp": "6:30",
+      "url": "https://www.youtube.com/watch?v=viCWyD1Pe9w&t=390s",
+      "evidence_class": "practitioner",
+      "relevance": "quality_per_price: specs per dollar are not the whole judgement."
+    }
+  ],
+  "principles_note": "Teddy's principles are quoted from the videos' auto-captions (wording as captioned), located by text search of the caption track; timestamps are the caption segment where the quote begins. They enter as practitioner consensus, never as standards. His videos state his store is an authorized dealer for over 35 brands.",
+  "sources": [
+    {
+      "url": "https://www.youtube.com/watch?v=hzSAhDCB_qE",
+      "title": "Most Expensive Watch Collecting Mistakes to Avoid",
+      "publisher": "Teddy Baldassarre (YouTube)",
+      "date": "2025-06-21",
+      "author": "Teddy Baldassarre",
+      "note": "Practitioner view from an authorized dealer for over 35 brands; anecdote and analogy, no data.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://timeandtidewatches.com/watch-servicing-cost-education/",
+      "title": "How much does a lifetime of servicing actually cost?",
+      "publisher": "Time+Tide",
+      "date": "2024-05-23",
+      "author": "Buffy Acacia",
+      "note": "Service intervals and prices by movement tier, partly from owners' forum reports.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.europeanwatch.com/blog/mistakes-watch-buyers-still-make-advice",
+      "title": "Five Mistakes Informed Watch Buyers Still Make and How to Avoid Them",
+      "publisher": "European Watch Company",
+      "date": "2026-06-26",
+      "author": "EWC Team",
+      "note": "A retailer's guide (the publisher sells pre-owned watches); its documentation-premium figures are unsourced.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=1Y1ePSRYmZE",
+      "title": "Understanding the Tiers of Dive Watches",
+      "publisher": "Teddy Baldassarre (YouTube)",
+      "date": "2025-07-12",
+      "author": "Teddy Baldassarre",
+      "note": "Practitioner view from an authorized dealer for over 35 brands.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=viCWyD1Pe9w",
+      "title": "The Watches We Were Wrong About",
+      "publisher": "Teddy Baldassarre (YouTube)",
+      "date": "2026-07-25",
+      "author": "Teddy Baldassarre",
+      "note": "Practitioner view from an authorized dealer for over 35 brands.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.watchtime.com/brands/jaeger-lecoultre/buying-a-chrono-10-things-to-know",
+      "title": "Buying a Chronograph? Here Are 10 Things You Should Know",
+      "publisher": "WatchTime",
+      "date": "2024-04-24",
+      "author": "Ruediger Bucher",
+      "note": "Includes WatchTime's own amplitude measurements on two chronographs (modular versus integrated); two watches, not a study.",
+      "checked": "2026-11-15"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<style>
+.year { display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--line); padding-top: 18px; }
+.items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.items li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 12px; }
+@media (max-width: 520px) { .items li { grid-template-columns: 1fr; gap: 2px; } }
+.d { font-family: var(--mono); font-size: 0.84rem; color: var(--muted); }
+.ev { color: var(--muted); }
+.kind { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); margin-right: 6px; }
+</style>
+<div class="wrap">
+<header class="page-head">
+  <div class="eyebrow">{{SET}}</div>
+  <h1>Timeline</h1>
+  <p class="lede">The videos by the date they were uploaded, not the date they were analysed, alongside the watch-world events the collection has recorded.</p>
+</header>
+<!--CONTENT-->
+<!--FOOTER-->
+</div>

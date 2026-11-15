@@ -1,0 +1,15 @@
+{
+  "name": "teddy-collection",
+  "description": "The Teddy Collection Claude Code plug-in from Deciban Solutions LLC",
+  "owner": {
+    "name": "Deciban Solutions LLC",
+    "url": "https://github.com/deciban-solutions"
+  },
+  "plugins": [
+    {
+      "name": "teddy-collection",
+      "source": "./plugins/teddy-collection",
+      "description": "Turn a Teddy Baldassarre watch video into a private, sourced video analysis with taxonomies, linked from your own collection page"
+    }
+  ]
+}

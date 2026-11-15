@@ -1,0 +1,27 @@
+<style>
+.answer { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 4px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+.answer ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 6px; }
+.answer li b { font-family: var(--display); font-weight: 600; }
+.wide table { min-width: 760px; }
+.mono { font-family: var(--mono); font-size: 0.84rem; }
+.y { color: var(--good); font-weight: 600; } .p { color: var(--warn); font-weight: 600; } .n { color: var(--bad); font-weight: 600; }
+.ranks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .ranks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .ranks { grid-template-columns: 1fr; } }
+.rank { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; min-width: 0; }
+.rank h3 { font-size: 0.98rem; margin-bottom: 6px; }
+.rank ol { margin: 0; padding-left: 20px; font-size: 0.9rem; }
+.rank .sub { font-size: 0.8rem; color: var(--muted); margin-top: 6px; }
+ul.plain { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; max-width: 78ch; }
+.callout { background: var(--tint); border-radius: 4px; padding: 12px 16px; max-width: 80ch; }
+</style>
+<div class="wrap">
+<header class="page-head">
+  <div class="eyebrow">{{SET}}</div>
+  <h1>Criteria inference</h1>
+  <p class="lede">The stated reasons in a contest are often brief. This page works out which criteria actually reproduce the ranking, how unique that answer is, and how it compares with blind scoring and the viewers.</p>
+<!--COMMERCIAL-->
+</header>
+<!--CONTENT-->
+<!--FOOTER-->
+</div>

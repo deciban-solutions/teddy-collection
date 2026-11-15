@@ -1,0 +1,321 @@
+<title>Two-Watch Challenge Lineup</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
+<style>
+/* Layout: one column of six ranked pairs, each pair a two-up grid of watch cards that stacks on phones. */
+:root {
+  --bg: #f3f5f7;
+  --surface: #ffffff;
+  --fg: #16202a;
+  --muted: #5b6875;
+  --line: #d9dfe5;
+  --accent: #1f4e8c;
+  --gold: #9a6b1f;
+  --quote-bg: #e9eef4;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f151b; --surface: #17212a; --fg: #e5ebf0; --muted: #9aa8b5;
+    --line: #2a3742; --accent: #7fa8e0; --gold: #d8ad62; --quote-bg: #1c2833;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f151b; --surface: #17212a; --fg: #e5ebf0; --muted: #9aa8b5;
+  --line: #2a3742; --accent: #7fa8e0; --gold: #d8ad62; --quote-bg: #1c2833;
+  color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body);
+  font-size: 15px; line-height: 1.55;
+}
+.wrap {
+  max-width: 1040px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+  display: flex; flex-direction: column; gap: 36px;
+}
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-size: 2.1rem; font-weight: 600; letter-spacing: -0.01em; }
+h2 { font-size: 1.45rem; font-weight: 600; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+header { display: flex; flex-direction: column; gap: 12px; }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { color: var(--muted); }
+.method { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.method div { border-top: 2px solid var(--line); padding-top: 10px; min-width: 0; }
+.method b { display: block; font-family: var(--display); font-weight: 600; margin-bottom: 2px; }
+.method span { color: var(--muted); font-size: 0.92rem; }
+.pair { display: flex; flex-direction: column; gap: 14px; border-top: 1px solid var(--line); padding-top: 24px; }
+.pair-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+.place { font-family: var(--mono); font-weight: 500; font-size: 0.9rem; color: var(--muted); letter-spacing: 0.04em; }
+.pair.first .place { color: var(--gold); }
+.picker { color: var(--muted); }
+blockquote {
+  margin: 0; background: var(--quote-bg); padding: 10px 14px; border-radius: 4px;
+  max-width: 78ch; font-size: 0.95rem;
+}
+blockquote cite { display: block; font-style: normal; font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+.watches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 680px) { .watches { grid-template-columns: 1fr; } }
+.watch { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.watch img { display: block; width: 100%; height: auto; aspect-ratio: 742 / 730; object-fit: cover; max-width: 100%; }
+.watch .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.ref { font-family: var(--mono); font-size: 0.86rem; color: var(--accent); overflow-wrap: anywhere; }
+dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 0.88rem; }
+dt { color: var(--muted); }
+dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.conf { display: inline-block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 1px 6px; border-radius: 3px; border: 1px solid var(--line); color: var(--muted); }
+.conf.firm { border-color: var(--accent); color: var(--accent); }
+.note { font-size: 0.85rem; color: var(--muted); }
+footer { border-top: 1px solid var(--line); padding-top: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: var(--muted); }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Teddy Baldassarre · two-watch collection challenge</div>
+  <h1>Two-Watch Challenge Lineup</h1>
+  <p class="lede">Six watch enthusiasts each picked a two-watch collection meant to cover every wearing occasion. Three store staff then ranked the six pairs without knowing who picked which. The pairs are listed below from first place to sixth, with a photo and source link for every watch.</p>
+  <div class="method">
+    <div><b>How each watch was identified</b><span>The video puts a labelled card of each pair on screen during the recap (36:30–41:30). The photos here are crops of those cards. The picker's own words in the transcript agree with every card.</span></div>
+    <div><b>How the ranking was read</b><span>From the transcript of the reveal (43:30–48:40), where the judges announce the pairs from last place to first.</span></div>
+    <div><b>How links were checked</b><span>Every link below was opened and its title or reference matched. IWC blocks automated visits, so I confirmed its references through IWC's own press releases instead.</span></div>
+  </div>
+</header>
+
+<!-- 1st -->
+<section class="pair first">
+  <div class="pair-head"><span class="place">1st · WINNER</span><h2>Grand Seiko White Birch U.F.A. + Glashütte Original SeaQ</h2><span class="picker">picked by Brit Pierce</span></div>
+  <blockquote>The judges gave no reason for first place. The host's comment after third place was announced: “I realize I made a task at the beginning about living with these two watches every single day and it does make sense based off of that brief that you are the two last people.”<cite>Host, 47:50</cite></blockquote>
+  <div class="watches">
+    <article class="watch">
+      <img src="img/brit_A.jpg" alt="Grand Seiko SLGB009, white textured dial, steel bracelet" loading="lazy">
+      <div class="body">
+        <h3>Grand Seiko Evolution 9 Spring Drive U.F.A. “White Birch”</h3>
+        <div class="ref">SLGB009</div>
+        <dl>
+          <dt>Case</dt><dd>40 mm Ever-Brilliant Steel, steel bracelet</dd>
+          <dt>Movement</dt><dd>Spring Drive U.F.A. 9RB2, ±20 s/year</dd>
+          <dt>Source</dt><dd><a href="https://www.grand-seiko.com/us-en/collections/slgb009g">grand-seiko.com · SLGB009</a></dd>
+          <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=545">picked at 9:05</a> · card at 39:30</dd>
+        </dl>
+        <span class="conf firm">Reference on screen</span>
+      </div>
+    </article>
+    <article class="watch">
+      <img src="img/brit_B.jpg" alt="Glashütte Original SeaQ, blue dial and bezel, steel bracelet" loading="lazy">
+      <div class="body">
+        <h3>Glashütte Original SeaQ 39.5 mm, blue</h3>
+        <div class="ref">1-39-11-09-81-70</div>
+        <dl>
+          <dt>Case</dt><dd>39.5 mm steel, steel bracelet, 200 m</dd>
+          <dt>Movement</dt><dd>Automatic calibre 39-11</dd>
+          <dt>Source</dt><dd><a href="https://www.glashuette-original.com/en/watches/spezialist/seaq-1-39-11-09-81-70/">glashuette-original.com · SeaQ</a></dd>
+          <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=1437">picked at 23:57</a> · card at 39:30</dd>
+        </dl>
+        <span class="conf">Model on screen; reference matched to blue dial on bracelet</span>
+        <p class="note">The auto-captions render it as “CQ”.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 2nd -->
+<section class="pair">
+  <div class="pair-head"><span class="place">2nd</span><h2>Omega Aqua Terra 38 + IWC Pilot's Chronograph 41</h2><span class="picker">picked by Adrien Barker</span></div>
+  <blockquote>The judges gave no reason for second place beyond the host's remark above about the brief.</blockquote>
+  <div class="watches">
+    <article class="watch">
+      <img src="img/adrien_A.jpg" alt="Omega Seamaster Aqua Terra, black dial, steel bracelet" loading="lazy">
+      <div class="body">
+        <h3>Omega Seamaster Aqua Terra 150M, 38 mm, black</h3>
+        <div class="ref">220.10.38.20.01.001</div>
+        <dl>
+          <dt>Case</dt><dd>38 mm steel, steel bracelet, 150 m</dd>
+          <dt>Movement</dt><dd>Co-Axial Master Chronometer 8800</dd>
+          <dt>Source</dt><dd><a href="https://www.omegawatches.com/watch-omega-seamaster-aqua-terra-150m-co-axial-master-chronometer-38-mm-22010382001001">omegawatches.com · 220.10.38.20.01.001</a></dd>
+          <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=285">picked at 4:45</a> · card at 37:45</dd>
+        </dl>
+        <span class="conf">Model on screen; reference suffix not certain</span>
+        <p class="note">Omega's page now says this exact reference is no longer available. Dealers also sell a black-dial version ending .004, and the card photo cannot tell the two apart.</p>
+      </div>
+    </article>
+    <article class="watch">
+      <img src="img/adrien_B.jpg" alt="IWC Pilot's Watch Chronograph 41, blue dial, steel bracelet" loading="lazy">
+      <div class="body">
+        <h3>IWC Pilot's Watch Chronograph 41, blue</h3>
+        <div class="ref">IW388102</div>
+        <dl>
+          <dt>Case</dt><dd>41 mm steel, steel bracelet</dd>
+          <dt>Movement</dt><dd>IWC calibre 69385, column-wheel chronograph</dd>
+          <dt>Source</dt><dd><a href="https://www.iwc.com/us-en/watches/pilot-watches/iw388102-pilots-watch-chronograph-41">iwc.com · IW388102</a> · confirmed via <a href="https://press.iwc.com/iwc-adds-41-mm-chronographs-with-in-house-movements-to-pilots-watches-collection/">IWC press release</a></dd>
+          <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=1202">picked at 20:02</a> · card at 37:45</dd>
+        </dl>
+        <span class="conf">Model on screen; reference matched to blue dial on bracelet</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 3rd -->
+<section class="pair">
+  <div class="pair-head"><span class="place">3rd</span><h2>Grand Seiko Lake Suwa U.F.A. 37 + Breitling Premier B25 Datora</h2><span class="picker">picked by Teddy Baldassarre (host)</span></div>
+  <blockquote>“Love the dress watch and the Breitling is amazing. But just felt that there might be something, you know, the other two collections just had a little bit more spice to them that we liked a little bit better.”<cite>Judge, 47:04</cite></blockquote>
+  <div class="watches">
+    <article class="watch">
+      <img src="img/teddy_A.jpg" alt="Grand Seiko SLGB015, blue textured dial, steel bracelet" loading="lazy">
+      <div class="body">
+        <h3>Grand Seiko Evolution 9 Spring Drive U.F.A. “Lake Suwa”, 37 mm</h3>
+        <div class="ref">SLGB015</div>
+        <dl>
+          <dt>Case</dt><dd>37 mm Ever-Brilliant Steel, steel bracelet, 100 m</dd>
+          <dt>Movement</dt><dd>Spring Drive U.F.A. 9RB2, ±20 s/year</dd>
+          <dt>Source</dt><dd><a href="https://www.grand-seiko.com/us-en/collections/slgb015g">grand-seiko.com · SLGB015</a></dd>
+          <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=424">picked at 7:04</a> · card at 41:25</dd>
+        </dl>
+        <span class="conf firm">Reference on screen</span>
+      </div>
+    </article>
+    <article class="watch">
+      <img src="img/teddy_B.jpg" alt="Breitling Premier B25 Datora, copper dial with moon phase, brown strap" loading="lazy">
+      <div class="body">
+        <h3>Breitling Premier B25 Datora 42, steel, copper dial</h3>
+        <div class="ref">AB2510201K1P1</div>
+        <dl>
+          <dt>Case</dt><dd>42 mm steel, brown alligator strap</dd>
+          <dt>Movement</dt><dd>Breitling B25: chronograph with triple calendar and moon phase</dd>
+          <dt>Source</dt><dd><a href="https://www.breitling.com/us-en/watches/premier/premier-b25-datora-42/AB2510201K1P1/">breitling.com · AB2510201K1P1</a></dd>
+          <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=1317">picked at 21:57</a> · card at 41:25</dd>
+        </dl>
+        <span class="conf firm">Model on screen; only steel version made</span>
+        <p class="note">The auto-captions render it as “the day in steel” and “dura”.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 4th -->
+<section class="pair">
+  <div class="pair-head"><span class="place">4th</span><h2>Glashütte Original PanoMaticInverse + Grand Seiko White Birch Hi-Beat</h2><span class="picker">picked by Marco (Swiss Watch Gang)</span></div>
+  <blockquote>“Now we're starting to get into obviously a little more complications with, you know, the Inverse, something a little bit more different than your daily … and then you have a nice daily driver. So it's a great collection.” Asked what the problem was: “No problem. Just some better options.”<cite>Judges, 46:28–46:50</cite></blockquote>
+  <div class="watches">
+    <article class="watch">
+      <img src="img/marco_A.jpg" alt="Glashütte Original PanoMaticInverse, silver dial with visible balance, blue alligator strap" loading="lazy">
+      <div class="body">
+        <h3>Glashütte Original PanoMaticInverse, steel, blue strap</h3>
+        <div class="ref">1-91-02-02-02-61 (earlier: -30)</div>
+        <dl>
+          <dt>Case</dt><dd>42 mm steel, blue Louisiana alligator strap</dd>
+          <dt>Movement</dt><dd>Automatic calibre 91-02, balance and swan-neck regulation on the dial side, Panorama Date</dd>
+          <dt>Source</dt><dd><a href="https://www.glashuette-original.com/en/watches/pano/panomaticinverse-1-91-02-02-02-61/">glashuette-original.com · 1-91-02-02-02-61</a></dd>
+          <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=656">picked at 10:56</a> · card at 40:40</dd>
+        </dl>
+        <span class="conf">Model on screen; reference not certain</span>
+        <p class="note">The brand's current steel-on-blue-alligator reference is -61. The older silver-dial reference -30 looks nearly identical, and the card photo cannot settle which one this is. The captions render it as “the invoice”.</p>
+      </div>
+    </article>
+    <article class="watch">
+      <img src="img/marco_B.jpg" alt="Grand Seiko SLGH031, white textured dial, steel bracelet" loading="lazy">
+      <div class="body">
+        <h3>Grand Seiko Evolution 9 Hi-Beat 36000 80 Hours “White Birch”</h3>
+        <div class="ref">SLGH031</div>
+        <dl>
+          <dt>Case</dt><dd>40 mm Ever-Brilliant Steel, steel bracelet</dd>
+          <dt>Movement</dt><dd>Automatic 9SA5, 36,000 vph, dual-impulse escapement, 80 h</dd>
+          <dt>Source</dt><dd><a href="https://www.grand-seiko.com/us-en/collections/slgh031g">grand-seiko.com · SLGH031</a></dd>
+          <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=1634">picked at 27:14</a> · card at 40:40</dd>
+        </dl>
+        <span class="conf firm">Reference on screen</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 5th -->
+<section class="pair">
+  <div class="pair-head"><span class="place">5th</span><h2>Grand Seiko GMT + Doxa SUB 200T</h2><span class="picker">picked by James McBay</span></div>
+  <blockquote>“Love a GMT being thrown in there and love a Doxa being thrown in there. But in terms of a two watch collection, if you were to have one as just your collection, it's a little bit off the beaten path for what we thought across the board.”<cite>Judge, 45:40</cite></blockquote>
+  <div class="watches">
+    <article class="watch">
+      <img src="img/james_A.jpg" alt="Doxa SUB 200T Sharkhunter, black dial, orange minute hand, beads-of-rice bracelet" loading="lazy">
+      <div class="body">
+        <h3>Doxa SUB 200T Sharkhunter, black</h3>
+        <div class="ref">804.10.101.10</div>
+        <dl>
+          <dt>Case</dt><dd>39 mm steel, beads-of-rice bracelet, 200 m</dd>
+          <dt>Movement</dt><dd>Automatic, time and date</dd>
+          <dt>Source</dt><dd><a href="https://doxawatches.com/products/sub-200t-sharkhunter">doxawatches.com · SUB 200T Sharkhunter</a> · reference confirmed at <a href="https://www.righttime.com/rt/doxa/804.10.101.10_a.htm">Right Time (dealer)</a></dd>
+          <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=1016">picked at 16:56</a> · card at 38:42</dd>
+        </dl>
+        <span class="conf">Model on screen; reference matched to black dial on bracelet</span>
+        <p class="note">I found the Doxa product page in Doxa's own site index, but the site refused my automated visits (too many requests), so I couldn't open it. The captions render the brand as “Doc” and “Docer”.</p>
+      </div>
+    </article>
+    <article class="watch">
+      <img src="img/james_B.jpg" alt="Grand Seiko SBGM221, cream dial with blue GMT hand, brown strap" loading="lazy">
+      <div class="body">
+        <h3>Grand Seiko Elegance GMT, cream dial</h3>
+        <div class="ref">SBGM221</div>
+        <dl>
+          <dt>Case</dt><dd>39.5 mm steel, brown leather strap</dd>
+          <dt>Movement</dt><dd>Automatic 9S66 GMT</dd>
+          <dt>Source</dt><dd><a href="https://www.grand-seiko.com/us-en/collections/sbgm221g">grand-seiko.com · SBGM221</a></dd>
+          <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=2023">picked at 33:43</a> · card at 38:42</dd>
+        </dl>
+        <span class="conf firm">Reference on screen</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 6th -->
+<section class="pair">
+  <div class="pair-head"><span class="place">6th · LAST</span><h2>Gallet Tribute to MultiChron 45 + IWC Portugieser Perpetual Calendar 44</h2><span class="picker">picked by Andrew Morgan</span></div>
+  <blockquote>“Definitely some cool watches. The two of them together did not make a lot of sense to me.”<cite>Judge, 44:26</cite></blockquote>
+  <div class="watches">
+    <article class="watch">
+      <img src="img/andrew_A.jpg" alt="Gallet Tribute to MultiChron 45, black chronograph dial, beige fabric strap" loading="lazy">
+      <div class="body">
+        <h3>Gallet Tribute to MultiChron 45, black dial</h3>
+        <div class="ref">AG0910121B1W3</div>
+        <dl>
+          <dt>Case</dt><dd>Steel, beige fabric strap; dealers list 38 mm</dd>
+          <dt>Movement</dt><dd>Hand-wound chronograph, Breitling B09 base</dd>
+          <dt>Source</dt><dd><a href="https://www.gallet.com/us-en/watches/gallet-classics/classics-tribute-to-multichron-45/AG0910121B1W3/">gallet.com · AG0910121B1W3</a></dd>
+          <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=858">picked at 14:18</a> · card at 36:30</dd>
+        </dl>
+        <span class="conf">Model on screen; reference matched to black dial on beige fabric</span>
+        <p class="note">The “45” is the 1960s model it pays tribute to, not the case size. Andrew described it as a war-era-style chronograph with a Breitling-derived hand-wound movement (captioned “P9”).</p>
+      </div>
+    </article>
+    <article class="watch">
+      <img src="img/andrew_B.jpg" alt="IWC Portugieser Perpetual Calendar 44, gold case, black dial with moon phase and year display" loading="lazy">
+      <div class="body">
+        <h3>IWC Portugieser Perpetual Calendar 44, Armor Gold, Obsidian dial</h3>
+        <div class="ref">IW503702</div>
+        <dl>
+          <dt>Case</dt><dd>44.4 mm 18 ct Armor Gold, black alligator strap</dd>
+          <dt>Movement</dt><dd>IWC calibre 52616, perpetual calendar with four-digit year, 7-day reserve</dd>
+          <dt>Source</dt><dd><a href="https://www.iwc.com/us-en/watches/portugieser/iw503702-portugieser-perpetual-calendar-44">iwc.com · IW503702</a> · confirmed via <a href="https://press.iwc.com/iwc-relaunches-portugieser-perpetual-calendar-44-en/">IWC press release</a></dd>
+          <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=1806">picked at 30:06</a> · card at 36:30</dd>
+        </dl>
+        <span class="conf">Model on screen; reference matched to gold case with black dial</span>
+        <p class="note">Of the 2024 relaunch versions, IW503702 is the only one with a gold case and a black dial: IW503701 is gold with a silver dial, and IW503703 is white gold with a blue dial.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer>
+  <p>Video: <a href="https://youtu.be/bDePE9oVcV4">youtu.be/bDePE9oVcV4</a>. The photos are frames from the video's own on-screen cards, cropped. They are shown here to identify the watches.</p>
+  <p>Transcript: YouTube's auto-generated English captions, pulled with youtube-transcript-api. Brand names are often garbled (Doxa as “Doc”, SeaQ as “CQ”, Datora as “dura”, PanoMaticInverse as “invoice”), so I took names from the on-screen cards and used the captions only to confirm them.</p>
+  <p>Links checked 14 November 2026. Specs come from the linked brand pages, with case and movement details cross-checked against dealer listings.</p>
+</footer>
+</div>

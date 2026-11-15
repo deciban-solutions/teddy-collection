@@ -1,0 +1,454 @@
+{
+  "id": "shipped:two-watch@1",
+  "category": "two-watch",
+  "version": "1",
+  "label": "provisional",
+  "paradigm": "These criteria serve a buyer choosing what to purchase, new or pre-owned: an evidence-based, value-aware buyer who wants an informed view of history and context. They are one reasonable buyer's stance, not the only one, and this version is provisional: drafted from published sources, not yet compiled or ratified.",
+  "created": "2026-11-15",
+  "change_log": [
+    {
+      "date": "2026-11-15",
+      "reason": "Converted from the two-watch collection taxonomy page of 2026-11-14 (artifact 7yWxiKfWGM7Yq4Uf1qapMU): 6 wearer, 9 watch and 7 pair criteria and its 10 references, wording kept. Kinds and evidence classes were assigned in conversion; the page's sources are informed opinion, so no criterion is classed research or deductive. Wearer-layer 'must' means the input must be established before any watch is scored. All checks are judged: the page gives no spec threshold that holds for every wearer. One citation changed: the page cites European Watch Company (its ref 2) for 'value', but that guide has no value-per-price passage, so 'value' cites Hodinkee Japan instead, whose author calls his 38 mm, 100-hour pair a relative value proposition (the next cheapest such watch being the discontinued F.P. Journe Octa).",
+      "additions": {
+        "criteria": 22
+      }
+    }
+  ],
+  "spec_fields": {},
+  "brief": {
+    "quote": "Think about a scenario where you could only have two watches in your actual collection. And that has to serve you every single day. There's no price limitations.",
+    "speaker": "Teddy Baldassarre",
+    "video": "bDePE9oVcV4",
+    "timestamp": "1:13",
+    "url": "https://www.youtube.com/watch?v=bDePE9oVcV4"
+  },
+  "layers": {
+    "wearer": [
+      {
+        "key": "occasion_mix",
+        "statement": "List the occasions the wearer actually faces in a year and how often (the occasion matrix). A black-tie event once a year is a different requirement from weekly client meetings.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.gentlemansgazette.com/how-match-watches-your-outfit/",
+          "https://hespokestyle.com/dress-watches-with-tuxedo/"
+        ]
+      },
+      {
+        "key": "wrist_fit",
+        "statement": "Lug-to-lug length must sit inside the top of the wrist, and case thickness decides whether it fits under a shirt cuff. Measure these instead of trusting the stated diameter.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation",
+          "https://hespokestyle.com/dress-watches-with-tuxedo/"
+        ]
+      },
+      {
+        "key": "activity_climate",
+        "statement": "Does the wearer swim, surf, dive, garden or do manual work? That sets the water-resistance floor and whether a leather strap will survive.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.gentlemansgazette.com/how-match-watches-your-outfit/",
+          "https://timex.com/pages/water-resistance-ratings"
+        ]
+      },
+      {
+        "key": "travel",
+        "statement": "How often does the wearer cross time zones? Frequent travel makes a GMT complication earn its slot.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://timeandtidewatches.com/what-is-the-ultimate-two-watch-collection-the-timetide-team-have-their-say/",
+          "https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation"
+        ]
+      },
+      {
+        "key": "identity_taste",
+        "statement": "Would the wearer be happy to be known by this watch? Some enthusiasts want a watch that draws no questions; others want one that says something.",
+        "kind": "more_is_better",
+        "evidence_class": "contested",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://wornandwound.com/the-tudor-black-bay-and-the-myth-of-the-one-watch-collection/",
+          "https://timeandtidewatches.com/what-is-the-ultimate-two-watch-collection-the-timetide-team-have-their-say/"
+        ]
+      },
+      {
+        "key": "budget_shape",
+        "statement": "Decide whether one anchor piece takes most of the budget or the money is split evenly. With no price limit, as in the video, this drops out.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation"
+        ]
+      }
+    ],
+    "watch": [
+      {
+        "key": "register",
+        "statement": "Where the watch sits from dress to tool. Read it from thickness, polish versus brushing, dial busyness, strap and metal. The black-tie end is specific: thin, plain time-only dial, black leather strap, ideally precious metal. Bracelets, rubber and nylon read as casual.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://hespokestyle.com/dress-watches-with-tuxedo/",
+          "https://www.gentlemansgazette.com/how-match-watches-your-outfit/"
+        ]
+      },
+      {
+        "key": "robustness",
+        "statement": "What it survives: water resistance against the wearer's activities (30 m splash, 50 m casual swimming, 100 m snorkelling and surfing, 200 m recreational scuba), screw-down crown, lume and legibility, scratch-resistant crystal. A dress watch should never get wet.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://timex.com/pages/water-resistance-ratings",
+          "https://timeandtidewatches.com/what-is-a-dive-watch/",
+          "https://www.gentlemansgazette.com/how-match-watches-your-outfit/"
+        ]
+      },
+      {
+        "key": "wearability",
+        "statement": "Comfort across a whole day: size and thickness for the wrist, weight, bracelet comfort and fine adjustment, and how easily the strap swaps. A watch taken off by mid-afternoon fails here, however fine it is.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://wornandwound.com/the-tudor-black-bay-and-the-myth-of-the-one-watch-collection/",
+          "https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation"
+        ]
+      },
+      {
+        "key": "useful_complications",
+        "statement": "Score each complication on use, not prestige: date (daily), GMT (travel), chronograph (timing things), perpetual calendar (rarely needs setting, but delicate). Overlapping complications across the pair count against it.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation",
+          "https://twobrokewatchsnobs.com/omega-speedmaster-doxa-sub-300-collection/"
+        ]
+      },
+      {
+        "key": "practicality",
+        "statement": "The cost of ownership day to day: accuracy, power reserve (does it survive a weekend off the wrist?), automatic or hand-wound, serviceability. A hand-wound watch or a calendar that stops and needs resetting puts friction on a daily watch.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://wornandwound.com/the-tudor-black-bay-and-the-myth-of-the-one-watch-collection/",
+          "https://twobrokewatchsnobs.com/omega-speedmaster-doxa-sub-300-collection/"
+        ]
+      },
+      {
+        "key": "horological_merit",
+        "statement": "Mechanical interest and craft: movement design and finishing, in-house work, innovation, dial craft. This is the 'interesting mechanics' enthusiasts value and the reason several experts pick a hand-finished piece as their second watch.",
+        "kind": "more_is_better",
+        "evidence_class": "contested",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://timeandtidewatches.com/what-is-the-ultimate-two-watch-collection-the-timetide-team-have-their-say/",
+          "https://hodinkee.jp/articles/two-watch-collection-logan-baker-blancpain-leman-oris-diver-65-caliber-400-38mm",
+          "https://twobrokewatchsnobs.com/omega-speedmaster-doxa-sub-300-collection/"
+        ]
+      },
+      {
+        "key": "design_integrity",
+        "statement": "Purpose, heritage, timelessness: is the design built for a purpose with historical roots? Will it still look right in twenty years? Is it neutral enough to go anywhere without inviting questions?",
+        "kind": "more_is_better",
+        "evidence_class": "contested",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://wornandwound.com/the-tudor-black-bay-and-the-myth-of-the-one-watch-collection/",
+          "https://hodinkee.jp/articles/two-watch-collection-logan-baker-blancpain-leman-oris-diver-65-caliber-400-38mm"
+        ]
+      },
+      {
+        "key": "meaning",
+        "statement": "Attachment: would the wearer save it from a fire? Does it mark something in their life? With only two watches, each one has to matter.",
+        "kind": "more_is_better",
+        "evidence_class": "contested",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://twobrokewatchsnobs.com/omega-speedmaster-doxa-sub-300-collection/",
+          "https://wornandwound.com/the-tudor-black-bay-and-the-myth-of-the-one-watch-collection/"
+        ]
+      },
+      {
+        "key": "value",
+        "statement": "What the money buys: quality, finishing and engineering per unit of price. It drops out under a no-budget brief, but enthusiasts still credit a watch that over-delivers for its price.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://hodinkee.jp/articles/two-watch-collection-logan-baker-blancpain-leman-oris-diver-65-caliber-400-38mm"
+        ]
+      }
+    ],
+    "pair": [
+      {
+        "key": "coverage",
+        "statement": "Every occasion row the wearer faces has at least one watch that fits it. Count the rows left uncovered, weighted by how often they occur.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://timeandtidewatches.com/what-is-the-ultimate-two-watch-collection-the-timetide-team-have-their-say/",
+          "https://twobrokewatchsnobs.com/omega-speedmaster-doxa-sub-300-collection/",
+          "https://www.gentlemansgazette.com/how-match-watches-your-outfit/"
+        ]
+      },
+      {
+        "key": "differentiation",
+        "statement": "The redundancy audit: do the two differ in register, case size, dial colour, complications and strap? Two similar dark dials, two chronographs or two 40 mm steel bracelets are one watch twice.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation"
+        ]
+      },
+      {
+        "key": "coherence",
+        "statement": "Can each watch's presence be explained by the collection's logic, rather than by wanting it or finding a deal? Do they share values (era, design philosophy, mechanical interest) even while they look different?",
+        "kind": "more_is_better",
+        "evidence_class": "contested",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation",
+          "https://hodinkee.jp/articles/two-watch-collection-logan-baker-blancpain-leman-oris-diver-65-caliber-400-38mm"
+        ]
+      },
+      {
+        "key": "anchor",
+        "statement": "Name the watch the wearer would keep if they lost the other. It should be the one that covers the most wear-days, and it sets the collection's centre of gravity.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation",
+          "https://timeandtidewatches.com/what-is-the-ultimate-two-watch-collection-the-timetide-team-have-their-say/"
+        ]
+      },
+      {
+        "key": "tension_point",
+        "statement": "One deliberate contrast: brand origin, movement type, era or register. If nothing contrasts, reconsider one slot.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation",
+          "https://hodinkee.jp/articles/two-watch-collection-logan-baker-blancpain-leman-oris-diver-65-caliber-400-38mm"
+        ]
+      },
+      {
+        "key": "gap_test",
+        "statement": "Remove either watch. Does a real gap open, meaning a set of days or occasions the other cannot serve? If not, the second watch is not earning its place.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation"
+        ]
+      },
+      {
+        "key": "wear_balance",
+        "statement": "Each watch should suit a distinct kind of day, so the morning choice is easy and neither sits in a drawer. If the wearer would want a third watch, the pair has failed.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://twobrokewatchsnobs.com/omega-speedmaster-doxa-sub-300-collection/"
+        ]
+      }
+    ]
+  },
+  "coherence": [
+    {
+      "factor": "both fine, pair redundant",
+      "statement": "Two watches can each score well and still fail as a pair; judge differentiation and the gap test on the pair, not on either watch.",
+      "sources": [
+        "https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation"
+      ]
+    },
+    {
+      "factor": "occasion matrix",
+      "statement": "A pair passes coverage when every occasion row the wearer faces has at least one watch marked fits. The matrix cells are the page author's synthesis of the cited dress-code and water-resistance guidance; no source scores watch types this way.",
+      "sources": [
+        "https://www.gentlemansgazette.com/how-match-watches-your-outfit/",
+        "https://timex.com/pages/water-resistance-ratings"
+      ]
+    }
+  ],
+  "teddy_principles": [
+    {
+      "quote": "Think about a scenario where you could only have two watches in your actual collection. And that has to serve you every single day. There's no price limitations.",
+      "video": "bDePE9oVcV4",
+      "title": "Watch Shopping with Watch Content Creators in Our Store",
+      "timestamp": "1:13",
+      "url": "https://www.youtube.com/watch?v=bDePE9oVcV4&t=73s",
+      "evidence_class": "practitioner",
+      "relevance": "The brief this taxonomy serves (the premise, not a criterion)."
+    },
+    {
+      "quote": "Not thinking about redundancies",
+      "video": "hzSAhDCB_qE",
+      "title": "Most Expensive Watch Collecting Mistakes to Avoid",
+      "timestamp": "15:02",
+      "url": "https://www.youtube.com/watch?v=hzSAhDCB_qE&t=902s",
+      "evidence_class": "practitioner",
+      "relevance": "Pair layer: differentiation and the gap test."
+    },
+    {
+      "quote": "Try to diversify what you have",
+      "video": "hzSAhDCB_qE",
+      "title": "Most Expensive Watch Collecting Mistakes to Avoid",
+      "timestamp": "15:30",
+      "url": "https://www.youtube.com/watch?v=hzSAhDCB_qE&t=930s",
+      "evidence_class": "practitioner",
+      "relevance": "Pair layer: differentiation."
+    }
+  ],
+  "principles_note": "Teddy's principles are quoted from the videos' auto-captions (wording as captioned), located by text search of the caption track; timestamps are the caption segment where the quote begins. They enter as practitioner consensus, never as standards. His videos state his store is an authorized dealer for over 35 brands.",
+  "sources": [
+    {
+      "url": "https://www.gentlemansgazette.com/how-match-watches-your-outfit/",
+      "title": "How to Match Watches to Your Outfit",
+      "publisher": "Gentleman's Gazette",
+      "date": "2016-12-09",
+      "author": "J. A. Shapira",
+      "note": "Menswear guide: dress-code mapping.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://hespokestyle.com/dress-watches-with-tuxedo/",
+      "title": "Should You Wear A Watch With A Tuxedo?",
+      "publisher": "He Spoke Style",
+      "date": "2022-05-25",
+      "note": "Menswear guide; the publisher sells clothing.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation",
+      "title": "The Three-Watch Collection: A Buyer's Guide",
+      "publisher": "European Watch Company",
+      "date": "2026-07-28",
+      "author": "EWC Team",
+      "note": "A retailer's guide (the publisher sells watches); source of the role, anchor, tension, gap and redundancy tests.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://timex.com/pages/water-resistance-ratings",
+      "title": "Water Resistance Ratings",
+      "publisher": "Timex",
+      "date": "not stated on page",
+      "note": "A brand's guidance mapping 30/50/100/200 m ratings to activities.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://timeandtidewatches.com/what-is-the-ultimate-two-watch-collection-the-timetide-team-have-their-say/",
+      "title": "What is the ultimate two-watch collection? The Time+Tide team have their say",
+      "publisher": "Time+Tide",
+      "date": "2021-08-25",
+      "author": "Luke Benedictus",
+      "note": "Informed opinion: staff picks.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://wornandwound.com/the-tudor-black-bay-and-the-myth-of-the-one-watch-collection/",
+      "title": "The Tudor Black Bay and the Myth of the One Watch Collection",
+      "publisher": "Worn & Wound",
+      "date": "2025-10-09",
+      "author": "Zach Kazan",
+      "note": "Informed opinion: one editor's view.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://timeandtidewatches.com/what-is-a-dive-watch/",
+      "title": "What is a dive watch?",
+      "publisher": "Time+Tide",
+      "date": "2025-07-01",
+      "author": "Buffy Acacia",
+      "note": "Summarises the ISO 6425 requirements, then what enthusiasts look for (200 m, screw-down crown, straps and diver's extensions).",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://twobrokewatchsnobs.com/omega-speedmaster-doxa-sub-300-collection/",
+      "title": "Why the Omega Speedmaster and Doxa Sub 300 Make the Best Two Watch Collection",
+      "publisher": "Two Broke Watch Snobs",
+      "date": "2026-06-02",
+      "author": "Michael Penate",
+      "note": "Informed opinion: one writer's collection.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://hodinkee.jp/articles/two-watch-collection-logan-baker-blancpain-leman-oris-diver-65-caliber-400-38mm",
+      "title": "The Two Watch Collection (Blancpain Léman and Oris Divers Sixty-Five)",
+      "publisher": "Hodinkee Japan",
+      "date": "2022-12-01",
+      "author": "Logan Baker",
+      "note": "Informed opinion: one editor's collection. Japanese-language edition, read in full 2026-11-15: supports interesting mechanics and history, purposeful design with historical roots, a shared collection role despite many visible contrasts (bezel versus date, satin versus polish, vintage-sporty versus dressy-modern, about 30 years apart), and value for price.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=bDePE9oVcV4",
+      "title": "Watch Shopping with Watch Content Creators in Our Store",
+      "publisher": "Teddy Baldassarre (YouTube)",
+      "date": "2026-11-14",
+      "author": "Teddy Baldassarre",
+      "note": "Video; source of the two-watch brief. His videos state his store is an authorized dealer for over 35 brands.",
+      "checked": "2026-11-15"
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "id": "shipped:gmt@1",
+  "category": "gmt",
+  "version": "1",
+  "label": "provisional",
+  "paradigm": "These criteria serve a buyer choosing what to purchase, new or pre-owned: an evidence-based, value-aware buyer who wants an informed view of history and context. They are one reasonable buyer's stance, not the only one, and this version is provisional: drafted from published sources, not yet compiled or ratified.",
+  "created": "2026-11-15",
+  "change_log": [
+    {
+      "date": "2026-11-15",
+      "reason": "Drafted from Monochrome's and Fratello's technical guides to office versus traveller's GMT watches, Timex's water-resistance ratings and Gear Patrol on fit. The Teddy content audit of 2026-11-14 covers no GMT-specific principle, so none is seeded.",
+      "additions": {
+        "criteria": 7
+      }
+    }
+  ],
+  "spec_fields": {
+    "complications": "list of lower-case strings, for example \"date\", \"chronograph\", \"gmt\"; [] for time only",
+    "water_resistance_m": "number: rated water resistance in metres"
+  },
+  "layers": {
+    "wearer": [
+      {
+        "key": "time_zone_pattern",
+        "statement": "How the buyer uses a second zone decides the type: a traveller who resets local time on arrival wants a flyer (traveller's) GMT; someone at home tracking a distant office or family is served as well by a caller (office) GMT.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://monochrome-watches.com/technical-guide-difference-between-office-gmt-and-traveller-gmt-true-gmt-watches/",
+          "https://www.fratellowatches.com/gmt-watches-101-caller-versus-flyer-or-true-gmt-explained/"
+        ]
+      },
+      {
+        "key": "wrist_fit",
+        "statement": "The watch fits the buyer's wrist: lug-to-lug length inside the flat top of the wrist and a thickness the buyer's cuffs and comfort allow. Measure these rather than trusting the stated diameter.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "test": "Compare the stated lug-to-lug length with the buyer's measured flat wrist width; try the watch on where possible.",
+        "sources": [
+          "https://www.gearpatrol.com/watches/watches-lug-to-lug/"
+        ]
+      }
+    ],
+    "watch": [
+      {
+        "key": "second_time_zone",
+        "statement": "The watch shows a second time zone on a 24-hour scale (a GMT hand or equivalent).",
+        "kind": "must",
+        "evidence_class": "deductive",
+        "check": {
+          "type": "deterministic",
+          "rule": "'gmt' in complications",
+          "planted": {
+            "pass": [
+              {
+                "complications": [
+                  "gmt",
+                  "date"
+                ]
+              }
+            ],
+            "fail": [
+              {
+                "complications": [
+                  "date"
+                ]
+              },
+              {
+                "complications": []
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://monochrome-watches.com/technical-guide-difference-between-office-gmt-and-traveller-gmt-true-gmt-watches/",
+          "https://www.fratellowatches.com/gmt-watches-101-caller-versus-flyer-or-true-gmt-explained/"
+        ]
+      },
+      {
+        "key": "independent_local_hour",
+        "statement": "For travel: the local hour hand jumps in one-hour steps, forwards and backwards, without stopping the watch or disturbing the home-time hand (a flyer or 'true' GMT). An office GMT sets the 24-hour hand instead and needs the time stopped to change local time.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://monochrome-watches.com/technical-guide-difference-between-office-gmt-and-traveller-gmt-true-gmt-watches/",
+          "https://www.fratellowatches.com/gmt-watches-101-caller-versus-flyer-or-true-gmt-explained/"
+        ]
+      },
+      {
+        "key": "date_follows_local_time",
+        "statement": "How the date behaves when local time is changed: on a traveller's GMT moving the hour hand backwards affects the date and may need correcting; on an office GMT the date is usually set separately in one direction.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://monochrome-watches.com/technical-guide-difference-between-office-gmt-and-traveller-gmt-true-gmt-watches/"
+        ]
+      },
+      {
+        "key": "third_zone_bezel",
+        "statement": "A rotating 24-hour bezel adds a third time zone. Useful, but a bonus rather than the core of the function.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://monochrome-watches.com/technical-guide-difference-between-office-gmt-and-traveller-gmt-true-gmt-watches/"
+        ]
+      },
+      {
+        "key": "travel_water_resistance",
+        "statement": "At least 50 m (light swimming in a brand's ratings), so a travel watch can stay on at the pool or beach. This links the brand ratings to travel use; no GMT source sets it.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "deterministic",
+          "rule": "water_resistance_m >= 50",
+          "planted": {
+            "pass": [
+              {
+                "water_resistance_m": 100
+              },
+              {
+                "water_resistance_m": 50
+              }
+            ],
+            "fail": [
+              {
+                "water_resistance_m": 30
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://timex.com/pages/water-resistance-ratings"
+        ]
+      }
+    ]
+  },
+  "coherence": [],
+  "teddy_principles": [],
+  "principles_note": "Teddy's principles are quoted from the videos' auto-captions (wording as captioned), located by text search of the caption track; timestamps are the caption segment where the quote begins. They enter as practitioner consensus, never as standards. His videos state his store is an authorized dealer for over 35 brands.",
+  "sources": [
+    {
+      "url": "https://monochrome-watches.com/technical-guide-difference-between-office-gmt-and-traveller-gmt-true-gmt-watches/",
+      "title": "Technical Guide: The Difference Between Office GMT and Traveller's GMT Watches",
+      "publisher": "Monochrome Watches",
+      "date": "2022-12-08",
+      "author": "Brice Goulard",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.fratellowatches.com/gmt-watches-101-caller-versus-flyer-or-true-gmt-explained/",
+      "title": "GMT Watches 101: Caller Versus Flyer (Or \"True\") GMT Explained",
+      "publisher": "Fratello",
+      "date": "2023-11-17",
+      "author": "Thomas Van Straaten",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.gearpatrol.com/watches/watches-lug-to-lug/",
+      "title": "What Is a Lug-to-Lug Measurement On a Watch?",
+      "publisher": "Gear Patrol",
+      "date": "2024-03-20",
+      "author": "Johnny Brayson",
+      "note": "Informed opinion with side-by-side wrist photos; no measured study.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://timex.com/pages/water-resistance-ratings",
+      "title": "Water Resistance Ratings",
+      "publisher": "Timex",
+      "date": "not stated on page",
+      "note": "A brand's guidance mapping 30/50/100/200 m ratings to activities.",
+      "checked": "2026-11-15"
+    }
+  ]
+}

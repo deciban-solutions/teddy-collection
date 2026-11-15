@@ -1,0 +1,68 @@
+{
+ "scorer1": {
+  "PAIR-U": "marco",
+  "PAIR-V": "james",
+  "PAIR-W": "teddy",
+  "PAIR-X": "andrew",
+  "PAIR-Y": "adrien",
+  "PAIR-Z": "brit"
+ },
+ "scorer1_watches": {
+  "PAIR-U-1": "marco_A",
+  "PAIR-U-2": "marco_B",
+  "PAIR-V-1": "james_B",
+  "PAIR-V-2": "james_A",
+  "PAIR-W-1": "teddy_B",
+  "PAIR-W-2": "teddy_A",
+  "PAIR-X-1": "andrew_A",
+  "PAIR-X-2": "andrew_B",
+  "PAIR-Y-1": "adrien_B",
+  "PAIR-Y-2": "adrien_A",
+  "PAIR-Z-1": "brit_A",
+  "PAIR-Z-2": "brit_B"
+ },
+ "scorer2": {
+  "PAIR-U": "adrien",
+  "PAIR-V": "teddy",
+  "PAIR-W": "brit",
+  "PAIR-X": "marco",
+  "PAIR-Y": "andrew",
+  "PAIR-Z": "james"
+ },
+ "scorer2_watches": {
+  "PAIR-U-1": "adrien_B",
+  "PAIR-U-2": "adrien_A",
+  "PAIR-V-1": "teddy_B",
+  "PAIR-V-2": "teddy_A",
+  "PAIR-W-1": "brit_A",
+  "PAIR-W-2": "brit_B",
+  "PAIR-X-1": "marco_A",
+  "PAIR-X-2": "marco_B",
+  "PAIR-Y-1": "andrew_A",
+  "PAIR-Y-2": "andrew_B",
+  "PAIR-Z-1": "james_B",
+  "PAIR-Z-2": "james_A"
+ },
+ "scorer3": {
+  "PAIR-U": "andrew",
+  "PAIR-V": "adrien",
+  "PAIR-W": "brit",
+  "PAIR-X": "teddy",
+  "PAIR-Y": "james",
+  "PAIR-Z": "marco"
+ },
+ "scorer3_watches": {
+  "PAIR-U-1": "andrew_B",
+  "PAIR-U-2": "andrew_A",
+  "PAIR-V-1": "adrien_B",
+  "PAIR-V-2": "adrien_A",
+  "PAIR-W-1": "brit_B",
+  "PAIR-W-2": "brit_A",
+  "PAIR-X-1": "teddy_B",
+  "PAIR-X-2": "teddy_A",
+  "PAIR-Y-1": "james_B",
+  "PAIR-Y-2": "james_A",
+  "PAIR-Z-1": "marco_B",
+  "PAIR-Z-2": "marco_A"
+ }
+}

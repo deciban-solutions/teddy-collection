@@ -1,0 +1,275 @@
+<title>The Pickers' Own Watches</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
+<style>
+/* Layout: one card per picker. Photo of the watch they wore beside its identification; below, their own words about it and the criteria they stated while picking; a closing table reads each person as a wearer profile. */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --fg: #16202a; --muted: #5b6875; --line: #d9dfe5;
+  --accent: #1f4e8c; --tint: #e9eef4;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0f151b; --surface:#17212a; --fg:#e5ebf0; --muted:#9aa8b5; --line:#2a3742; --accent:#7fa8e0; --tint:#1c2833; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg:#0f151b; --surface:#17212a; --fg:#e5ebf0; --muted:#9aa8b5; --line:#2a3742; --accent:#7fa8e0; --tint:#1c2833; color-scheme: dark; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 56px; display: flex; flex-direction: column; gap: 36px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-size: 2.1rem; font-weight: 600; } h2 { font-size: 1.45rem; font-weight: 600; } h3 { font-size: 1.02rem; font-weight: 600; }
+p { margin: 0; max-width: 70ch; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { color: var(--muted); }
+.person { border-top: 1px solid var(--line); padding-top: 22px; display: flex; flex-direction: column; gap: 14px; }
+.head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.head .meta { color: var(--muted); font-size: 0.9rem; }
+.grid { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+.photo { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.photo img { display: block; width: 100%; height: auto; max-width: 100%; }
+.photo figcaption { font-size: 0.8rem; color: var(--muted); padding: 6px 10px; }
+.id { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.ref { font-family: var(--mono); font-size: 0.86rem; color: var(--accent); overflow-wrap: anywhere; }
+dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 0.9rem; }
+dt { color: var(--muted); } dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.conf { display: inline-block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 1px 6px; border-radius: 3px; border: 1px solid var(--line); color: var(--muted); width: fit-content; }
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 680px) { .quotes { grid-template-columns: 1fr; } }
+.q { background: var(--tint); border-radius: 4px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.q h3 { font-size: 0.92rem; }
+.q ul { margin: 0; padding-left: 18px; font-size: 0.92rem; display: flex; flex-direction: column; gap: 5px; }
+.q .t { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+.read { font-size: 0.93rem; }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; min-width: 760px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 11px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: none; }
+th { font-family: var(--display); font-weight: 600; background: var(--tint); }
+.note { font-size: 0.86rem; color: var(--muted); }
+ul.plain { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; max-width: 78ch; }
+</style>
+
+<div class="wrap">
+<header style="display:flex;flex-direction:column;gap:12px">
+  <div class="eyebrow">Two-watch challenge · the wearers</div>
+  <h1>The Pickers' Own Watches</h1>
+  <p class="lede">The host had each enthusiast show the watch they wore to the shoot. Together with what each said while picking, this gives a first read on each person as a wearer: the layer of the collection taxonomy that the blind judges could not see.</p>
+  <p class="note">Quotes are from YouTube's auto-generated captions, lightly cleaned of filler words and caption errors (for example “Doc” for Doxa). Timestamps link to the moment in the video.</p>
+</header>
+
+<!-- Adrien -->
+<section class="person">
+  <div class="head"><h2>Adrien Barker</h2><span class="meta">founder of a strap company, Bark &amp; Jack · judges' 2nd</span></div>
+  <div class="grid">
+    <figure class="photo" style="margin:0"><img src="img/worn_adrien.jpg" alt="IWC Pilot's Watch Mark XX, black dial, on a khaki single-piece nylon strap, on Adrien's wrist"><figcaption>On his wrist at 18:50</figcaption></figure>
+    <div class="id">
+      <h3>IWC Pilot's Watch Mark XX, black dial</h3>
+      <div class="ref">IW328201</div>
+      <dl>
+        <dt>Specs</dt><dd>40 mm steel, IWC calibre 32111 automatic, 10 bar. Sold on a black calfskin strap; he wears it on a single-piece nylon strap.</dd>
+        <dt>Source</dt><dd><a href="https://www.iwc.com/us-en/watches/pilot-watches/iw328201-pilots-watch-mark-xx">iwc.com · IW328201</a> · <a href="https://press.iwc.com/iwc-schaffhausen-completes-the-pilots-watch-mark-xx-collection-with-four-new-models-en/">IWC press release</a></dd>
+        <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=1127">18:47</a></dd>
+      </dl>
+      <span class="conf">Model legible on dial; reference matched to black dial</span>
+    </div>
+  </div>
+  <div class="quotes">
+    <div class="q"><h3>About the watch he wore</h3><ul>
+      <li>“I guess this plays into my boring taste of watches. I like watches that have been designed to do a purpose, and that they live up to that purpose. Black dial, matte black dial as a tool watch. Nice field watch, pilot watch.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=1127">18:47</a></span></li>
+      <li>Teddy's reply: “You're not boring. You're just classic and timeless.”</li>
+    </ul></div>
+    <div class="q"><h3>His stated criteria</h3><ul>
+      <li>Watch one: “the daily … the watch that you just grab for any occasion … You can wear it with jeans and t-shirt or you can wear it with a suit.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=285">4:45</a></span></li>
+      <li>Would choose Grand Seiko instead “if I wanted something that would give me more of a dressy feeling … the finishing is a bit higher.”</li>
+      <li>Watch two: “something a bit more fun, a bit more colorful, like a weekend watch … a bit more busyness on the dial … a colorful chronograph.” He rejected one candidate as too similar to the Aqua Terra and one as too big. <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=1189">19:49</a></span></li>
+      <li>On the IWC chronograph: “a chunky beast, but … that's what I'd want in contrast to the Aqua Terra.”</li>
+    </ul></div>
+  </div>
+  <p class="read"><b>Read as a wearer:</b> a tool-watch purist who values purpose-built design, black dials and straps. He built the textbook daily-plus-weekend pair and stayed within his own taste.</p>
+</section>
+
+<!-- Teddy -->
+<section class="person">
+  <div class="head"><h2>Teddy Baldassarre</h2><span class="meta">host · judges' 3rd</span></div>
+  <div class="grid">
+    <figure class="photo" style="margin:0"><img src="img/worn_teddy.jpg" alt="Glashütte Original PanoMaticLunar with green gradient dial on a steel bracelet"><figcaption>Product image the video shows at 21:46; the watch is not shown on his wrist</figcaption></figure>
+    <div class="id">
+      <h3>Glashütte Original PanoMaticLunar, green dial</h3>
+      <div class="ref">1-90-02-13-32-70 (steel bracelet)</div>
+      <dl>
+        <dt>Specs</dt><dd>40 mm steel, calibre 90-02 automatic, Panorama Date, moon phase, green-black lacquered dial, 5 bar.</dd>
+        <dt>Source</dt><dd><a href="https://www.glashuette-original.com/en/watches/pano/panomaticlunar-1-90-02-13-32-70/">glashuette-original.com · 1-90-02-13-32-70</a></dd>
+        <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=1301">21:41</a></dd>
+      </dl>
+      <span class="conf">Model named and shown; reference matched to green dial on bracelet</span>
+      <p class="note">The caption reads “Panamatic lunar green dial.” He may wear it on a strap; the bracelet reference matches the image the video shows.</p>
+    </div>
+  </div>
+  <div class="quotes">
+    <div class="q"><h3>About the watch he wore</h3><ul>
+      <li>“I'm wearing a PanoMatic Lunar green dial … That's a little more bold, right? … I like blue as well.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=1301">21:41</a></span></li>
+    </ul></div>
+    <div class="q"><h3>His stated criteria</h3><ul>
+      <li>“For an everyday piece, cuz I only have two watches, I need something that can cover a lot of bases.” Chose 37 mm: “I can wear this formally while also, you know, rough and tumble.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=451">7:31</a></span></li>
+      <li>Accuracy: “plus or minus 20 seconds a year is not too bad either.”</li>
+      <li>Watch two: “I've been inspired to get maybe a little bit more interesting … This will be my complication.” At 42 mm it is “pushing the limit,” but “I think if I wanted to go more elegant … I could dress that.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=1317">21:57</a></span></li>
+      <li>Sizing: “I subscribe to the Tim Mosso sizing guide,” meaning a wide range of sizes can work.</li>
+    </ul></div>
+  </div>
+  <p class="read"><b>Read as a wearer:</b> prefers compact cases (37 mm), likes colour (blue, green, copper) and German and Japanese finishing. He wore a dressy moon-phase calendar and picked another, so his second watch follows his own taste.</p>
+</section>
+
+<!-- Brit -->
+<section class="person">
+  <div class="head"><h2>Brit Pierce</h2><span class="meta">watch reviewer · judges' 1st</span></div>
+  <div class="grid">
+    <figure class="photo" style="margin:0"><img src="img/worn_brit.jpg" alt="Omega Seamaster Diver 300M midsize with blue wave dial and blue bezel on a steel bracelet"><figcaption>On her wrist at 24:52</figcaption></figure>
+    <div class="id">
+      <h3>Omega Seamaster Diver 300M midsize, blue wave dial</h3>
+      <div class="ref">most likely 2551.80.00</div>
+      <dl>
+        <dt>Specs</dt><dd>About 36 mm steel, Omega calibre 1120 automatic chronometer, 300 m, blue wave dial and bezel; discontinued.</dd>
+        <dt>Source</dt><dd>No current Omega page. Dealer listing: <a href="https://www.bobswatches.com/omega/omega-seamaster-300m-midsize-chronometer.html">Bob's Watches · 2551.80.00</a></dd>
+        <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=1483">24:43</a></dd>
+      </dl>
+      <span class="conf">Model clear; reference inferred</span>
+      <p class="note">She calls it “the smaller size, the midsize that has been discontinued.” The dial reads Automatic Chronometer, which fits the midsize automatic 2551.80; the quartz midsize is a different reference.</p>
+    </div>
+  </div>
+  <div class="quotes">
+    <div class="q"><h3>About the watch she wore</h3><ul>
+      <li>“The Omega Seamaster Diver 300, the smaller size, the midsize that has been discontinued, and we've been asking Omega to bring this back.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=1487">24:47</a></span></li>
+      <li>Of the SeaQ: “If I had it in my collection, I would sell a lot of things because it would make them moot. I would sell my Black Bay 58, my Black Bay 54, possibly even the Omega Seamaster 300 I'm wearing right now.”</li>
+    </ul></div>
+    <div class="q"><h3>Her stated criteria</h3><ul>
+      <li>“If we are doing a daily watch, which is where I'm going to start mine.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=540">9:00</a></span> On the U.F.A.: “exceptionally practical to have plus or minus 20 seconds per year … looks good on wrist, easy to wear, easy to choose.”</li>
+      <li>“If I'm getting a Grand Seiko, I want Spring Drive. It's a distinction of theirs that matters to me.” 37 mm is her preference.</li>
+      <li>Watch two: “either sporty or dressy complicated, but for my personal life I lean more sporty. I find myself choosing my sporty watches more often.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=1530">25:30</a></span></li>
+      <li>“If you care about finishing, this is offering a lot for its price … a different, if-you-know-you-know kind of choice.” And: “a Japanese watch and a German watch. So, no Swiss. Going a little bit niche.” She dislikes faux-aged (“fauxtina”) dials.</li>
+    </ul></div>
+  </div>
+  <p class="read"><b>Read as a wearer:</b> a diver person (Black Bay 58, Black Bay 54, Seamaster 300 already in her collection) who prefers smaller cases, blue dials, accuracy and finishing. She built her pair from what she actually reaches for, which is also what the judges rewarded.</p>
+</section>
+
+<!-- Marco -->
+<section class="person">
+  <div class="head"><h2>Marco</h2><span class="meta">Swiss Watch Gang · judges' 4th</span></div>
+  <div class="grid">
+    <figure class="photo" style="margin:0"><img src="img/worn_marco_wrist.jpg" alt="Felipe Pikullik Mondphase 1 with frosted dark dial and spherical moon, on a red leather strap"><figcaption>On his wrist at 26:38</figcaption></figure>
+    <div class="id">
+      <h3>Felipe Pikullik Mondphase 1 (“Moonphase One”)</h3>
+      <div class="ref">Mondphase 1, frosted black-rhodium dial</div>
+      <dl>
+        <dt>Specs</dt><dd>41 mm steel, hand-wound modified Unitas 6497, hand-made spherical moon phase, hand-engraved name on the dial; limited to 20 pieces; €24,000 at launch.</dd>
+        <dt>Source</dt><dd><a href="https://felipe-pikullik.odoo.com/moonphase1">felipe-pikullik · Mondphase I</a> · <a href="https://monochrome-watches.com/introducing-felipe-pikullik-shoots-for-the-moon-with-the-mondphase-1-specs-price">Monochrome launch article</a></dd>
+        <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=1588">26:28</a></dd>
+      </dl>
+      <span class="conf">Maker's name legible on dial in the close-up</span>
+      <p class="note">The captions render the maker as “Filipe Piculik.” The dial matches the regular edition, not the later Meteorite edition.</p>
+    </div>
+  </div>
+  <div class="quotes">
+    <div class="q"><h3>About the watch he wore</h3><ul>
+      <li>“A watch made in Berlin, Germany by young independent watchmaker Felipe. He does the moon phase and all the gears on the front himself … hand-skeletonized and hand-finished … the balance cock hand-engraved.” The strap is “made in New Jersey.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=1595">26:35</a></span></li>
+      <li>“I love German watchmaking … But I'm not a big bracelet guy. So I think 50% of the store is not an option for me.”</li>
+    </ul></div>
+    <div class="q"><h3>His stated criteria</h3><ul>
+      <li>“Something mechanical.” For daily wear, automatic: “Sometimes I do forget to wind my watches, although, you know, it's very romantic to do so.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=651">10:51</a></span></li>
+      <li>“If it's just two watches, I would go for one which is highly mechanical … you could stare at this thing the whole day … a person who collects independent watches, I think they would kind of love this as well.”</li>
+      <li>Of Glashütte Original: “quality is something I love, but also the price point they work at is extremely good.”</li>
+      <li>Of Grand Seiko: “you would just have to tell me which one has the nicest movement”; he skipped Spring Drive for the 9SA5, and would swap the bracelet for a strap. <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=1634">27:14</a></span></li>
+    </ul></div>
+  </div>
+  <p class="read"><b>Read as a wearer:</b> a movement-first collector of German and independent watchmaking who prefers straps to bracelets. He chose both watches for their mechanics, and the pair reflects that, not the everyday brief.</p>
+</section>
+
+<!-- Andrew -->
+<section class="person">
+  <div class="head"><h2>Andrew Morgan</h2><span class="meta">“Mr Creamy” · judges' 6th</span></div>
+  <div class="grid">
+    <figure class="photo" style="margin:0"><img src="img/worn_andrew.jpg" alt="Breguet Tradition in yellow gold with open-worked movement and offset silver dial, on a brown strap"><figcaption>Photo of it on his wrist, shown in the video at 29:22</figcaption></figure>
+    <div class="id">
+      <h3>Breguet Classique Tradition 7027, yellow gold</h3>
+      <div class="ref">most likely 7027BA/11/9V6</div>
+      <dl>
+        <dt>Specs</dt><dd>37 mm 18k yellow gold, hand-wound Breguet calibre 507 DR, open-worked movement on the dial side, offset guilloché time dial, 3 bar.</dd>
+        <dt>Source</dt><dd><a href="https://www.breguet.com/en/watches/tradition-7027/7027ba119v6">breguet.com · 7027BA/11/9V6</a> (did not load for my checks) · <a href="https://www.europeanwatch.com/watch/breguet-7027ba-11-9v6-la-tradition-18k-yellow-gold-37mm-50046">European Watch Co. listing</a></dd>
+        <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=1740">29:00</a></dd>
+      </dl>
+      <span class="conf">Model clear; yellow-gold 7027 reference inferred</span>
+      <p class="note">He also wore, on the other wrist, a Gallet he had just been given. It may be the same MultiChron model he picked, but I could not confirm that from the video.</p>
+    </div>
+  </div>
+  <div class="quotes">
+    <div class="q"><h3>About the watch he wore</h3><ul>
+      <li>“My Breguet Tradition, which … I have a history of not buying watches that I should have done. And this was the one where I finally grew up … well, my credit card did … one of the greatest watchmakers who ever lived, one of the greatest designs … whatever kind of finishing you can think of, it's in there, and on the secondary market at a really great price.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=1745">29:05</a></span></li>
+    </ul></div>
+    <div class="q"><h3>His stated criteria</h3><ul>
+      <li>“I have a terrible memory, so I never know what date it is. And a way to compensate for that is to go for a full-blown perpetual calendar.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=788">13:08</a></span></li>
+      <li>“I've had Tudor watches as something I've worn daily … So I feel like that's an obvious choice. Maybe I want to do something a little bit different.”</li>
+      <li>“I want to wear something I feel comfortable to wear in London … I really love war-era chronographs … designed for a purpose, but the sizing, the balance, that kind of creamy lume.” He enjoys hand-winding: “it's also fun.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=852">14:12</a></span></li>
+      <li>“They couldn't be more different … usually you would think a dress watch would be smaller and the sports watch bigger and chunkier, but this way round feels more me.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=2186">36:26</a></span></li>
+    </ul></div>
+  </div>
+  <p class="read"><b>Read as a wearer:</b> a vintage-leaning, finishing-obsessed collector who wears gold and hand-wound watches daily and enjoys going against the expected pairing. He also played to the camera (“performative watch collecting,” another panelist teased). His pair fits him and does not fit a typical wearer, which is the only kind a blind judge can assume.</p>
+</section>
+
+<!-- James -->
+<section class="person">
+  <div class="head"><h2>James McBay</h2><span class="meta">judges' 5th · blind experts' 1st</span></div>
+  <div class="grid">
+    <figure class="photo" style="margin:0"><img src="img/worn_james.jpg" alt="Universal Genève GMT world-time watch with dark dial and world-cities bezel on a grey NATO strap"><figcaption>On his wrist at 31:50</figcaption></figure>
+    <div class="id">
+      <h3>Universal Genève GMT World Time (about 1993)</h3>
+      <div class="ref">most likely ref. 873.435</div>
+      <dl>
+        <dt>Specs</dt><dd>About 40 mm steel, automatic UG calibre 73, rotating world-cities bezel with 24-hour ring, date; black-dial run of about 1,000.</dd>
+        <dt>Source</dt><dd>No current brand page. Auction listing: <a href="https://loupethis.com/auctions/universal-geneve-gmt-world-time-873-435-436">Loupe This · ref. 873.435</a></dd>
+        <dt>In video</dt><dd><a href="https://youtu.be/bDePE9oVcV4?t=1891">31:31</a></dd>
+      </dl>
+      <span class="conf">Model clear; reference inferred from his description</span>
+      <p class="note">His details match the listing: “the only GMT and World Time that UG ever made,” “there's like a thousand of these,” his birth year, new old stock. The video's dial looks very dark green; the listing calls it matte black. I could not verify his “only one ever made” claim.</p>
+    </div>
+  </div>
+  <div class="quotes">
+    <div class="q"><h3>About the watch he wore</h3><ul>
+      <li>“Universal Genève … everyone knows the '40s, '60s, even '70s. Most people give up at the end of the '80s into the '90s with UG, but for me, I think there's a few references that are real hidden gems.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=1897">31:37</a></span></li>
+      <li>“It was like $1,000 for me. It ticks every box. It's my birth year watch as well … effectively new old stock. Came on the original bracelet from an auction.”</li>
+      <li>Later: “I'm kind of exclusively into vintage nowadays.”</li>
+    </ul></div>
+    <div class="q"><h3>His stated criteria</h3><ul>
+      <li>Doxa: “a watch that I can wear every day that's comfortable, that has a sense of history, provenance … a proper tool watch designed for a set purpose … 200 m … they're not going to break the bank.” He chose black over orange because it feels vintage. <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=1012">16:52</a></span></li>
+      <li>Watch two: “something that's the polar opposite of the Doxa. If you've only got two watches, you need to be able to tick different boxes.” A larger Blancpain Villeret was ruled out by his “twig wrists.”</li>
+      <li>He picked the Grand Seiko he bought for his wife and wears often: “they can be real tool watches … 10 bar water resistance … beat that up,” and “a perfect dress watch, but I can also dress it down.” <span class="t"><a href="https://youtu.be/bDePE9oVcV4?t=2023">33:43</a></span></li>
+      <li>“If you can only have two, I need diversity between the two … I've picked watches that I can in theory, within reason, do anything in.”</li>
+    </ul></div>
+  </div>
+  <p class="read"><b>Read as a wearer:</b> a vintage, value-conscious collector with slim wrists who prizes provenance and underrated brands. His stated logic is the expert taxonomy's, nearly word for word: diversity, cover every situation. That explains why the blind experts ranked his pair first. Note one factual point: he describes the GMT as 10 bar, but Grand Seiko's own page rates the SBGM221 only splash resistant.</p>
+</section>
+
+<section class="person">
+  <h2>The six as wearer profiles</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Picker</th><th>Wore</th><th>Taste signals</th><th>Stated two-watch logic</th><th>Pair true to own taste?</th></tr></thead>
+    <tbody>
+      <tr><td>Brit</td><td>Omega Seamaster 300M midsize</td><td>Divers, smaller cases, blue, accuracy, finishing</td><td>A daily first, then the sporty kind she actually reaches for</td><td>Yes</td></tr>
+      <tr><td>Adrien</td><td>IWC Mark XX on nylon</td><td>Purpose-built tool watches, black dials</td><td>Grab-for-anything daily plus a colourful weekend chronograph</td><td>Yes</td></tr>
+      <tr><td>Teddy</td><td>GO PanoMaticLunar, green</td><td>Compact, colourful, German and Japanese finishing</td><td>Cover the bases, then add “my complication”</td><td>Yes</td></tr>
+      <tr><td>Marco</td><td>Felipe Pikullik Mondphase 1</td><td>Independent and German movements, straps over bracelets</td><td>Mechanical interest first, automatic for practicality</td><td>Yes</td></tr>
+      <tr><td>James</td><td>Universal Genève GMT, about 1993</td><td>Vintage, provenance, underrated brands, slim wrists</td><td>Diversity: a tool watch and its polar opposite</td><td>Yes</td></tr>
+      <tr><td>Andrew</td><td>Breguet Tradition, yellow gold (and a Gallet)</td><td>Vintage chronographs, finishing, gold, hand-winding, contrarian</td><td>Something different: a perpetual for a bad memory, a war-era chronograph for daily</td><td>Yes, deliberately</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="plain">
+    <li><b>Everyone picked for themselves.</b> All six pairs are faithful to the taste each person showed. The ranking therefore measures how closely each person's own taste matched the judges' assumed typical wearer, not who misread the brief.</li>
+    <li><b>The two winners are the two whose taste is most conventional.</b> Brit and Adrien are self-described daily-diver and tool-watch people, so a pair true to them was also everyday-proof, which is what the inferred judging criteria rewarded.</li>
+    <li><b>Layer 1 changes the verdict.</b> For Andrew, who wears gold and hand-wound watches daily in London, his pair is defensible. For a typical wearer it is the weakest. The judges, who were blind to who picked what, could only score against the typical wearer.</li>
+  </ul>
+</section>
+
+<footer class="note" style="border-top:1px solid var(--line);padding-top:16px">Video: <a href="https://youtu.be/bDePE9oVcV4">youtu.be/bDePE9oVcV4</a>. Photos are frames from the video, shown to identify each watch. Links checked 14 November 2026. Companion pages: <a href="https://claude.ai/artifact/SuwkhmofAHidQ6dko5SsgW">Two-Watch Challenge Lineup</a> and <a href="https://claude.ai/artifact/7yWxiKfWGM7Yq4Uf1qapMU">Two-Watch Collection Taxonomy</a>.</footer>
+</div>

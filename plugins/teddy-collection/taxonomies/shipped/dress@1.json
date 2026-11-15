@@ -1,0 +1,291 @@
+{
+  "id": "shipped:dress@1",
+  "category": "dress",
+  "version": "1",
+  "label": "provisional",
+  "paradigm": "These criteria serve a buyer choosing what to purchase, new or pre-owned: an evidence-based, value-aware buyer who wants an informed view of history and context. They are one reasonable buyer's stance, not the only one, and this version is provisional: drafted from published sources, not yet compiled or ratified.",
+  "created": "2026-11-15",
+  "change_log": [
+    {
+      "date": "2026-11-15",
+      "reason": "Drafted from menswear and dress-code guides (He Spoke Style, Gentleman's Gazette), a retailer's dress-watch guide (Watches of Switzerland), Deployant, Gear Patrol on fit, and the Teddy content audit of 2026-11-14. Every numeric threshold here is informed opinion, so the numeric criteria are classed contested.",
+      "additions": {
+        "criteria": 8
+      }
+    }
+  ],
+  "spec_fields": {
+    "thickness_mm": "number: case thickness in millimetres",
+    "case_mm": "number: case diameter in millimetres, crown excluded",
+    "band": "lower-case string describing the strap or bracelet, for example \"black alligator leather strap\"",
+    "complications": "list of lower-case strings, for example \"date\", \"chronograph\", \"gmt\"; [] for time only"
+  },
+  "layers": {
+    "wearer": [
+      {
+        "key": "formality_needed",
+        "statement": "Which dress codes the buyer must meet (black tie, suit, business casual) sets how strict the dress criteria are; a watch can be a dress watch and still be wrong with a tuxedo.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.gentlemansgazette.com/how-match-watches-your-outfit/",
+          "https://hespokestyle.com/dress-watches-with-tuxedo/",
+          "https://deployant.com/what-makes-a-dress-watch-a-dress-watch/"
+        ]
+      },
+      {
+        "key": "wrist_fit",
+        "statement": "The watch fits the buyer's wrist: lug-to-lug length inside the flat top of the wrist and a thickness the buyer's cuffs and comfort allow. Measure these rather than trusting the stated diameter.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "test": "Compare the stated lug-to-lug length with the buyer's measured flat wrist width; try the watch on where possible.",
+        "sources": [
+          "https://www.gearpatrol.com/watches/watches-lug-to-lug/",
+          "https://deployant.com/what-makes-a-dress-watch-a-dress-watch/"
+        ]
+      }
+    ],
+    "watch": [
+      {
+        "key": "slim_case",
+        "statement": "Slim enough to slide under a shirt cuff. Thresholds differ: a retailer guide says less than 15 mm; Teddy reports buyers wanting Omega three-hand models under 12 mm. The rule uses 12 mm; a buyer can move it.",
+        "kind": "more_is_better",
+        "evidence_class": "contested",
+        "check": {
+          "type": "deterministic",
+          "rule": "thickness_mm <= 12",
+          "planted": {
+            "pass": [
+              {
+                "thickness_mm": 7.5
+              },
+              {
+                "thickness_mm": 12
+              }
+            ],
+            "fail": [
+              {
+                "thickness_mm": 13.2
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.watches-of-switzerland.co.uk/calibre/in-depth/the-calibre-complete-guide-to-dress-watches",
+          "https://www.youtube.com/watch?v=0F7cUF59XqI",
+          "https://hespokestyle.com/dress-watches-with-tuxedo/",
+          "https://deployant.com/what-makes-a-dress-watch-a-dress-watch/"
+        ]
+      },
+      {
+        "key": "modest_size",
+        "statement": "A modest case, 33 to 41 mm in one retailer's guide. Others hold that size should follow the wrist, not a fixed number.",
+        "kind": "more_is_better",
+        "evidence_class": "contested",
+        "check": {
+          "type": "deterministic",
+          "rule": "case_mm >= 33 and case_mm <= 41",
+          "planted": {
+            "pass": [
+              {
+                "case_mm": 36
+              },
+              {
+                "case_mm": 41
+              }
+            ],
+            "fail": [
+              {
+                "case_mm": 42
+              },
+              {
+                "case_mm": 31
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.watches-of-switzerland.co.uk/calibre/in-depth/the-calibre-complete-guide-to-dress-watches",
+          "https://deployant.com/what-makes-a-dress-watch-a-dress-watch/"
+        ]
+      },
+      {
+        "key": "leather_strap",
+        "statement": "A thin leather strap (black for black tie). Metal bracelets, rubber and nylon read as casual.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "deterministic",
+          "rule": "'leather' in band",
+          "planted": {
+            "pass": [
+              {
+                "band": "black alligator leather strap"
+              }
+            ],
+            "fail": [
+              {
+                "band": "steel bracelet"
+              },
+              {
+                "band": "rubber strap"
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.watches-of-switzerland.co.uk/calibre/in-depth/the-calibre-complete-guide-to-dress-watches",
+          "https://hespokestyle.com/dress-watches-with-tuxedo/",
+          "https://deployant.com/what-makes-a-dress-watch-a-dress-watch/"
+        ]
+      },
+      {
+        "key": "minimal_complications",
+        "statement": "Time only, or a date window at most. Complications do not stop a watch being a dress watch but make it less formal.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "deterministic",
+          "rule": "complications == [] or complications == ['date']",
+          "planted": {
+            "pass": [
+              {
+                "complications": []
+              },
+              {
+                "complications": [
+                  "date"
+                ]
+              }
+            ],
+            "fail": [
+              {
+                "complications": [
+                  "date",
+                  "chronograph"
+                ]
+              },
+              {
+                "complications": [
+                  "gmt"
+                ]
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.watches-of-switzerland.co.uk/calibre/in-depth/the-calibre-complete-guide-to-dress-watches",
+          "https://deployant.com/what-makes-a-dress-watch-a-dress-watch/"
+        ]
+      },
+      {
+        "key": "plain_dial",
+        "statement": "A plain, legible dial without lume or busy decoration; white or silver is the purist's default.",
+        "kind": "more_is_better",
+        "evidence_class": "contested",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.watches-of-switzerland.co.uk/calibre/in-depth/the-calibre-complete-guide-to-dress-watches",
+          "https://deployant.com/what-makes-a-dress-watch-a-dress-watch/"
+        ]
+      },
+      {
+        "key": "precious_metal",
+        "statement": "A precious-metal case (gold is the classic black-tie match). Steel is acceptable but reads less formal.",
+        "kind": "more_is_better",
+        "evidence_class": "contested",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.watches-of-switzerland.co.uk/calibre/in-depth/the-calibre-complete-guide-to-dress-watches",
+          "https://hespokestyle.com/dress-watches-with-tuxedo/"
+        ]
+      }
+    ]
+  },
+  "coherence": [],
+  "teddy_principles": [
+    {
+      "quote": "a lot of Omega's calibers as well as watches are a bit thicker",
+      "video": "0F7cUF59XqI",
+      "title": "What You Need To Know Before Buying Omega",
+      "timestamp": "26:16",
+      "url": "https://www.youtube.com/watch?v=0F7cUF59XqI&t=1576s",
+      "evidence_class": "practitioner",
+      "relevance": "slim_case: why thickness hurts a brand's dress watches."
+    },
+    {
+      "quote": "Maybe going under 12 mm thick for three-hand models rather than above it.",
+      "video": "0F7cUF59XqI",
+      "title": "What You Need To Know Before Buying Omega",
+      "timestamp": "26:42",
+      "url": "https://www.youtube.com/watch?v=0F7cUF59XqI&t=1602s",
+      "evidence_class": "practitioner",
+      "relevance": "slim_case: the 12 mm figure, reported as what buyers ask for."
+    }
+  ],
+  "principles_note": "Teddy's principles are quoted from the videos' auto-captions (wording as captioned), located by text search of the caption track; timestamps are the caption segment where the quote begins. They enter as practitioner consensus, never as standards. His videos state his store is an authorized dealer for over 35 brands.",
+  "sources": [
+    {
+      "url": "https://www.gentlemansgazette.com/how-match-watches-your-outfit/",
+      "title": "How to Match Watches to Your Outfit",
+      "publisher": "Gentleman's Gazette",
+      "date": "2016-12-09",
+      "author": "J. A. Shapira",
+      "note": "Menswear guide: dress-code mapping.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://hespokestyle.com/dress-watches-with-tuxedo/",
+      "title": "Should You Wear A Watch With A Tuxedo?",
+      "publisher": "He Spoke Style",
+      "date": "2022-05-25",
+      "note": "Menswear guide; the publisher sells clothing.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://deployant.com/what-makes-a-dress-watch-a-dress-watch/",
+      "title": "What Makes a Dress Watch a Dress Watch",
+      "publisher": "Deployant",
+      "date": "2020-04-20",
+      "author": "Frank Chuo",
+      "note": "Informed opinion; argues size should follow the wrist, not a fixed number.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.gearpatrol.com/watches/watches-lug-to-lug/",
+      "title": "What Is a Lug-to-Lug Measurement On a Watch?",
+      "publisher": "Gear Patrol",
+      "date": "2024-03-20",
+      "author": "Johnny Brayson",
+      "note": "Informed opinion with side-by-side wrist photos; no measured study.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.watches-of-switzerland.co.uk/calibre/in-depth/the-calibre-complete-guide-to-dress-watches",
+      "title": "The Complete Calibre Guide To Dress Watches",
+      "publisher": "Watches of Switzerland (Calibre)",
+      "date": "not stated on page",
+      "note": "A retailer's guide (the publisher sells watches): less than 15 mm thick, 33 to 41 mm, leather strap, a date window at most.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=0F7cUF59XqI",
+      "title": "What You Need To Know Before Buying Omega",
+      "publisher": "Teddy Baldassarre (YouTube)",
+      "date": "2026-04-04",
+      "author": "Teddy Baldassarre",
+      "note": "Practitioner view from an authorized dealer for over 35 brands, including Omega.",
+      "checked": "2026-11-15"
+    }
+  ]
+}

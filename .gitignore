@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.superpowers/
+.venv/
+.mcp.json
+.claude/
+.trial-home/
+teddy-publish/

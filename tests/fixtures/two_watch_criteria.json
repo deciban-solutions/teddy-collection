@@ -1,0 +1,514 @@
+{
+ "S:differentiation": {
+  "brit": 3,
+  "adrien": 3,
+  "teddy": 4,
+  "marco": 2.6666666666666665,
+  "james": 5,
+  "andrew": 4.666666666666667
+ },
+ "S:coherence_expert": {
+  "brit": 4,
+  "adrien": 3,
+  "teddy": 2.6666666666666665,
+  "marco": 4,
+  "james": 4,
+  "andrew": 2.6666666666666665
+ },
+ "S:anchor_strength": {
+  "brit": 4.666666666666667,
+  "adrien": 5,
+  "teddy": 4.666666666666667,
+  "marco": 4.333333333333333,
+  "james": 3,
+  "andrew": 2.3333333333333335
+ },
+ "S:tension_point": {
+  "brit": 3.3333333333333335,
+  "adrien": 2.6666666666666665,
+  "teddy": 3.3333333333333335,
+  "marco": 3.3333333333333335,
+  "james": 4.666666666666667,
+  "andrew": 4
+ },
+ "S:gap_test": {
+  "brit": 3,
+  "adrien": 2,
+  "teddy": 2.6666666666666665,
+  "marco": 2.3333333333333335,
+  "james": 5,
+  "andrew": 4
+ },
+ "S:wear_balance": {
+  "brit": 3,
+  "adrien": 3,
+  "teddy": 3,
+  "marco": 3,
+  "james": 5,
+  "andrew": 2.6666666666666665
+ },
+ "S:makes_sense_together": {
+  "brit": 4,
+  "adrien": 4,
+  "teddy": 3.3333333333333335,
+  "marco": 3,
+  "james": 4.666666666666667,
+  "andrew": 2.3333333333333335
+ },
+ "S:beaten_path": {
+  "brit": 4,
+  "adrien": 5,
+  "teddy": 3,
+  "marco": 2.3333333333333335,
+  "james": 4,
+  "andrew": 1.6666666666666667
+ },
+ "S:daily_driver": {
+  "brit": 5,
+  "adrien": 5,
+  "teddy": 5,
+  "marco": 5,
+  "james": 3.3333333333333335,
+  "andrew": 2.3333333333333335
+ },
+ "S:sensible_spice": {
+  "brit": 3,
+  "adrien": 3,
+  "teddy": 3,
+  "marco": 1.6666666666666667,
+  "james": 4.333333333333333,
+  "andrew": 3.3333333333333335
+ },
+ "S:everyday_livability": {
+  "brit": 5,
+  "adrien": 5,
+  "teddy": 4,
+  "marco": 3.6666666666666665,
+  "james": 4,
+  "andrew": 2
+ },
+ "S:expert_rank(inv)": {
+  "brit": 5.333333333333333,
+  "adrien": 4,
+  "teddy": 2.666666666666667,
+  "marco": 2.333333333333333,
+  "james": 5.666666666666667,
+  "andrew": 1
+ },
+ "C:coverage_weighted": {
+  "brit": 0.9807692307692307,
+  "adrien": 0.9807692307692307,
+  "teddy": 0.9304029304029304,
+  "marco": 0.9304029304029304,
+  "james": 0.9981684981684982,
+  "andrew": 0.9560439560439561
+ },
+ "C:coverage_unweighted": {
+  "brit": 0.875,
+  "adrien": 0.875,
+  "teddy": 0.7708333333333334,
+  "marco": 0.7708333333333334,
+  "james": 0.9583333333333334,
+  "andrew": 0.8541666666666666
+ },
+ "C:n_occasions_fully_covered": {
+  "brit": 6,
+  "adrien": 6,
+  "teddy": 4.333333333333333,
+  "marco": 4.333333333333333,
+  "james": 7.333333333333333,
+  "andrew": 5.666666666666667
+ },
+ "W:min_robustness": {
+  "brit": 3.6666666666666665,
+  "adrien": 4,
+  "teddy": 2.6666666666666665,
+  "marco": 2,
+  "james": 1.3333333333333333,
+  "andrew": 2
+ },
+ "W:sum_robustness": {
+  "brit": 8.666666666666666,
+  "adrien": 8.333333333333334,
+  "teddy": 6.333333333333333,
+  "marco": 5.666666666666667,
+  "james": 6.333333333333333,
+  "andrew": 5
+ },
+ "W:min_wearability": {
+  "brit": 4,
+  "adrien": 3,
+  "teddy": 2,
+  "marco": 3,
+  "james": 4,
+  "andrew": 2
+ },
+ "W:sum_wearability": {
+  "brit": 8,
+  "adrien": 8,
+  "teddy": 7,
+  "marco": 7,
+  "james": 9,
+  "andrew": 6.333333333333333
+ },
+ "W:min_useful_complications": {
+  "brit": 3,
+  "adrien": 3,
+  "teddy": 3,
+  "marco": 3,
+  "james": 3,
+  "andrew": 2.6666666666666665
+ },
+ "W:sum_useful_complications": {
+  "brit": 6,
+  "adrien": 7,
+  "teddy": 6,
+  "marco": 6,
+  "james": 8,
+  "andrew": 6.333333333333333
+ },
+ "W:min_practicality": {
+  "brit": 4,
+  "adrien": 4,
+  "teddy": 2.3333333333333335,
+  "marco": 3,
+  "james": 4,
+  "andrew": 3
+ },
+ "W:sum_practicality": {
+  "brit": 9,
+  "adrien": 9,
+  "teddy": 7.333333333333333,
+  "marco": 8,
+  "james": 8,
+  "andrew": 6
+ },
+ "W:min_horological_merit": {
+  "brit": 4,
+  "adrien": 3.3333333333333335,
+  "teddy": 3,
+  "marco": 5,
+  "james": 2,
+  "andrew": 3.6666666666666665
+ },
+ "W:sum_horological_merit": {
+  "brit": 9,
+  "adrien": 7.333333333333333,
+  "teddy": 8,
+  "marco": 10,
+  "james": 6,
+  "andrew": 8.666666666666666
+ },
+ "W:min_design_integrity": {
+  "brit": 4,
+  "adrien": 4,
+  "teddy": 3.3333333333333335,
+  "marco": 3,
+  "james": 4.333333333333333,
+  "andrew": 4
+ },
+ "W:sum_design_integrity": {
+  "brit": 8.333333333333334,
+  "adrien": 8,
+  "teddy": 7.666666666666667,
+  "marco": 7.333333333333333,
+  "james": 9,
+  "andrew": 8.666666666666666
+ },
+ "W:min_value": {
+  "brit": 3,
+  "adrien": 3,
+  "teddy": 2,
+  "marco": 3,
+  "james": 4.333333333333333,
+  "andrew": 2.6666666666666665
+ },
+ "W:sum_value": {
+  "brit": 7,
+  "adrien": 7,
+  "teddy": 6,
+  "marco": 7,
+  "james": 9.333333333333334,
+  "andrew": 6
+ },
+ "W:register_gap": {
+  "brit": 1,
+  "adrien": 1,
+  "teddy": 0,
+  "marco": 1,
+  "james": 3,
+  "andrew": 2.6666666666666665
+ },
+ "W:min_register(sportiest)": {
+  "brit": -2,
+  "adrien": -2,
+  "teddy": -3,
+  "marco": -3,
+  "james": -1,
+  "andrew": -2
+ },
+ "W:max_register(dressiest)": {
+  "brit": 3,
+  "adrien": 3,
+  "teddy": 3,
+  "marco": 4,
+  "james": 4,
+  "andrew": 4.666666666666667
+ },
+ "F:n_bracelet": {
+  "brit": 2,
+  "adrien": 2,
+  "teddy": 1,
+  "marco": 1,
+  "james": 1,
+  "andrew": 0
+ },
+ "F:-n_bracelet": {
+  "brit": -2,
+  "adrien": -2,
+  "teddy": -1,
+  "marco": -1,
+  "james": -1,
+  "andrew": 0
+ },
+ "F:min_wr": {
+  "brit": 100,
+  "adrien": 100,
+  "teddy": 100,
+  "marco": 50,
+  "james": 0,
+  "andrew": 50
+ },
+ "F:-min_wr": {
+  "brit": -100,
+  "adrien": -100,
+  "teddy": -100,
+  "marco": -50,
+  "james": 0,
+  "andrew": -50
+ },
+ "F:max_wr": {
+  "brit": 200,
+  "adrien": 150,
+  "teddy": 100,
+  "marco": 100,
+  "james": 200,
+  "andrew": 100
+ },
+ "F:-max_wr": {
+  "brit": -200,
+  "adrien": -150,
+  "teddy": -100,
+  "marco": -100,
+  "james": -200,
+  "andrew": -100
+ },
+ "F:has_diver": {
+  "brit": 1,
+  "adrien": 0,
+  "teddy": 0,
+  "marco": 0,
+  "james": 1,
+  "andrew": 0
+ },
+ "F:-has_diver": {
+  "brit": -1,
+  "adrien": 0,
+  "teddy": 0,
+  "marco": 0,
+  "james": -1,
+  "andrew": 0
+ },
+ "F:n_wr100": {
+  "brit": 2,
+  "adrien": 2,
+  "teddy": 2,
+  "marco": 1,
+  "james": 1,
+  "andrew": 1
+ },
+ "F:-n_wr100": {
+  "brit": -2,
+  "adrien": -2,
+  "teddy": -2,
+  "marco": -1,
+  "james": -1,
+  "andrew": -1
+ },
+ "F:any_precious": {
+  "brit": 0,
+  "adrien": 0,
+  "teddy": 0,
+  "marco": 0,
+  "james": 0,
+  "andrew": 1
+ },
+ "F:-any_precious": {
+  "brit": 0,
+  "adrien": 0,
+  "teddy": 0,
+  "marco": 0,
+  "james": 0,
+  "andrew": -1
+ },
+ "F:all_auto": {
+  "brit": 1,
+  "adrien": 1,
+  "teddy": 1,
+  "marco": 1,
+  "james": 1,
+  "andrew": 0
+ },
+ "F:-all_auto": {
+  "brit": -1,
+  "adrien": -1,
+  "teddy": -1,
+  "marco": -1,
+  "james": -1,
+  "andrew": 0
+ },
+ "F:max_thick": {
+  "brit": 12.15,
+  "adrien": 14.5,
+  "teddy": 15.35,
+  "marco": 12.3,
+  "james": 13.7,
+  "andrew": 14.9
+ },
+ "F:-max_thick": {
+  "brit": -12.15,
+  "adrien": -14.5,
+  "teddy": -15.35,
+  "marco": -12.3,
+  "james": -13.7,
+  "andrew": -14.9
+ },
+ "F:max_dia": {
+  "brit": 40.0,
+  "adrien": 41.0,
+  "teddy": 42.0,
+  "marco": 42.0,
+  "james": 39.5,
+  "andrew": 44.4
+ },
+ "F:-max_dia": {
+  "brit": -40.0,
+  "adrien": -41.0,
+  "teddy": -42.0,
+  "marco": -42.0,
+  "james": -39.5,
+  "andrew": -44.4
+ },
+ "F:sum_price": {
+  "brit": 21.799999999999997,
+  "adrien": 15.799999999999999,
+  "teddy": 25.7,
+  "marco": 25.5,
+  "james": 7.19,
+  "andrew": 58.7
+ },
+ "F:-sum_price": {
+  "brit": -21.799999999999997,
+  "adrien": -15.799999999999999,
+  "teddy": -25.7,
+  "marco": -25.5,
+  "james": -7.19,
+  "andrew": -58.7
+ },
+ "F:min_price": {
+  "brit": 10.2,
+  "adrien": 7.1,
+  "teddy": 10.2,
+  "marco": 10.2,
+  "james": 1.79,
+  "andrew": 6.7
+ },
+ "F:-min_price": {
+  "brit": -10.2,
+  "adrien": -7.1,
+  "teddy": -10.2,
+  "marco": -10.2,
+  "james": -1.79,
+  "andrew": -6.7
+ },
+ "F:max_comp": {
+  "brit": 0,
+  "adrien": 2,
+  "teddy": 3,
+  "marco": 0,
+  "james": 1,
+  "andrew": 3
+ },
+ "F:-max_comp": {
+  "brit": 0,
+  "adrien": -2,
+  "teddy": -3,
+  "marco": 0,
+  "james": -1,
+  "andrew": -3
+ },
+ "F:sum_comp": {
+  "brit": 0,
+  "adrien": 2,
+  "teddy": 3,
+  "marco": 0,
+  "james": 1,
+  "andrew": 5
+ },
+ "F:-sum_comp": {
+  "brit": 0,
+  "adrien": -2,
+  "teddy": -3,
+  "marco": 0,
+  "james": -1,
+  "andrew": -5
+ },
+ "F:min_brand_tier": {
+  "brit": 2,
+  "adrien": 3,
+  "teddy": 3,
+  "marco": 2,
+  "james": 1,
+  "andrew": 1
+ },
+ "F:-min_brand_tier": {
+  "brit": -2,
+  "adrien": -3,
+  "teddy": -3,
+  "marco": -2,
+  "james": -1,
+  "andrew": -1
+ },
+ "F:sum_brand_tier": {
+  "brit": 5,
+  "adrien": 6,
+  "teddy": 6,
+  "marco": 5,
+  "james": 4,
+  "andrew": 4
+ },
+ "F:-sum_brand_tier": {
+  "brit": -5,
+  "adrien": -6,
+  "teddy": -6,
+  "marco": -5,
+  "james": -4,
+  "andrew": -4
+ },
+ "F:n_simple_steel_sport": {
+  "brit": 2,
+  "adrien": 2,
+  "teddy": 1,
+  "marco": 1,
+  "james": 1,
+  "andrew": 0
+ },
+ "F:-n_simple_steel_sport": {
+  "brit": -2,
+  "adrien": -2,
+  "teddy": -1,
+  "marco": -1,
+  "james": -1,
+  "andrew": 0
+ }
+}

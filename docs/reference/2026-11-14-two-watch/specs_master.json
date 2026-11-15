@@ -1,0 +1,134 @@
+{
+ "brit_A": {
+  "name": "Grand Seiko Evolution 9 Spring Drive U.F.A. 'White Birch' SLGB009",
+  "case": "40.0 mm, 11.7 mm thick, 47.2 mm lug-to-lug, Ever-Brilliant Steel",
+  "band": "steel bracelet, micro-adjust clasp",
+  "wr": "10 bar (100 m)",
+  "movement": "Spring Drive U.F.A. 9RB2, automatic, ±20 s/year, 72 h reserve",
+  "functions": "time, date, power-reserve indicator",
+  "dial": "silvery-white textured birch-bark pattern",
+  "price_usd": "10,200 (official)",
+  "src": "https://www.grand-seiko.com/us-en/collections/slgb009g"
+ },
+ "brit_B": {
+  "name": "Glashütte Original SeaQ 39.5 mm, blue, 1-39-11-09-81-70",
+  "case": "39.5 mm, 12.15 mm thick, brushed stainless steel, screw-down crown",
+  "band": "steel bracelet, 8-step fine adjustment",
+  "wr": "20 bar (200 m); unidirectional diver's bezel with ceramic inlay; Super-LumiNova",
+  "movement": "GO calibre 39-11, automatic, 40 h reserve",
+  "functions": "time, date",
+  "dial": "'Radiant Blue' sunray",
+  "price_usd": "~11,600 (dealer; official on request)",
+  "src": "https://www.glashuette-original.com/en/watches/spezialist/seaq-1-39-11-09-81-70/"
+ },
+ "adrien_A": {
+  "name": "Omega Seamaster Aqua Terra 150M 38 mm, black, 220.10.38.20.01.001",
+  "case": "38 mm, 12.24 mm thick, 45.0 mm lug-to-lug, steel, screw-in crown",
+  "band": "steel bracelet",
+  "wr": "15 bar (150 m); lumed hands and indexes",
+  "movement": "Omega 8800 Co-Axial Master Chronometer, automatic, 55 h, antimagnetic >15,000 gauss",
+  "functions": "time, date",
+  "dial": "black horizontal 'teak' pattern",
+  "price_usd": "~7,100 (dealer; reference now discontinued)",
+  "src": "https://www.omegawatches.com/watch-omega-seamaster-aqua-terra-150m-co-axial-master-chronometer-38-mm-22010382001001"
+ },
+ "adrien_B": {
+  "name": "IWC Pilot's Watch Chronograph 41, blue, IW388102",
+  "case": "41 mm, ~14.5 mm thick (dealer figure), steel",
+  "band": "steel bracelet, quick-change system",
+  "wr": "10 bar (100 m)",
+  "movement": "IWC calibre 69385, automatic, column-wheel chronograph, 46 h",
+  "functions": "chronograph, day, date",
+  "dial": "blue, pilot-style numerals, red-tipped seconds",
+  "price_usd": "~8,500-8,800 (dealer)",
+  "src": "https://press.iwc.com/iwc-adds-41-mm-chronographs-with-in-house-movements-to-pilots-watches-collection/"
+ },
+ "teddy_A": {
+  "name": "Grand Seiko Evolution 9 Spring Drive U.F.A. 'Lake Suwa' 37 mm SLGB015",
+  "case": "37.0 mm, 11.4 mm thick, 44.3 mm lug-to-lug, Ever-Brilliant Steel",
+  "band": "steel bracelet, micro-adjust clasp",
+  "wr": "10 bar (100 m)",
+  "movement": "Spring Drive U.F.A. 9RB2, automatic, ±20 s/year, 72 h",
+  "functions": "time, date, power-reserve indicator",
+  "dial": "blue textured lake-surface pattern",
+  "price_usd": "10,200 (official)",
+  "src": "https://www.grand-seiko.com/us-en/collections/slgb015g"
+ },
+ "teddy_B": {
+  "name": "Breitling Premier B25 Datora 42, steel, copper dial, AB2510201K1P1",
+  "case": "42 mm, 15.35 mm thick, stainless steel",
+  "band": "brown alligator leather strap",
+  "wr": "10 bar (100 m)",
+  "movement": "Breitling B25, automatic, COSC, 48 h",
+  "functions": "chronograph, day, date, month, moon phase (triple calendar)",
+  "dial": "copper/salmon with applied numerals",
+  "price_usd": "15,500 (official)",
+  "src": "https://www.breitling.com/us-en/watches/premier/premier-b25-datora-42/AB2510201K1P1/"
+ },
+ "marco_A": {
+  "name": "Glashütte Original PanoMaticInverse, steel, blue alligator (1-91-02-02-02-61)",
+  "case": "42.0 mm, 12.3 mm thick, stainless steel",
+  "band": "blue Louisiana alligator leather strap",
+  "wr": "5 bar (50 m)",
+  "movement": "GO calibre 91-02, automatic, balance and swan-neck regulation shown on dial side, 42 h",
+  "functions": "off-centre hours/minutes, small seconds, Panorama Date",
+  "dial": "silver/ivory with visible movement architecture",
+  "price_usd": "~15,000-15,700 (dealer; official on request)",
+  "src": "https://www.glashuette-original.com/en/watches/pano/panomaticinverse-1-91-02-02-02-61/"
+ },
+ "marco_B": {
+  "name": "Grand Seiko Evolution 9 Hi-Beat 36000 80 Hours 'White Birch' SLGH031",
+  "case": "40.0 mm, 11.7 mm thick, 47.0 mm lug-to-lug, Ever-Brilliant Steel",
+  "band": "steel bracelet, micro-adjust clasp",
+  "wr": "10 bar (100 m)",
+  "movement": "GS 9SA5, automatic, 36,000 vph, dual impulse escapement, 80 h",
+  "functions": "time, date",
+  "dial": "silvery-white textured birch-bark pattern",
+  "price_usd": "10,200 (official)",
+  "src": "https://www.grand-seiko.com/us-en/collections/slgh031g"
+ },
+ "james_A": {
+  "name": "Grand Seiko Elegance GMT SBGM221, cream dial",
+  "case": "39.5 mm, 13.7 mm thick, 46.9 mm lug-to-lug, stainless steel",
+  "band": "crocodile leather strap, folding clasp",
+  "wr": "splash resistant only (official)",
+  "movement": "GS 9S66, automatic, 72 h",
+  "functions": "time, date, GMT (24 h hand)",
+  "dial": "cream/ivory with blued GMT hand",
+  "price_usd": "5,400 (official)",
+  "src": "https://www.grand-seiko.com/us-en/collections/sbgm221g"
+ },
+ "james_B": {
+  "name": "Doxa SUB 200T Sharkhunter, black, 804.10.101.10",
+  "case": "39 mm, ~10.5 mm thick, ~41.5 mm lug-to-lug, stainless steel, screw-down crown",
+  "band": "steel beads-of-rice bracelet with wetsuit extension",
+  "wr": "20 bar (200 m); unidirectional diver's bezel with no-decompression table; lume",
+  "movement": "automatic (Swiss), ~38 h",
+  "functions": "time, date",
+  "dial": "black with orange minute hand",
+  "price_usd": "~1,790 (dealer)",
+  "src": "https://www.righttime.com/rt/doxa/804.10.101.10_a.htm"
+ },
+ "andrew_A": {
+  "name": "Gallet Tribute to MultiChron 45, black, AG0910121B1W3",
+  "case": "38 mm, 12.5 mm thick, stainless steel",
+  "band": "beige fabric strap",
+  "wr": "10 bar (100 m); brand: shower and surface swimming",
+  "movement": "hand-wound chronograph (Breitling B09-based); must be wound by hand",
+  "functions": "chronograph with telemeter scale, small seconds",
+  "dial": "black, vintage 1940s/60s style, cream-coloured lume",
+  "price_usd": "6,700 (official)",
+  "src": "https://www.gallet.com/us-en/watches/gallet-classics/classics-tribute-to-multichron-45/AG0910121B1W3/"
+ },
+ "andrew_B": {
+  "name": "IWC Portugieser Perpetual Calendar 44, Armor Gold, Obsidian dial, IW503702",
+  "case": "44.4 mm, ~14.9 mm thick (dealer figure), 18 ct Armor Gold",
+  "band": "black alligator leather strap",
+  "wr": "5 bar (50 m)",
+  "movement": "IWC calibre 52616, automatic Pellaton, 7-day reserve",
+  "functions": "perpetual calendar (date, day, month, 4-digit year), double moon phase, power reserve",
+  "dial": "black lacquer with gold appliques",
+  "price_usd": "~46,500-59,000",
+  "src": "https://press.iwc.com/iwc-relaunches-portugieser-perpetual-calendar-44-en/"
+ }
+}

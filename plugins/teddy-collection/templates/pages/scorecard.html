@@ -1,0 +1,33 @@
+<style>
+.brief { background: var(--tint); padding: 12px 16px; border-radius: 4px; max-width: 78ch; }
+.brief b { font-family: var(--display); }
+.layers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 720px) { .layers { grid-template-columns: 1fr; } }
+.layer { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--c); border-radius: 4px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.layer .tag { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--c); }
+.layer ul { margin: 0; padding-left: 18px; font-size: 0.92rem; }
+.flow { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+.sec-tag { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--c); }
+td:first-child { font-weight: 600; min-width: 9rem; }
+td .src { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+.wide table { min-width: 760px; }
+.m td, .m th { text-align: center; }
+.m td:first-child, .m th:first-child { text-align: left; }
+.y { color: var(--yes); font-weight: 600; } .p { color: var(--part); font-weight: 600; } .n { color: var(--no); font-weight: 600; }
+.legend { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.tensions { display: flex; flex-direction: column; gap: 10px; }
+.tension { border-left: 3px solid var(--line); padding-left: 12px; }
+.tension b { font-family: var(--display); }
+.limits { font-size: 0.92rem; }
+.limits li { margin-bottom: 4px; }
+</style>
+<div class="wrap">
+<header class="page-head">
+  <div class="eyebrow">{{SET}}</div>
+  <h1>Scorecard</h1>
+  <p class="lede">The watch scored against the category's taxonomy, criterion by criterion, with the evidence for each mark.</p>
+<!--COMMERCIAL-->
+</header>
+<!--CONTENT-->
+<!--FOOTER-->
+</div>

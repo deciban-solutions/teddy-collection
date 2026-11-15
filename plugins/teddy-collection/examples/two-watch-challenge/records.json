@@ -1,0 +1,870 @@
+{
+  "videos": [
+    {
+      "id": "bDePE9oVcV4",
+      "url": "https://www.youtube.com/watch?v=bDePE9oVcV4",
+      "title": "Watch Shopping with Watch Content Creators in Our Store",
+      "upload_date": "2026-11-14",
+      "type": "contest",
+      "duration": 3007,
+      "on_screen_cards": true,
+      "guests": [
+        "Brit Pierce",
+        "Adrien Barker",
+        "Marco",
+        "James McBay",
+        "Andrew Morgan"
+      ]
+    }
+  ],
+  "appearances": [
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "grand-seiko-slgb009",
+      "role": "picked",
+      "rank": 1,
+      "group": "Brit Pierce",
+      "timestamps": [
+        "9:05",
+        "39:30"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "glashutte-original-1-39-11-09-81-70",
+      "role": "picked",
+      "rank": 1,
+      "group": "Brit Pierce",
+      "timestamps": [
+        "23:57",
+        "39:30"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "omega-220-10-38-20-01-001",
+      "role": "picked",
+      "rank": 2,
+      "group": "Adrien Barker",
+      "timestamps": [
+        "4:45",
+        "37:45"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "iwc-iw388102",
+      "role": "picked",
+      "rank": 2,
+      "group": "Adrien Barker",
+      "timestamps": [
+        "20:02",
+        "37:45"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "grand-seiko-slgb015",
+      "role": "picked",
+      "rank": 3,
+      "group": "Teddy Baldassarre",
+      "timestamps": [
+        "7:04",
+        "41:25"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "breitling-ab2510201k1p1",
+      "role": "picked",
+      "rank": 3,
+      "group": "Teddy Baldassarre",
+      "timestamps": [
+        "21:57",
+        "41:25"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "glashutte-original-1-91-02-02-02-61",
+      "role": "picked",
+      "rank": 4,
+      "group": "Marco (Swiss Watch Gang)",
+      "timestamps": [
+        "10:56",
+        "40:40"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "grand-seiko-slgh031",
+      "role": "picked",
+      "rank": 4,
+      "group": "Marco (Swiss Watch Gang)",
+      "timestamps": [
+        "27:14",
+        "40:40"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "doxa-804-10-101-10",
+      "role": "picked",
+      "rank": 5,
+      "group": "James McBay",
+      "timestamps": [
+        "16:56",
+        "38:42"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "grand-seiko-sbgm221",
+      "role": "picked",
+      "rank": 5,
+      "group": "James McBay",
+      "timestamps": [
+        "33:43",
+        "38:42"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "gallet-ag0910121b1w3",
+      "role": "picked",
+      "rank": 6,
+      "group": "Andrew Morgan",
+      "timestamps": [
+        "14:18",
+        "36:30"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "iwc-iw503702",
+      "role": "picked",
+      "rank": 6,
+      "group": "Andrew Morgan",
+      "timestamps": [
+        "30:06",
+        "36:30"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "iwc-iw328201",
+      "role": "worn",
+      "group": "Adrien Barker",
+      "timestamps": [
+        "18:47"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "glashutte-original-1-90-02-13-32-70",
+      "role": "worn",
+      "group": "Teddy Baldassarre",
+      "timestamps": [
+        "21:41"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "omega-2551-80-00",
+      "role": "worn",
+      "group": "Brit Pierce",
+      "timestamps": [
+        "24:43"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "felipe-pikullik-mondphase-1",
+      "role": "worn",
+      "group": "Marco (Swiss Watch Gang)",
+      "timestamps": [
+        "26:28"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "breguet-7027ba-11-9v6",
+      "role": "worn",
+      "group": "Andrew Morgan",
+      "timestamps": [
+        "29:00"
+      ]
+    },
+    {
+      "video_id": "bDePE9oVcV4",
+      "watch_id": "universal-geneve-873-435",
+      "role": "worn",
+      "group": "James McBay",
+      "timestamps": [
+        "31:31"
+      ]
+    }
+  ],
+  "watches": [
+    {
+      "id": "grand-seiko-slgb009",
+      "brand": "Grand Seiko",
+      "model": "Evolution 9 Spring Drive U.F.A. “White Birch”",
+      "reference": "SLGB009",
+      "specs": {
+        "case": "40.0 mm, 11.7 mm thick, 47.2 mm lug-to-lug, Ever-Brilliant Steel",
+        "band": "steel bracelet, micro-adjust clasp",
+        "water_resistance": "10 bar (100 m)",
+        "movement": "Spring Drive U.F.A. 9RB2, automatic, ±20 s/year, 72 h reserve",
+        "functions": "time, date, power-reserve indicator",
+        "dial": "silvery-white textured birch-bark pattern"
+      },
+      "confidence": "labelled_on_screen",
+      "basis": "On-screen card at 39:30 names the watch (reference on screen).",
+      "sources": [
+        {
+          "url": "https://www.grand-seiko.com/us-en/collections/slgb009g",
+          "kind": "brand",
+          "match": true
+        }
+      ],
+      "price_history": [
+        {
+          "date": "2026-11-14",
+          "amount": 10200,
+          "currency": "USD",
+          "source_type": "list",
+          "url": "https://www.grand-seiko.com/us-en/collections/slgb009g",
+          "note": "10,200 (official)"
+        }
+      ],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/brit_A.jpg",
+          "at": "39:30"
+        }
+      ]
+    },
+    {
+      "id": "glashutte-original-1-39-11-09-81-70",
+      "brand": "Glashütte Original",
+      "model": "SeaQ 39.5 mm, blue",
+      "reference": "1-39-11-09-81-70",
+      "specs": {
+        "case": "39.5 mm, 12.15 mm thick, brushed stainless steel, screw-down crown",
+        "band": "steel bracelet, 8-step fine adjustment",
+        "water_resistance": "20 bar (200 m); unidirectional diver's bezel with ceramic inlay; Super-LumiNova",
+        "movement": "GO calibre 39-11, automatic, 40 h reserve",
+        "functions": "time, date",
+        "dial": "'Radiant Blue' sunray"
+      },
+      "confidence": "labelled_on_screen",
+      "basis": "On-screen card at 39:30 names the watch (model on screen; reference matched to blue dial on bracelet). The auto-captions render it as “CQ”.",
+      "sources": [
+        {
+          "url": "https://www.glashuette-original.com/en/watches/spezialist/seaq-1-39-11-09-81-70/",
+          "kind": "brand",
+          "match": true
+        }
+      ],
+      "price_history": [],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/brit_B.jpg",
+          "at": "39:30"
+        }
+      ]
+    },
+    {
+      "id": "omega-220-10-38-20-01-001",
+      "brand": "Omega",
+      "model": "Seamaster Aqua Terra 150M, 38 mm, black",
+      "reference": "220.10.38.20.01.001",
+      "specs": {
+        "case": "38 mm, 12.24 mm thick, 45.0 mm lug-to-lug, steel, screw-in crown",
+        "band": "steel bracelet",
+        "water_resistance": "15 bar (150 m); lumed hands and indexes",
+        "movement": "Omega 8800 Co-Axial Master Chronometer, automatic, 55 h, antimagnetic >15,000 gauss",
+        "functions": "time, date",
+        "dial": "black horizontal 'teak' pattern"
+      },
+      "confidence": "labelled_on_screen",
+      "basis": "On-screen card at 37:45 names the watch (model on screen; reference suffix not certain). Omega's page now says this exact reference is no longer available. Dealers also sell a black-dial version ending .004, and the card photo cannot tell the two apart.",
+      "sources": [
+        {
+          "url": "https://www.omegawatches.com/watch-omega-seamaster-aqua-terra-150m-co-axial-master-chronometer-38-mm-22010382001001",
+          "kind": "brand",
+          "match": true
+        }
+      ],
+      "price_history": [],
+      "status_history": [
+        {
+          "date": "2026-11-14",
+          "status": "discontinued"
+        }
+      ],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/adrien_A.jpg",
+          "at": "37:45"
+        }
+      ]
+    },
+    {
+      "id": "iwc-iw388102",
+      "brand": "IWC",
+      "model": "Pilot's Watch Chronograph 41, blue",
+      "reference": "IW388102",
+      "specs": {
+        "case": "41 mm, ~14.5 mm thick (dealer figure), steel",
+        "band": "steel bracelet, quick-change system",
+        "water_resistance": "10 bar (100 m)",
+        "movement": "IWC calibre 69385, automatic, column-wheel chronograph, 46 h",
+        "functions": "chronograph, day, date",
+        "dial": "blue, pilot-style numerals, red-tipped seconds"
+      },
+      "confidence": "labelled_on_screen",
+      "basis": "On-screen card at 37:45 names the watch (model on screen; reference matched to blue dial on bracelet).",
+      "sources": [
+        {
+          "url": "https://www.iwc.com/us-en/watches/pilot-watches/iw388102-pilots-watch-chronograph-41",
+          "kind": "brand",
+          "match": false
+        },
+        {
+          "url": "https://press.iwc.com/iwc-adds-41-mm-chronographs-with-in-house-movements-to-pilots-watches-collection/",
+          "kind": "press",
+          "match": true
+        }
+      ],
+      "price_history": [],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/adrien_B.jpg",
+          "at": "37:45"
+        }
+      ]
+    },
+    {
+      "id": "grand-seiko-slgb015",
+      "brand": "Grand Seiko",
+      "model": "Evolution 9 Spring Drive U.F.A. “Lake Suwa”, 37 mm",
+      "reference": "SLGB015",
+      "specs": {
+        "case": "37.0 mm, 11.4 mm thick, 44.3 mm lug-to-lug, Ever-Brilliant Steel",
+        "band": "steel bracelet, micro-adjust clasp",
+        "water_resistance": "10 bar (100 m)",
+        "movement": "Spring Drive U.F.A. 9RB2, automatic, ±20 s/year, 72 h",
+        "functions": "time, date, power-reserve indicator",
+        "dial": "blue textured lake-surface pattern"
+      },
+      "confidence": "labelled_on_screen",
+      "basis": "On-screen card at 41:25 names the watch (reference on screen).",
+      "sources": [
+        {
+          "url": "https://www.grand-seiko.com/us-en/collections/slgb015g",
+          "kind": "brand",
+          "match": true
+        }
+      ],
+      "price_history": [
+        {
+          "date": "2026-11-14",
+          "amount": 10200,
+          "currency": "USD",
+          "source_type": "list",
+          "url": "https://www.grand-seiko.com/us-en/collections/slgb015g",
+          "note": "10,200 (official)"
+        }
+      ],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/teddy_A.jpg",
+          "at": "41:25"
+        }
+      ]
+    },
+    {
+      "id": "breitling-ab2510201k1p1",
+      "brand": "Breitling",
+      "model": "Premier B25 Datora 42, steel, copper dial",
+      "reference": "AB2510201K1P1",
+      "specs": {
+        "case": "42 mm, 15.35 mm thick, stainless steel",
+        "band": "brown alligator leather strap",
+        "water_resistance": "10 bar (100 m)",
+        "movement": "Breitling B25, automatic, COSC, 48 h",
+        "functions": "chronograph, day, date, month, moon phase (triple calendar)",
+        "dial": "copper/salmon with applied numerals"
+      },
+      "confidence": "labelled_on_screen",
+      "basis": "On-screen card at 41:25 names the watch (model on screen; only steel version made). The auto-captions render it as “the day in steel” and “dura”.",
+      "sources": [
+        {
+          "url": "https://www.breitling.com/us-en/watches/premier/premier-b25-datora-42/AB2510201K1P1/",
+          "kind": "brand",
+          "match": true
+        }
+      ],
+      "price_history": [
+        {
+          "date": "2026-11-14",
+          "amount": 15500,
+          "currency": "USD",
+          "source_type": "list",
+          "url": "https://www.breitling.com/us-en/watches/premier/premier-b25-datora-42/AB2510201K1P1/",
+          "note": "15,500 (official)"
+        }
+      ],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/teddy_B.jpg",
+          "at": "41:25"
+        }
+      ]
+    },
+    {
+      "id": "glashutte-original-1-91-02-02-02-61",
+      "brand": "Glashütte Original",
+      "model": "PanoMaticInverse, steel, blue strap",
+      "reference": "1-91-02-02-02-61",
+      "specs": {
+        "case": "42.0 mm, 12.3 mm thick, stainless steel",
+        "band": "blue Louisiana alligator leather strap",
+        "water_resistance": "5 bar (50 m)",
+        "movement": "GO calibre 91-02, automatic, balance and swan-neck regulation shown on dial side, 42 h",
+        "functions": "off-centre hours/minutes, small seconds, Panorama Date",
+        "dial": "silver/ivory with visible movement architecture"
+      },
+      "confidence": "labelled_on_screen",
+      "basis": "On-screen card at 40:40 names the watch (model on screen; reference not certain). The brand's current steel-on-blue-alligator reference is -61. The older silver-dial reference -30 looks nearly identical, and the card photo cannot settle which one this is. The captions render it as “the invoice”.",
+      "sources": [
+        {
+          "url": "https://www.glashuette-original.com/en/watches/pano/panomaticinverse-1-91-02-02-02-61/",
+          "kind": "brand",
+          "match": true
+        }
+      ],
+      "price_history": [],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/marco_A.jpg",
+          "at": "40:40"
+        }
+      ]
+    },
+    {
+      "id": "grand-seiko-slgh031",
+      "brand": "Grand Seiko",
+      "model": "Evolution 9 Hi-Beat 36000 80 Hours “White Birch”",
+      "reference": "SLGH031",
+      "specs": {
+        "case": "40.0 mm, 11.7 mm thick, 47.0 mm lug-to-lug, Ever-Brilliant Steel",
+        "band": "steel bracelet, micro-adjust clasp",
+        "water_resistance": "10 bar (100 m)",
+        "movement": "GS 9SA5, automatic, 36,000 vph, dual impulse escapement, 80 h",
+        "functions": "time, date",
+        "dial": "silvery-white textured birch-bark pattern"
+      },
+      "confidence": "labelled_on_screen",
+      "basis": "On-screen card at 40:40 names the watch (reference on screen).",
+      "sources": [
+        {
+          "url": "https://www.grand-seiko.com/us-en/collections/slgh031g",
+          "kind": "brand",
+          "match": true
+        }
+      ],
+      "price_history": [
+        {
+          "date": "2026-11-14",
+          "amount": 10200,
+          "currency": "USD",
+          "source_type": "list",
+          "url": "https://www.grand-seiko.com/us-en/collections/slgh031g",
+          "note": "10,200 (official)"
+        }
+      ],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/marco_B.jpg",
+          "at": "40:40"
+        }
+      ]
+    },
+    {
+      "id": "doxa-804-10-101-10",
+      "brand": "Doxa",
+      "model": "SUB 200T Sharkhunter, black",
+      "reference": "804.10.101.10",
+      "specs": {
+        "case": "39 mm, ~10.5 mm thick, ~41.5 mm lug-to-lug, stainless steel, screw-down crown",
+        "band": "steel beads-of-rice bracelet with wetsuit extension",
+        "water_resistance": "20 bar (200 m); unidirectional diver's bezel with no-decompression table; lume",
+        "movement": "automatic (Swiss), ~38 h",
+        "functions": "time, date",
+        "dial": "black with orange minute hand"
+      },
+      "confidence": "labelled_on_screen",
+      "basis": "On-screen card at 38:42 names the watch (model on screen; reference matched to black dial on bracelet). I found the Doxa product page in Doxa's own site index, but the site refused my automated visits (too many requests), so I couldn't open it. The captions render the brand as “Doc” and “Docer”.",
+      "sources": [
+        {
+          "url": "https://doxawatches.com/products/sub-200t-sharkhunter",
+          "kind": "brand",
+          "match": false
+        },
+        {
+          "url": "https://www.righttime.com/rt/doxa/804.10.101.10_a.htm",
+          "kind": "dealer",
+          "match": true
+        }
+      ],
+      "price_history": [
+        {
+          "date": "2026-11-14",
+          "amount": 1790,
+          "currency": "USD",
+          "source_type": "dealer",
+          "url": "https://www.righttime.com/rt/doxa/804.10.101.10_a.htm",
+          "note": "~1,790 (dealer)"
+        }
+      ],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/james_A.jpg",
+          "at": "38:42"
+        }
+      ]
+    },
+    {
+      "id": "grand-seiko-sbgm221",
+      "brand": "Grand Seiko",
+      "model": "Elegance GMT, cream dial",
+      "reference": "SBGM221",
+      "specs": {
+        "case": "39.5 mm, 13.7 mm thick, 46.9 mm lug-to-lug, stainless steel",
+        "band": "crocodile leather strap, folding clasp",
+        "water_resistance": "splash resistant only (official)",
+        "movement": "GS 9S66, automatic, 72 h",
+        "functions": "time, date, GMT (24 h hand)",
+        "dial": "cream/ivory with blued GMT hand"
+      },
+      "confidence": "labelled_on_screen",
+      "basis": "On-screen card at 38:42 names the watch (reference on screen).",
+      "sources": [
+        {
+          "url": "https://www.grand-seiko.com/us-en/collections/sbgm221g",
+          "kind": "brand",
+          "match": true
+        }
+      ],
+      "price_history": [
+        {
+          "date": "2026-11-14",
+          "amount": 5400,
+          "currency": "USD",
+          "source_type": "list",
+          "url": "https://www.grand-seiko.com/us-en/collections/sbgm221g",
+          "note": "5,400 (official)"
+        }
+      ],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/james_B.jpg",
+          "at": "38:42"
+        }
+      ]
+    },
+    {
+      "id": "gallet-ag0910121b1w3",
+      "brand": "Gallet",
+      "model": "Tribute to MultiChron 45, black dial",
+      "reference": "AG0910121B1W3",
+      "specs": {
+        "case": "38 mm, 12.5 mm thick, stainless steel",
+        "band": "beige fabric strap",
+        "water_resistance": "10 bar (100 m); brand: shower and surface swimming",
+        "movement": "hand-wound chronograph (Breitling B09-based); must be wound by hand",
+        "functions": "chronograph with telemeter scale, small seconds",
+        "dial": "black, vintage 1940s/60s style, cream-coloured lume"
+      },
+      "confidence": "labelled_on_screen",
+      "basis": "On-screen card at 36:30 names the watch (model on screen; reference matched to black dial on beige fabric). The “45” is the 1960s model it pays tribute to, not the case size. Andrew described it as a war-era-style chronograph with a Breitling-derived hand-wound movement (captioned “P9”).",
+      "sources": [
+        {
+          "url": "https://www.gallet.com/us-en/watches/gallet-classics/classics-tribute-to-multichron-45/AG0910121B1W3/",
+          "kind": "brand",
+          "match": true
+        }
+      ],
+      "price_history": [
+        {
+          "date": "2026-11-14",
+          "amount": 6700,
+          "currency": "USD",
+          "source_type": "list",
+          "url": "https://www.gallet.com/us-en/watches/gallet-classics/classics-tribute-to-multichron-45/AG0910121B1W3/",
+          "note": "6,700 (official)"
+        }
+      ],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/andrew_A.jpg",
+          "at": "36:30"
+        }
+      ]
+    },
+    {
+      "id": "iwc-iw503702",
+      "brand": "IWC",
+      "model": "Portugieser Perpetual Calendar 44, Armor Gold, Obsidian dial",
+      "reference": "IW503702",
+      "specs": {
+        "case": "44.4 mm, ~14.9 mm thick (dealer figure), 18 ct Armor Gold",
+        "band": "black alligator leather strap",
+        "water_resistance": "5 bar (50 m)",
+        "movement": "IWC calibre 52616, automatic Pellaton, 7-day reserve",
+        "functions": "perpetual calendar (date, day, month, 4-digit year), double moon phase, power reserve",
+        "dial": "black lacquer with gold appliques"
+      },
+      "confidence": "labelled_on_screen",
+      "basis": "On-screen card at 36:30 names the watch (model on screen; reference matched to gold case with black dial). Of the 2024 relaunch versions, IW503702 is the only one with a gold case and a black dial: IW503701 is gold with a silver dial, and IW503703 is white gold with a blue dial.",
+      "sources": [
+        {
+          "url": "https://www.iwc.com/us-en/watches/portugieser/iw503702-portugieser-perpetual-calendar-44",
+          "kind": "brand",
+          "match": false
+        },
+        {
+          "url": "https://press.iwc.com/iwc-relaunches-portugieser-perpetual-calendar-44-en/",
+          "kind": "press",
+          "match": true
+        }
+      ],
+      "price_history": [],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/andrew_B.jpg",
+          "at": "36:30"
+        }
+      ]
+    },
+    {
+      "id": "iwc-iw328201",
+      "brand": "IWC",
+      "model": "Pilot's Watch Mark XX, black dial",
+      "reference": "IW328201",
+      "specs": {
+        "summary": "40 mm steel, IWC calibre 32111 automatic, 10 bar. Sold on a black calfskin strap; he wears it on a single-piece nylon strap."
+      },
+      "confidence": "legible_on_dial",
+      "basis": "Model legible on dial; reference matched to black dial.",
+      "sources": [
+        {
+          "url": "https://www.iwc.com/us-en/watches/pilot-watches/iw328201-pilots-watch-mark-xx",
+          "kind": "brand",
+          "match": false
+        },
+        {
+          "url": "https://press.iwc.com/iwc-schaffhausen-completes-the-pilots-watch-mark-xx-collection-with-four-new-models-en/",
+          "kind": "press",
+          "match": true
+        }
+      ],
+      "price_history": [],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/worn_adrien.jpg",
+          "at": "18:50",
+          "caption": "On his wrist at 18:50"
+        }
+      ]
+    },
+    {
+      "id": "glashutte-original-1-90-02-13-32-70",
+      "brand": "Glashütte Original",
+      "model": "PanoMaticLunar, green dial",
+      "reference": "1-90-02-13-32-70",
+      "specs": {
+        "summary": "40 mm steel, calibre 90-02 automatic, Panorama Date, moon phase, green-black lacquered dial, 5 bar."
+      },
+      "confidence": "matched_to_specs",
+      "basis": "Model named and shown; reference matched to green dial on bracelet. The photo is a product image the video shows, not the watch on his wrist. The caption reads “Panamatic lunar green dial.” He may wear it on a strap; the bracelet reference matches the image the video shows.",
+      "sources": [
+        {
+          "url": "https://www.glashuette-original.com/en/watches/pano/panomaticlunar-1-90-02-13-32-70/",
+          "kind": "brand",
+          "match": true
+        }
+      ],
+      "price_history": [],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/worn_teddy.jpg",
+          "at": "21:46",
+          "caption": "Product image the video shows at 21:46; the watch is not shown on his wrist"
+        }
+      ]
+    },
+    {
+      "id": "omega-2551-80-00",
+      "brand": "Omega",
+      "model": "Seamaster Diver 300M midsize, blue wave dial",
+      "reference": "2551.80.00",
+      "specs": {
+        "summary": "About 36 mm steel, Omega calibre 1120 automatic chronometer, 300 m, blue wave dial and bezel; discontinued."
+      },
+      "confidence": "inferred",
+      "basis": "Model clear; reference inferred. She calls it “the smaller size, the midsize that has been discontinued.” The dial reads Automatic Chronometer, which fits the midsize automatic 2551.80; the quartz midsize is a different reference. The reference (2551.80.00) is the most likely match, not confirmed.",
+      "sources": [
+        {
+          "url": "https://www.bobswatches.com/omega/omega-seamaster-300m-midsize-chronometer.html",
+          "kind": "dealer",
+          "match": true
+        }
+      ],
+      "price_history": [],
+      "status_history": [
+        {
+          "date": "2026-11-14",
+          "status": "discontinued"
+        }
+      ],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/worn_brit.jpg",
+          "at": "24:52",
+          "caption": "On her wrist at 24:52"
+        }
+      ]
+    },
+    {
+      "id": "felipe-pikullik-mondphase-1",
+      "brand": "Felipe Pikullik",
+      "model": "Mondphase 1 (“Moonphase One”)",
+      "reference": null,
+      "specs": {
+        "summary": "41 mm steel, hand-wound modified Unitas 6497, hand-made spherical moon phase, hand-engraved name on the dial; limited to 20 pieces; €24,000 at launch."
+      },
+      "confidence": "legible_on_dial",
+      "basis": "Maker's name legible on dial in the close-up. The captions render the maker as “Filipe Piculik.” The dial matches the regular edition, not the later Meteorite edition.",
+      "sources": [
+        {
+          "url": "https://felipe-pikullik.odoo.com/moonphase1",
+          "kind": "brand",
+          "match": true
+        },
+        {
+          "url": "https://monochrome-watches.com/introducing-felipe-pikullik-shoots-for-the-moon-with-the-mondphase-1-specs-price",
+          "kind": "other",
+          "match": true
+        }
+      ],
+      "price_history": [],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/worn_marco_wrist.jpg",
+          "at": "26:38",
+          "caption": "On his wrist at 26:38"
+        },
+        {
+          "kind": "frame",
+          "path": "img/worn_marco_dial.jpg",
+          "caption": "Close-up of the dial, with the maker's name"
+        }
+      ]
+    },
+    {
+      "id": "breguet-7027ba-11-9v6",
+      "brand": "Breguet",
+      "model": "Classique Tradition 7027, yellow gold",
+      "reference": "7027BA/11/9V6",
+      "specs": {
+        "summary": "37 mm 18k yellow gold, hand-wound Breguet calibre 507 DR, open-worked movement on the dial side, offset guilloché time dial, 3 bar."
+      },
+      "confidence": "inferred",
+      "basis": "Model clear; yellow-gold 7027 reference inferred. He also wore, on the other wrist, a Gallet he had just been given. It may be the same MultiChron model he picked, but I could not confirm that from the video. The reference (7027BA/11/9V6) is the most likely match, not confirmed.",
+      "sources": [
+        {
+          "url": "https://www.breguet.com/en/watches/tradition-7027/7027ba119v6",
+          "kind": "brand",
+          "match": false
+        },
+        {
+          "url": "https://www.europeanwatch.com/watch/breguet-7027ba-11-9v6-la-tradition-18k-yellow-gold-37mm-50046",
+          "kind": "dealer",
+          "match": true
+        }
+      ],
+      "price_history": [],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/worn_andrew.jpg",
+          "at": "29:22",
+          "caption": "Photo of it on his wrist, shown in the video at 29:22"
+        }
+      ]
+    },
+    {
+      "id": "universal-geneve-873-435",
+      "brand": "Universal Genève",
+      "model": "GMT World Time (about 1993)",
+      "reference": "873.435",
+      "specs": {
+        "summary": "About 40 mm steel, automatic UG calibre 73, rotating world-cities bezel with 24-hour ring, date; black-dial run of about 1,000."
+      },
+      "confidence": "inferred",
+      "basis": "Model clear; reference inferred from his description. His details match the listing: “the only GMT and World Time that UG ever made,” “there's like a thousand of these,” his birth year, new old stock. The video's dial looks very dark green; the listing calls it matte black. I could not verify his “only one ever made” claim. The reference (873.435) is the most likely match, not confirmed.",
+      "sources": [
+        {
+          "url": "https://loupethis.com/auctions/universal-geneve-gmt-world-time-873-435-436",
+          "kind": "auction",
+          "match": true
+        }
+      ],
+      "price_history": [],
+      "status_history": [],
+      "photos": [
+        {
+          "kind": "frame",
+          "path": "img/worn_james.jpg",
+          "at": "31:50",
+          "caption": "On his wrist at 31:50"
+        }
+      ]
+    }
+  ]
+}

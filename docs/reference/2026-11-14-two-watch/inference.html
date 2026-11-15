@@ -1,0 +1,223 @@
+<title>What the Judges Rewarded</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
+<style>
+/* Layout: one reading column. Answer first, then evidence in the order it was produced: the judges' words, the method, the rule search, the expert view, the viewers, limits, appendix. */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --fg: #16202a; --muted: #5b6875; --line: #d9dfe5;
+  --accent: #1f4e8c; --tint: #e9eef4; --good: #2f7a5a; --warn: #9a6b1f; --bad: #a3413a;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg:#0f151b; --surface:#17212a; --fg:#e5ebf0; --muted:#9aa8b5; --line:#2a3742; --accent:#7fa8e0; --tint:#1c2833; --good:#6fc29c; --warn:#d8ad62; --bad:#e48a80; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg:#0f151b; --surface:#17212a; --fg:#e5ebf0; --muted:#9aa8b5; --line:#2a3742; --accent:#7fa8e0; --tint:#1c2833; --good:#6fc29c; --warn:#d8ad62; --bad:#e48a80; color-scheme: dark; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 56px; display: flex; flex-direction: column; gap: 40px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-size: 2.1rem; font-weight: 600; } h2 { font-size: 1.5rem; font-weight: 600; } h3 { font-size: 1.1rem; font-weight: 600; }
+p { margin: 0; max-width: 70ch; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+section { display: flex; flex-direction: column; gap: 14px; }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { color: var(--muted); }
+.answer { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 4px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+.answer ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 6px; }
+.answer li b { font-family: var(--display); font-weight: 600; }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; vertical-align: top; padding: 8px 11px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: none; }
+th { font-family: var(--display); font-weight: 600; background: var(--tint); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 0.85rem; }
+.wide table { min-width: 760px; }
+.mono { font-family: var(--mono); font-size: 0.84rem; }
+.y { color: var(--good); font-weight: 600; } .p { color: var(--warn); font-weight: 600; } .n { color: var(--bad); font-weight: 600; }
+.ranks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .ranks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .ranks { grid-template-columns: 1fr; } }
+.rank { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; min-width: 0; }
+.rank h3 { font-size: 0.98rem; margin-bottom: 6px; }
+.rank ol { margin: 0; padding-left: 20px; font-size: 0.9rem; }
+.rank .sub { font-size: 0.8rem; color: var(--muted); margin-top: 6px; }
+.note { font-size: 0.86rem; color: var(--muted); }
+ul.plain { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; max-width: 78ch; }
+.callout { background: var(--tint); border-radius: 4px; padding: 12px 16px; max-width: 80ch; }
+</style>
+
+<div class="wrap">
+<header style="display:flex;flex-direction:column;gap:12px">
+  <div class="eyebrow">Two-watch challenge · criteria inference and scoring</div>
+  <h1>What the Judges Rewarded</h1>
+  <p class="lede">The judges' stated reasons were brief and sometimes pointed the wrong way. This page works out which criteria actually reproduce their ranking, tests how unique that answer is, and sets it beside a blind expert scoring and 600 viewer comments.</p>
+</header>
+
+<section>
+  <h2>The answer</h2>
+  <div class="answer">
+    <p>The judges read the brief (“has to serve you every single day”) literally: <b>both</b> watches must be ones you could wear every day. A criteria set that reproduces their exact order:</p>
+    <ol>
+      <li><b>Everyday-proofness, counted across both watches (primary).</b> How many of the two can take daily life: water resistance of 100 m or more, steel rather than precious metal, self-winding, ideally on a bracelet. The three pairs where both watches pass took the top three places; the three where only one or neither passes took the bottom three.</li>
+      <li><b>Restraint (tie-breaker).</b> Within each tier, the simpler pair ranked higher: fewer complications, thinner cases. The winning pair has no complication beyond a date; third place carries a chronograph with a full calendar and moon phase.</li>
+      <li><b>Coherence as a veto.</b> The one pair the judges explained at length was last because “the two of them together did not make a lot of sense”: two complicated, leather-strapped, dressy pieces and no daily watch.</li>
+    </ol>
+    <p>Spelled out on the specs: rank by the number of watches rated to 100 m or more, then by the thinner thickest case. That two-step rule gives Brit, Adrien, Teddy, Marco, James, Andrew, exactly the judges' order. So does “100 m count, then fewer complications.”</p>
+  </div>
+  <div class="callout"><b>Why the stated reasons were confusing.</b> The judges said the top two had “a little bit more spice.” In blind scoring, “sensible spice” ran slightly <em>against</em> their order (rank correlation −0.30), and the most colourful, complicated pair finished third. A panelist caught this on the spot: “They want spice but chose this,” and another answered, “Sensible spice.” The most consistent reading of their spice is narrower: a genuinely sporty second watch (a diver, a pilot's chronograph) instead of a dressy complication, inside a pair that is everyday-proof already.</div>
+</section>
+
+<section>
+  <h2>How sure is this?</h2>
+  <ul class="plain">
+    <li><b>The primary criterion is robust.</b> Every two-step rule I found that reproduces the exact order starts with an everyday-proofness measure: a blind-scored “daily driver” rating, the number of bracelet watches, or the number of watches rated to 100 m. That came out of all 64 candidate criteria, scored and objective alike.</li>
+    <li><b>The tie-breaker is not identified.</b> Restraint (fewer complications, thinner cases), higher price, and design integrity each break the ties correctly. Six pairs cannot tell these apart.</li>
+    <li><b>First versus second is a coin flip in the evidence.</b> Brit's and Adrien's pairs are near-identical on every everyday measure. The deciding difference is small: a dive watch versus a pilot's chronograph, a 12.2 mm versus a 14.5 mm thickest case. The judges gave no reason for this split.</li>
+    <li><b>This beats chance, but not by an overwhelming margin.</b> With 40 random criteria, an exact two-step fit exists about 15% of the time. Here eight exist, and they all agree on the primary factor, which random criteria would not do. Some of the objective features (bracelet count especially) were defined after I had seen the ranking, so treat those as hypothesis-generating rather than confirmatory.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>The judges' own words, coded</h2>
+  <p>Every evaluative remark in the reveal (43:30–48:40 in the video), the criterion it implies, and whether the scoring supports that reading.</p>
+  <div class="tbl wide"><table>
+    <thead><tr><th>Place</th><th>Pair</th><th>What was said</th><th>Implied criterion</th><th>Does the data agree?</th></tr></thead>
+    <tbody>
+      <tr><td>6th</td><td>Gallet MultiChron + IWC Perpetual (Andrew)</td><td>“The two of them together did not make a lot of sense to me.”</td><td>Coherence</td><td><span class="y">Yes.</span> Lowest blind “makes sense together” (2.3/5), no bracelet, no watch fit for daily wear, gold perpetual at 50 m.</td></tr>
+      <tr><td>5th</td><td>Grand Seiko GMT + Doxa (James)</td><td>“Love a GMT … love a Doxa … but in terms of a two watch collection … a little bit off the beaten path for what we thought across the board.”</td><td>Conventionality</td><td><span class="p">Partly.</span> The blind scorers did not find it unconventional (4/5). The specs do flag it: Grand Seiko rates the GMT “splash resistant” only, it sits on leather, and Doxa is the least mainstream brand of the twelve.</td></tr>
+      <tr><td>4th</td><td>PanoMaticInverse + GS Hi-Beat (Marco)</td><td>“The Inverse, something a little bit more different than your daily … and then you have a nice daily driver. So it's a great collection … just some better options.”</td><td>A daily driver plus a different second watch</td><td><span class="y">Yes.</span> Daily driver scored 5/5, but the second watch is a 50 m dress piece, so only one watch is everyday-proof.</td></tr>
+      <tr><td>3rd</td><td>GS Lake Suwa + Breitling Datora (Teddy)</td><td>“Love the dress watch and the Breitling is amazing … the other two collections just had a little bit more spice.”</td><td>“Spice”</td><td><span class="p">Only on the narrow reading.</span> Both watches are 100 m, but the second is a dressy chronograph-calendar on alligator. The top two each pair a daily with a sporty steel second watch.</td></tr>
+      <tr><td>1st, 2nd</td><td>GS White Birch + SeaQ (Brit); Aqua Terra + IWC Pilot Chrono (Adrien)</td><td>No reason given. Host: “It does make sense based off of that brief [living with these two watches every single day] that you are the two last people.”</td><td>Fit to the everyday brief</td><td><span class="y">Yes.</span> The only two pairs where both watches are steel, on bracelets, and rated to 100 m or more.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">General remarks at the start of the reveal: “some a little bit more odd than others”; the host noted the judges “work with collectors every day coming in this store, so they see what people do every single day.”</p>
+</section>
+
+<section>
+  <h2>Method</h2>
+  <div class="tbl wide"><table>
+    <thead><tr><th>Step</th><th>What was done</th><th>Guard against bias</th></tr></thead>
+    <tbody>
+      <tr><td>1. Fact base</td><td>Specs for all 12 watches from the brand pages: case size, thickness, water resistance, band, movement, complications, price (appendix).</td><td>Objective features come only from these specs, never from scorers.</td></tr>
+      <tr><td>2. Blind scoring</td><td>Three independent scorers rated every watch on 8 properties plus fit across 9 occasions, and every pair on 6 taxonomy criteria and 5 criteria phrased from the judges' words. Each scorer then gave its own ranking.</td><td>Pairs anonymised and shuffled differently for each scorer; no picker names, no ranking, no web access. The judge-derived criteria were given without saying which pair prompted which remark.</td></tr>
+      <tr><td>3. Criterion library</td><td>64 candidates: 12 scored pair criteria, 3 occasion-coverage measures, 17 watch-score aggregates, and 32 spec-derived features (16 features, each tested in both directions).</td><td>All candidates searched; none hand-picked to fit.</td></tr>
+      <tr><td>4. Rule search</td><td>(a) Kendall rank correlation of each criterion with the judges' order; (b) every lexicographic rule of one to three criteria checked for an exact, tie-free match; (c) random weightings of two-criterion blends.</td><td>A chance baseline from random criteria; ties count as failures.</td></tr>
+      <tr><td>5. Viewer check</td><td>All 986 comments downloaded; 600 that name a picker, a watch, or the judging were coded by two coders, and a third independently re-coded a random 90.</td><td>Agreement on the audit sample: Cohen's kappa 0.91 for best pick, 0.95 for worst, 0.71 for stance toward the judges.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Which single criteria track the judges</h2>
+  <p>Kendall rank correlation with the judges' order (+1 is identical, −1 is reversed). S = blind score, W = watch-score aggregate, F = from the specs.</p>
+  <div class="tbl wide"><table>
+    <thead><tr><th>Criterion</th><th class="num">τ</th><th class="num">Brit</th><th class="num">Adrien</th><th class="num">Teddy</th><th class="num">Marco</th><th class="num">James</th><th class="num">Andrew</th></tr></thead>
+    <tbody>
+      <tr><td>F · watches on a steel bracelet</td><td class="num">+0.86</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">0</td></tr>
+      <tr><td>W · combined robustness of both watches</td><td class="num">+0.83</td><td class="num">8.7</td><td class="num">8.3</td><td class="num">6.3</td><td class="num">5.7</td><td class="num">6.3</td><td class="num">5.0</td></tr>
+      <tr><td>S · anchor strength</td><td class="num">+0.83</td><td class="num">4.7</td><td class="num">5.0</td><td class="num">4.7</td><td class="num">4.3</td><td class="num">3.0</td><td class="num">2.3</td></tr>
+      <tr><td>S · everyday livability</td><td class="num">+0.79</td><td class="num">5.0</td><td class="num">5.0</td><td class="num">4.0</td><td class="num">3.7</td><td class="num">4.0</td><td class="num">2.0</td></tr>
+      <tr><td>S · has a daily driver</td><td class="num">+0.77</td><td class="num">5.0</td><td class="num">5.0</td><td class="num">5.0</td><td class="num">5.0</td><td class="num">3.3</td><td class="num">2.3</td></tr>
+      <tr><td>F · watches rated ≥ 100 m</td><td class="num">+0.77</td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">1</td><td class="num">1</td></tr>
+      <tr><td>F · lowest water resistance in the pair (m)</td><td class="num">+0.70</td><td class="num">100</td><td class="num">100</td><td class="num">100</td><td class="num">50</td><td class="num">0</td><td class="num">50</td></tr>
+      <tr><td>S · beaten path (conventional)</td><td class="num">+0.55</td><td class="num">4.0</td><td class="num">5.0</td><td class="num">3.0</td><td class="num">2.3</td><td class="num">4.0</td><td class="num">1.7</td></tr>
+      <tr><td>S · makes sense together</td><td class="num">+0.41</td><td class="num">4.0</td><td class="num">4.0</td><td class="num">3.3</td><td class="num">3.0</td><td class="num">4.7</td><td class="num">2.3</td></tr>
+      <tr><td>C · weighted occasion coverage</td><td class="num">+0.07</td><td class="num">0.98</td><td class="num">0.98</td><td class="num">0.93</td><td class="num">0.93</td><td class="num">1.00</td><td class="num">0.96</td></tr>
+      <tr><td>S · sensible spice</td><td class="num">−0.30</td><td class="num">3.0</td><td class="num">3.0</td><td class="num">3.0</td><td class="num">1.7</td><td class="num">4.3</td><td class="num">3.3</td></tr>
+      <tr><td>S · differentiation</td><td class="num">−0.41</td><td class="num">3.0</td><td class="num">3.0</td><td class="num">4.0</td><td class="num">2.7</td><td class="num">5.0</td><td class="num">4.7</td></tr>
+      <tr><td>S · tension point</td><td class="num">−0.60</td><td class="num">3.3</td><td class="num">2.7</td><td class="num">3.3</td><td class="num">3.3</td><td class="num">4.7</td><td class="num">4.0</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Scored values are means of three scorers. The judges rewarded <em>sameness of everyday capability</em> and penalised the contrast that collection guides prize. Differentiation and tension point both correlate negatively with their order.</p>
+</section>
+
+<section>
+  <h2>Every two-step rule that reproduces the exact order</h2>
+  <p>Rank by the first criterion; break ties with the second. These are all eight minimal rules found among 64 candidates. Minimal three-step rules number 428, so at three steps nearly anything can be made to fit. (Corrected 15 November 2026: an earlier version said 914, which wrongly included three-step rules whose first two steps already fit.)</p>
+  <div class="tbl wide"><table>
+    <thead><tr><th>Primary</th><th>Tie-breaker</th><th>Share of random weightings that also fit</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>S · has a daily driver</td><td>W · combined robustness</td><td class="num">77%</td><td>Holds when any one scorer is dropped</td></tr>
+      <tr><td>S · has a daily driver</td><td>W · combined design integrity</td><td class="num">33%</td><td></td></tr>
+      <tr><td>S · has a daily driver</td><td>S · blind expert ranking</td><td class="num">43%</td><td></td></tr>
+      <tr><td>F · watches rated ≥ 100 m</td><td>F · fewer complications (total)</td><td class="num">56%</td><td>Purely from the spec sheets</td></tr>
+      <tr><td>F · watches rated ≥ 100 m</td><td>F · thinner thickest case</td><td class="num">47%</td><td>Purely from the spec sheets</td></tr>
+      <tr><td>F · watches rated ≥ 100 m</td><td>F · simpler most-complicated watch</td><td class="num">46%</td><td>Purely from the spec sheets</td></tr>
+      <tr><td>F · watches on a steel bracelet</td><td>F · higher total price</td><td class="num">—</td><td>Feature defined after seeing the ranking</td></tr>
+      <tr><td>F · simple steel sport watches</td><td>F · higher total price</td><td class="num">—</td><td>Feature defined after seeing the ranking</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">The share is the fraction of 400 random positive weightings of the two standardised criteria whose blended score gives the exact order with no ties. The blend fits only for some weightings; the step-by-step version fits outright.</p>
+</section>
+
+<section>
+  <h2>The expert taxonomy ranks differently</h2>
+  <p>The three blind scorers, applying the collection taxonomy, agreed with each other almost completely (Kendall's W = 0.95). Their consensus differs from the judges in one big way: the pair the judges put fifth, the experts put first.</p>
+  <div class="ranks">
+    <div class="rank"><h3>Judges</h3><ol><li>Brit</li><li>Adrien</li><li>Teddy</li><li>Marco</li><li>James</li><li>Andrew</li></ol></div>
+    <div class="rank"><h3>Blind experts</h3><ol><li>James</li><li>Brit</li><li>Adrien</li><li>Teddy</li><li>Marco</li><li>Andrew</li></ol><p class="sub">τ with judges +0.47</p></div>
+    <div class="rank"><h3>Viewers (54 full rankings)</h3><ol><li>Teddy</li><li>Brit</li><li>Marco</li><li>Andrew</li><li>Adrien</li><li>James</li></ol><p class="sub">Borda count. τ with judges +0.33; with experts −0.20</p></div>
+    <div class="rank"><h3>Rule: ≥100 m count, then thinness</h3><ol><li>Brit</li><li>Adrien</li><li>Teddy</li><li>Marco</li><li>James</li><li>Andrew</li></ol><p class="sub">Identical to the judges</p></div>
+  </div>
+  <ul class="plain">
+    <li><b>Why the experts liked James's pair:</b> a cream dress GMT and a 200 m diver cover the two ends of the occasion range and travel, with no overlap. It topped differentiation, gap test and wear balance, and had the best occasion coverage under all four wearer profiles I tested (default, formal-heavy, active coastal, frequent flyer).</li>
+    <li><b>Why the judges did not:</b> under an “every single day” reading, half of that pair is a splash-resistant watch on leather. The judges appear to have asked “can I wear both of these on any day?” where the experts asked “between them, do they cover every kind of day?”</li>
+    <li><b>Coverage barely separates the field.</b> Weighted occasion coverage runs from 0.93 to 1.00 for all six pairs. With two good watches, almost everyone covers almost everything, so the verdict turns on how you value the remaining differences.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>What the viewers said</h2>
+  <ul class="plain">
+    <li><b>Split on the judges.</b> Of 439 comments with a view, 69 disagreed with the judges and 58 agreed (12 mixed).</li>
+    <li><b>Andrew's pair is the most polarising.</b> Named best 83 times and worst 30 times, more than anyone on both counts. Viewers who liked it cited fun, uniqueness and horology; the judges put it last.</li>
+    <li><b>The host's pair wins the full rankings.</b> Among the 54 commenters who ranked at least five pickers, Teddy beats every other picker head-to-head. Viewers know who picked what and are watching Teddy's channel, so fondness for the presenter is a likely factor.</li>
+    <li><b>Reasons viewers gave</b> (codes): personal taste 39, practical/realistic 27, boring/safe 24, spice/fun/unique 21, versatility 21, daily wear 18. They split almost evenly between rewarding practicality, as the judges did, and calling it boring.</li>
+  </ul>
+  <p class="note">Best-pick counts include comments such as “Brit won,” which restate the result rather than give a preference, so Brit's best count overstates support. The full rankings avoid this but are a small, self-selected group.</p>
+</section>
+
+<section>
+  <h2>What this sets up for the analysis</h2>
+  <p>The comparison for the planned analysis is now concrete: <b>the judges' criteria</b> (both watches everyday-proof, then restraint) against <b>the expert taxonomy</b> (complementary coverage, differentiation, each watch indispensable). These two give different winners for a definite reason, and the brief's wording (“serve you every single day”) can be read either way. That makes it a good proposition to test.</p>
+</section>
+
+<section>
+  <h2>Limits</h2>
+  <ul class="plain">
+    <li>The three blind scorers are instances of the same AI model. Their near-perfect agreement shows consistency, not independent confirmation.</li>
+    <li>Six items cannot identify more than one or two criteria. This answer is one consistent explanation; the judges may have deliberated in ways no rule captures.</li>
+    <li>The judges saw the physical watches; the scorers saw only specs. Size on the wrist, finishing and presence may have mattered in ways the specs cannot carry.</li>
+    <li>Prices are list or dealer figures and are only rough; the brief set no budget.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Appendix: the spec facts used</h2>
+  <div class="tbl wide"><table>
+    <thead><tr><th>Picker</th><th>Watch</th><th>Water resistance</th><th>Band</th><th>Case (mm)</th><th>Complications</th></tr></thead>
+    <tbody>
+      <tr><td>Brit</td><td>Grand Seiko SLGB009 White Birch U.F.A.</td><td>100 m</td><td>Steel bracelet</td><td class="mono">40.0 × 11.7</td><td>Date, power reserve</td></tr>
+      <tr><td></td><td>Glashütte Original SeaQ 39.5</td><td>200 m, diver's bezel</td><td>Steel bracelet</td><td class="mono">39.5 × 12.15</td><td>Date</td></tr>
+      <tr><td>Adrien</td><td>Omega Aqua Terra 38</td><td>150 m</td><td>Steel bracelet</td><td class="mono">38.0 × 12.24</td><td>Date</td></tr>
+      <tr><td></td><td>IWC Pilot's Chronograph 41</td><td>100 m</td><td>Steel bracelet</td><td class="mono">41.0 × ~14.5</td><td>Chronograph, day-date</td></tr>
+      <tr><td>Teddy</td><td>Grand Seiko SLGB015 Lake Suwa 37</td><td>100 m</td><td>Steel bracelet</td><td class="mono">37.0 × 11.4</td><td>Date, power reserve</td></tr>
+      <tr><td></td><td>Breitling Premier B25 Datora 42</td><td>100 m</td><td>Alligator strap</td><td class="mono">42.0 × 15.35</td><td>Chronograph, triple calendar, moon</td></tr>
+      <tr><td>Marco</td><td>Glashütte Original PanoMaticInverse</td><td>50 m</td><td>Alligator strap</td><td class="mono">42.0 × 12.3</td><td>Panorama date</td></tr>
+      <tr><td></td><td>Grand Seiko SLGH031 White Birch Hi-Beat</td><td>100 m</td><td>Steel bracelet</td><td class="mono">40.0 × 11.7</td><td>Date</td></tr>
+      <tr><td>James</td><td>Grand Seiko SBGM221 GMT</td><td><span class="n">Splash resistant only</span></td><td>Crocodile strap</td><td class="mono">39.5 × 13.7</td><td>GMT, date</td></tr>
+      <tr><td></td><td>Doxa SUB 200T Sharkhunter</td><td>200 m, diver's bezel</td><td>Steel bracelet</td><td class="mono">39 × ~10.6</td><td>Date</td></tr>
+      <tr><td>Andrew</td><td>Gallet Tribute to MultiChron 45</td><td>100 m (surface swimming)</td><td>Fabric strap</td><td class="mono">38.0 × 12.5</td><td>Hand-wound chronograph</td></tr>
+      <tr><td></td><td>IWC Portugieser Perpetual Calendar 44</td><td>50 m</td><td>Alligator strap, gold case</td><td class="mono">44.4 × ~14.9</td><td>Perpetual calendar, moon, year</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Sources: each brand's product page or press release, linked on the <a href="https://claude.ai/artifact/SuwkhmofAHidQ6dko5SsgW">Two-Watch Challenge Lineup</a>; thickness figures marked ~ are from dealer listings. Criteria definitions: <a href="https://claude.ai/artifact/7yWxiKfWGM7Yq4Uf1qapMU">Two-Watch Collection Taxonomy</a>.</p>
+</section>
+</div>

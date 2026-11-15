@@ -1,0 +1,207 @@
+{
+  "id": "shipped:chronograph@1",
+  "category": "chronograph",
+  "version": "1",
+  "label": "provisional",
+  "paradigm": "These criteria serve a buyer choosing what to purchase, new or pre-owned: an evidence-based, value-aware buyer who wants an informed view of history and context. They are one reasonable buyer's stance, not the only one, and this version is provisional: drafted from published sources, not yet compiled or ratified.",
+  "created": "2026-11-15",
+  "change_log": [
+    {
+      "date": "2026-11-15",
+      "reason": "Drafted from WatchTime's chronograph buying guide, webChronos on column wheels versus cams, Time+Tide on servicing costs, Gear Patrol on fit, and the Teddy content audit of 2026-11-14.",
+      "additions": {
+        "criteria": 9
+      }
+    }
+  ],
+  "spec_fields": {
+    "complications": "list of lower-case strings, for example \"date\", \"chronograph\", \"gmt\"; [] for time only"
+  },
+  "layers": {
+    "wearer": [
+      {
+        "key": "timing_use",
+        "statement": "What the buyer will time (short events, hours-long events, timing underwater, nothing) decides which chronograph features matter; most chronographs cannot be operated under water and many cannot time hours-long events.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.watchtime.com/brands/jaeger-lecoultre/buying-a-chrono-10-things-to-know"
+        ]
+      },
+      {
+        "key": "wrist_fit",
+        "statement": "The watch fits the buyer's wrist: lug-to-lug length inside the flat top of the wrist and a thickness the buyer's cuffs and comfort allow. Measure these rather than trusting the stated diameter.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "test": "Compare the stated lug-to-lug length with the buyer's measured flat wrist width; try the watch on where possible.",
+        "sources": [
+          "https://www.gearpatrol.com/watches/watches-lug-to-lug/"
+        ]
+      }
+    ],
+    "watch": [
+      {
+        "key": "has_chronograph",
+        "statement": "The watch has a chronograph (a stopwatch function).",
+        "kind": "must",
+        "evidence_class": "deductive",
+        "check": {
+          "type": "deterministic",
+          "rule": "'chronograph' in complications",
+          "planted": {
+            "pass": [
+              {
+                "complications": [
+                  "chronograph",
+                  "date"
+                ]
+              }
+            ],
+            "fail": [
+              {
+                "complications": [
+                  "date"
+                ]
+              },
+              {
+                "complications": []
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.watchtime.com/brands/jaeger-lecoultre/buying-a-chrono-10-things-to-know"
+        ]
+      },
+      {
+        "key": "elapsed_time_legibility",
+        "statement": "Elapsed seconds, minutes and hours are easy to read: contrasting subdials and hands, a clear seconds track, not sacrificed to fashion.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.watchtime.com/brands/jaeger-lecoultre/buying-a-chrono-10-things-to-know"
+        ]
+      },
+      {
+        "key": "integrated_movement",
+        "statement": "An integrated chronograph movement rather than a module added to a time-only base: smoother push-piece feel and less amplitude drop when the chronograph runs (WatchTime measured 73.5 degrees for a modular and 19.5 for an integrated chronograph, in two watches).",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.watchtime.com/brands/jaeger-lecoultre/buying-a-chrono-10-things-to-know"
+        ]
+      },
+      {
+        "key": "switching_mechanism",
+        "statement": "Column wheel or cam switching. The evidence says performance is now equal; cams are cheaper, easier to adjust and service. A column wheel is chosen for push-piece feel, finishing and tradition, which is taste.",
+        "kind": "evidence_settled",
+        "evidence_class": "contested",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.watchtime.com/brands/jaeger-lecoultre/buying-a-chrono-10-things-to-know",
+          "https://en.webchronos.net/features/81017/"
+        ]
+      },
+      {
+        "key": "vertical_clutch",
+        "statement": "A vertical clutch, so the chronograph seconds hand starts without a jump and the chronograph can run continuously without excessive wear (useful as a running seconds hand).",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.watchtime.com/brands/jaeger-lecoultre/buying-a-chrono-10-things-to-know"
+        ]
+      },
+      {
+        "key": "timing_resolution",
+        "statement": "The chronograph resolves the fractions the buyer needs: the finest step follows the movement frequency (28,800 vph gives 1/8 s, 36,000 vph 1/10 s), though the dial is often geared coarser.",
+        "kind": "evidence_settled",
+        "evidence_class": "deductive",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.watchtime.com/brands/jaeger-lecoultre/buying-a-chrono-10-things-to-know"
+        ]
+      },
+      {
+        "key": "serviceability",
+        "statement": "Service cost and access. In-house chronographs tend to cost more and take longer to service; common third-party calibres are cheaper to service and parts are in ready supply.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.watchtime.com/brands/jaeger-lecoultre/buying-a-chrono-10-things-to-know",
+          "https://timeandtidewatches.com/watch-servicing-cost-education/"
+        ]
+      }
+    ]
+  },
+  "coherence": [],
+  "teddy_principles": [
+    {
+      "quote": "I personally probably lean towards the aluminum despite the ceramic being better on paper",
+      "video": "0F7cUF59XqI",
+      "title": "What You Need To Know Before Buying Omega",
+      "timestamp": "34:12",
+      "url": "https://www.youtube.com/watch?v=0F7cUF59XqI&t=2052s",
+      "evidence_class": "practitioner",
+      "relevance": "Paper specs versus taste: his own bezel preference over the better-specified option."
+    }
+  ],
+  "principles_note": "Teddy's principles are quoted from the videos' auto-captions (wording as captioned), located by text search of the caption track; timestamps are the caption segment where the quote begins. They enter as practitioner consensus, never as standards. His videos state his store is an authorized dealer for over 35 brands.",
+  "sources": [
+    {
+      "url": "https://www.watchtime.com/brands/jaeger-lecoultre/buying-a-chrono-10-things-to-know",
+      "title": "Buying a Chronograph? Here Are 10 Things You Should Know",
+      "publisher": "WatchTime",
+      "date": "2024-04-24",
+      "author": "Ruediger Bucher",
+      "note": "Includes WatchTime's own amplitude measurements on two chronographs (modular versus integrated); two watches, not a study.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.gearpatrol.com/watches/watches-lug-to-lug/",
+      "title": "What Is a Lug-to-Lug Measurement On a Watch?",
+      "publisher": "Gear Patrol",
+      "date": "2024-03-20",
+      "author": "Johnny Brayson",
+      "note": "Informed opinion with side-by-side wrist photos; no measured study.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://en.webchronos.net/features/81017/",
+      "title": "Why is the column wheel considered so important? Surprising facts about chronograph parts",
+      "publisher": "webChronos (Chronos Japan)",
+      "date": "2022-06-03",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://timeandtidewatches.com/watch-servicing-cost-education/",
+      "title": "How much does a lifetime of servicing actually cost?",
+      "publisher": "Time+Tide",
+      "date": "2024-05-23",
+      "author": "Buffy Acacia",
+      "note": "Service intervals and prices by movement tier, partly from owners' forum reports.",
+      "checked": "2026-11-15"
+    }
+  ]
+}

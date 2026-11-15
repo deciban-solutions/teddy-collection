@@ -1,0 +1,304 @@
+{
+  "id": "shipped:dive@1",
+  "category": "dive",
+  "version": "1",
+  "label": "provisional",
+  "paradigm": "These criteria serve a buyer choosing what to purchase, new or pre-owned: an evidence-based, value-aware buyer who wants an informed view of history and context. They are one reasonable buyer's stance, not the only one, and this version is provisional: drafted from published sources, not yet compiled or ratified.",
+  "created": "2026-11-15",
+  "change_log": [
+    {
+      "date": "2026-11-15",
+      "reason": "Drafted from ISO 6425:2018 as summarised by Fratello and Time+Tide (the standard itself is paywalled and was not read), brand water-resistance guidance (Timex), enthusiast press and the Teddy content audit of 2026-11-14.",
+      "additions": {
+        "criteria": 9
+      }
+    }
+  ],
+  "spec_fields": {
+    "water_resistance_m": "number: rated water resistance in metres",
+    "bezel": "lower-case string describing the bezel or diving-time indicator, for example \"unidirectional 60-minute ceramic\" or \"digital\"",
+    "crown": "lower-case string describing the crown, for example \"screw-down\""
+  },
+  "layers": {
+    "wearer": [
+      {
+        "key": "water_use",
+        "statement": "What the buyer will actually do in the water (desk diver, swimming and snorkelling, recreational scuba, saturation) sets the rating and features worth paying for.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://timex.com/pages/water-resistance-ratings",
+          "https://timeandtidewatches.com/what-is-a-dive-watch/"
+        ]
+      },
+      {
+        "key": "wrist_fit",
+        "statement": "The watch fits the buyer's wrist: lug-to-lug length inside the flat top of the wrist and a thickness the buyer's cuffs and comfort allow. Measure these rather than trusting the stated diameter.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "test": "Compare the stated lug-to-lug length with the buyer's measured flat wrist width; try the watch on where possible.",
+        "sources": [
+          "https://www.gearpatrol.com/watches/watches-lug-to-lug/"
+        ]
+      }
+    ],
+    "watch": [
+      {
+        "key": "iso_minimum_depth",
+        "statement": "Water resistance of at least 100 m, the ISO 6425 minimum for a divers' watch.",
+        "kind": "must",
+        "evidence_class": "deductive",
+        "check": {
+          "type": "deterministic",
+          "rule": "water_resistance_m >= 100",
+          "planted": {
+            "pass": [
+              {
+                "water_resistance_m": 100
+              },
+              {
+                "water_resistance_m": 300
+              }
+            ],
+            "fail": [
+              {
+                "water_resistance_m": 50
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.fratellowatches.com/the-dry-facts-about-the-iso-6425-divers-watch-standard/",
+          "https://timeandtidewatches.com/what-is-a-dive-watch/"
+        ]
+      },
+      {
+        "key": "scuba_depth",
+        "statement": "200 m or more, the rating many enthusiasts treat as the floor for a proper dive watch and brands list for recreational scuba. This is practitioner consensus, not the standard: the standard asks for 100 m.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "deterministic",
+          "rule": "water_resistance_m >= 200",
+          "planted": {
+            "pass": [
+              {
+                "water_resistance_m": 200
+              },
+              {
+                "water_resistance_m": 1000
+              }
+            ],
+            "fail": [
+              {
+                "water_resistance_m": 150
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://timeandtidewatches.com/what-is-a-dive-watch/",
+          "https://timex.com/pages/water-resistance-ratings",
+          "https://www.youtube.com/watch?v=1Y1ePSRYmZE"
+        ]
+      },
+      {
+        "key": "timing_bezel",
+        "statement": "A diving-time indicator protected against inadvertent handling, with minute resolution over 60 minutes (ISO 6425 allows a rotating bezel, a digital display or other). A unidirectional rotating bezel is the usual way to meet it; record a digital indicator in the bezel field as 'digital'. Any other indicator is judged by hand.",
+        "kind": "must",
+        "evidence_class": "deductive",
+        "check": {
+          "type": "deterministic",
+          "rule": "'unidirectional' in bezel or 'digital' in bezel",
+          "planted": {
+            "pass": [
+              {
+                "bezel": "unidirectional 60-minute ceramic"
+              },
+              {
+                "bezel": "digital dive timer"
+              }
+            ],
+            "fail": [
+              {
+                "bezel": "bidirectional 12-hour"
+              },
+              {
+                "bezel": "fixed"
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.fratellowatches.com/the-dry-facts-about-the-iso-6425-divers-watch-standard/",
+          "https://www.youtube.com/watch?v=1Y1ePSRYmZE"
+        ]
+      },
+      {
+        "key": "screw_down_crown",
+        "statement": "A screw-down (or otherwise locking) crown, so the crown cannot be left open by accident. A push-pull crown does not disqualify a watch from recreational use.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "deterministic",
+          "rule": "'screw' in crown",
+          "planted": {
+            "pass": [
+              {
+                "crown": "screw-down"
+              }
+            ],
+            "fail": [
+              {
+                "crown": "push-pull"
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://timeandtidewatches.com/what-is-a-dive-watch/",
+          "https://www.youtube.com/watch?v=1Y1ePSRYmZE"
+        ]
+      },
+      {
+        "key": "legibility_in_dark",
+        "statement": "Time, diving time, five-minute markings and a running indicator readable at 25 cm in darkness (ISO 6425's visibility test), so lume on hands, indices, bezel and the seconds hand.",
+        "kind": "must",
+        "evidence_class": "deductive",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.fratellowatches.com/the-dry-facts-about-the-iso-6425-divers-watch-standard/",
+          "https://timeandtidewatches.com/what-is-a-dive-watch/"
+        ]
+      },
+      {
+        "key": "magnetic_and_shock",
+        "statement": "Survives the ISO 6425 magnetic test (4,800 A/m, keeping accuracy within 30 s/day of its pre-test rate) and shock test. Usually stated by the brand only when the watch is certified.",
+        "kind": "evidence_settled",
+        "evidence_class": "deductive",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://www.fratellowatches.com/the-dry-facts-about-the-iso-6425-divers-watch-standard/",
+          "https://timeandtidewatches.com/what-is-a-dive-watch/"
+        ]
+      },
+      {
+        "key": "water_ready_band",
+        "statement": "A strap or bracelet that survives salt water (rubber, textile or metal, not leather) and a diver's extension or adjustable clasp to fit over a wetsuit.",
+        "kind": "more_is_better",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [
+          "https://timeandtidewatches.com/what-is-a-dive-watch/"
+        ]
+      }
+    ]
+  },
+  "coherence": [],
+  "teddy_principles": [
+    {
+      "quote": "200 m of water resistance, a screw down crown, and a unidirectional bezel are all highly desirable.",
+      "video": "1Y1ePSRYmZE",
+      "title": "Understanding the Tiers of Dive Watches",
+      "timestamp": "2:34",
+      "url": "https://www.youtube.com/watch?v=1Y1ePSRYmZE&t=154s",
+      "evidence_class": "practitioner",
+      "relevance": "scuba_depth, screw_down_crown, timing_bezel; no reason given in the video."
+    },
+    {
+      "quote": "Legitimate history and ISO compliance are big pluses",
+      "video": "1Y1ePSRYmZE",
+      "title": "Understanding the Tiers of Dive Watches",
+      "timestamp": "2:39",
+      "url": "https://www.youtube.com/watch?v=1Y1ePSRYmZE&t=159s",
+      "evidence_class": "practitioner",
+      "relevance": "iso_minimum_depth; history is not scored here."
+    },
+    {
+      "quote": "ISO compliance is not entirely necessary to be included in this list",
+      "video": "1Y1ePSRYmZE",
+      "title": "Understanding the Tiers of Dive Watches",
+      "timestamp": "0:57",
+      "url": "https://www.youtube.com/watch?v=1Y1ePSRYmZE&t=57s",
+      "evidence_class": "practitioner",
+      "relevance": "Why the ISO tests are criteria, not a gate on the category."
+    },
+    {
+      "quote": "stripping all of the unnecessary in order to deliver a compelling yet capable tool for the job",
+      "video": "1Y1ePSRYmZE",
+      "title": "Understanding the Tiers of Dive Watches",
+      "timestamp": "2:45",
+      "url": "https://www.youtube.com/watch?v=1Y1ePSRYmZE&t=165s",
+      "evidence_class": "practitioner",
+      "relevance": "The tool-watch ethic; no test given."
+    },
+    {
+      "quote": "Versatility is one of the core tenants",
+      "video": "1Y1ePSRYmZE",
+      "title": "Understanding the Tiers of Dive Watches",
+      "timestamp": "14:43",
+      "url": "https://www.youtube.com/watch?v=1Y1ePSRYmZE&t=883s",
+      "evidence_class": "practitioner",
+      "relevance": "His tier 3B: a diver that doubles as an everyday watch."
+    }
+  ],
+  "principles_note": "Teddy's principles are quoted from the videos' auto-captions (wording as captioned), located by text search of the caption track; timestamps are the caption segment where the quote begins. They enter as practitioner consensus, never as standards. His videos state his store is an authorized dealer for over 35 brands.",
+  "sources": [
+    {
+      "url": "https://timex.com/pages/water-resistance-ratings",
+      "title": "Water Resistance Ratings",
+      "publisher": "Timex",
+      "date": "not stated on page",
+      "note": "A brand's guidance mapping 30/50/100/200 m ratings to activities.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://timeandtidewatches.com/what-is-a-dive-watch/",
+      "title": "What is a dive watch?",
+      "publisher": "Time+Tide",
+      "date": "2025-07-01",
+      "author": "Buffy Acacia",
+      "note": "Summarises the ISO 6425 requirements, then what enthusiasts look for (200 m, screw-down crown, straps and diver's extensions).",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.gearpatrol.com/watches/watches-lug-to-lug/",
+      "title": "What Is a Lug-to-Lug Measurement On a Watch?",
+      "publisher": "Gear Patrol",
+      "date": "2024-03-20",
+      "author": "Johnny Brayson",
+      "note": "Informed opinion with side-by-side wrist photos; no measured study.",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.fratellowatches.com/the-dry-facts-about-the-iso-6425-divers-watch-standard/",
+      "title": "ISO 6425 Divers' Watch Standard — What Does It Mean?",
+      "publisher": "Fratello",
+      "date": "2022-05-30",
+      "author": "Gerard Nijenbrinks",
+      "note": "Secondary account of ISO 6425:2018 quoting its clauses; the standard itself is paywalled (iso.org returned 403 to a script).",
+      "checked": "2026-11-15"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=1Y1ePSRYmZE",
+      "title": "Understanding the Tiers of Dive Watches",
+      "publisher": "Teddy Baldassarre (YouTube)",
+      "date": "2025-07-12",
+      "author": "Teddy Baldassarre",
+      "note": "Practitioner view from an authorized dealer for over 35 brands.",
+      "checked": "2026-11-15"
+    }
+  ]
+}

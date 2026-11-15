@@ -1,0 +1,226 @@
+<title>Two-Watch Collection Taxonomy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
+<style>
+/* Layout: a reading column; three layers (wearer, watch, pair) each as a criteria table, then an occasion matrix, archetypes, trade-offs and references. */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --fg: #16202a; --muted: #5b6875;
+  --line: #d9dfe5; --accent: #1f4e8c; --tint: #e9eef4;
+  --l1: #6b4f9a; --l2: #1f4e8c; --l3: #2f7a5a;
+  --yes: #2f7a5a; --part: #9a6b1f; --no: #a3413a;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f151b; --surface: #17212a; --fg: #e5ebf0; --muted: #9aa8b5; --line: #2a3742;
+    --accent: #7fa8e0; --tint: #1c2833; --l1: #b39ae0; --l2: #7fa8e0; --l3: #6fc29c;
+    --yes: #6fc29c; --part: #d8ad62; --no: #e48a80; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f151b; --surface: #17212a; --fg: #e5ebf0; --muted: #9aa8b5; --line: #2a3742;
+  --accent: #7fa8e0; --tint: #1c2833; --l1: #b39ae0; --l2: #7fa8e0; --l3: #6fc29c;
+  --yes: #6fc29c; --part: #d8ad62; --no: #e48a80; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+.wrap {
+  max-width: 1000px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px; display: flex; flex-direction: column; gap: 40px;
+}
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-size: 2.1rem; font-weight: 600; }
+h2 { font-size: 1.5rem; font-weight: 600; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+p { margin: 0; max-width: 70ch; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+section { display: flex; flex-direction: column; gap: 14px; }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { color: var(--muted); }
+.brief { background: var(--tint); padding: 12px 16px; border-radius: 4px; max-width: 78ch; }
+.brief b { font-family: var(--display); }
+.layers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 720px) { .layers { grid-template-columns: 1fr; } }
+.layer { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--c); border-radius: 4px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.layer .tag { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--c); }
+.layer ul { margin: 0; padding-left: 18px; font-size: 0.92rem; }
+.flow { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+.sec-tag { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--c); }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: none; }
+th { font-family: var(--display); font-weight: 600; font-size: 0.9rem; background: var(--tint); }
+td:first-child { font-weight: 600; min-width: 9rem; }
+td.test { color: var(--fg); }
+td .src { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+.wide table { min-width: 760px; }
+.m td, .m th { text-align: center; }
+.m td:first-child, .m th:first-child { text-align: left; }
+.y { color: var(--yes); font-weight: 600; } .p { color: var(--part); font-weight: 600; } .n { color: var(--no); font-weight: 600; }
+.legend { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 720px) { .cards { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.card .eg { font-size: 0.88rem; color: var(--muted); }
+.tensions { display: flex; flex-direction: column; gap: 10px; }
+.tension { border-left: 3px solid var(--line); padding-left: 12px; }
+.tension b { font-family: var(--display); }
+ol.refs { margin: 0; padding-left: 22px; font-size: 0.88rem; display: flex; flex-direction: column; gap: 4px; }
+.limits { font-size: 0.92rem; }
+.limits li { margin-bottom: 4px; }
+a.cite { text-decoration: none; font-family: var(--mono); }
+a.cite:hover { text-decoration: underline; }
+ol.refs li { scroll-margin-top: 24px; border-radius: 3px; }
+ol.refs li:target { background: var(--tint); outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="wrap">
+<header style="display:flex;flex-direction:column;gap:12px">
+  <div class="eyebrow">Collection-building reference</div>
+  <h1>Two-Watch Collection Taxonomy</h1>
+  <p class="lede">The concepts a watch enthusiast weighs when building a collection, and the tests that turn each concept into a criterion. Built for one hard case: you may own only two watches, and between them they must cover every day and every occasion.</p>
+  <div class="brief"><b>The brief this serves.</b> The premise of the video you watched: “Think about a scenario where you could only have two watches in your actual collection. And that has to serve you every single day. There's no price limitations.” (Teddy Baldassarre, 1:13) <a class="cite" href="#ref-8">[8]</a></div>
+</header>
+
+<section>
+  <h2>Three layers</h2>
+  <p>Criteria come at three levels, and they get confused all the time. A watch can be excellent on its own and still be the wrong second watch. The pair is what gets judged, and it is judged against a particular person's life.</p>
+  <div class="layers">
+    <div class="layer" style="--c: var(--l1)"><span class="tag">Layer 1 · The wearer</span><h3>Inputs, not properties of any watch</h3><ul><li>Occasion mix and frequency</li><li>Wrist and comfort limits</li><li>Climate and activity</li><li>Taste, identity, budget</li></ul></div>
+    <div class="layer" style="--c: var(--l2)"><span class="tag">Layer 2 · Each watch</span><h3>Nine properties of a single piece</h3><ul><li>Register, robustness, wearability</li><li>Useful complications, practicality</li><li>Horological merit, design integrity</li><li>Meaning, value</li></ul></div>
+    <div class="layer" style="--c: var(--l3)"><span class="tag">Layer 3 · The pair</span><h3>Seven properties only a collection has</h3><ul><li>Coverage, differentiation, coherence</li><li>Anchor, tension point, gap test</li><li>Wear balance</li></ul></div>
+  </div>
+  <p class="flow">Wearer profile → sets the occasion matrix → each watch is scored against it → the pair is scored on its union and contrast.</p>
+</section>
+
+<section style="--c: var(--l1)">
+  <span class="sec-tag">Layer 1</span>
+  <h2>The wearer</h2>
+  <p>Every source that recommends a pair assumes a wearer. Make that wearer explicit first, or the rest of the criteria have nothing to be measured against.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Concept</th><th>Criterion and how to test it</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Occasion mix</td><td class="test">List the occasions you actually face in a year and how often (the matrix below). A black-tie event once a year is a different requirement from weekly client meetings.</td><td><span class="src"><a class="cite" href="#ref-6">[6]</a> <a class="cite" href="#ref-5">[5]</a></span></td></tr>
+      <tr><td>Wrist fit</td><td class="test">Lug-to-lug length must sit inside the top of the wrist, and case thickness decides whether it fits under a shirt cuff. Measure these instead of trusting the stated diameter.</td><td><span class="src"><a class="cite" href="#ref-2">[2]</a> <a class="cite" href="#ref-5">[5]</a></span></td></tr>
+      <tr><td>Activity and climate</td><td class="test">Do you swim, surf, dive, garden or do manual work? That sets the water-resistance floor and whether a leather strap will survive.</td><td><span class="src"><a class="cite" href="#ref-6">[6]</a> <a class="cite" href="#ref-9">[9]</a></span></td></tr>
+      <tr><td>Travel</td><td class="test">How often do you cross time zones? Frequent travel makes a GMT complication earn its slot.</td><td><span class="src"><a class="cite" href="#ref-1">[1]</a> <a class="cite" href="#ref-2">[2]</a></span></td></tr>
+      <tr><td>Identity and taste</td><td class="test">Would you be happy to be known by this watch? Some enthusiasts want a watch that draws no questions; others want one that says something.</td><td><span class="src"><a class="cite" href="#ref-4">[4]</a> <a class="cite" href="#ref-1">[1]</a></span></td></tr>
+      <tr><td>Budget shape</td><td class="test">Decide whether one anchor piece takes most of the budget or the money is split evenly. With no price limit, as in the video, this drops out.</td><td><span class="src"><a class="cite" href="#ref-2">[2]</a></span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section style="--c: var(--l2)">
+  <span class="sec-tag">Layer 2</span>
+  <h2>Each watch</h2>
+  <p>Nine concepts describe a single piece. The first five decide what a watch can <em>do</em> for the wearer. The last four decide what it <em>means</em> to an enthusiast, and they are why enthusiasts' picks differ from a stylist's.</p>
+  <div class="tbl wide"><table>
+    <thead><tr><th>Concept</th><th>What it covers</th><th>Criterion and test</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>1. Register</td><td>Where the watch sits from dress to tool</td><td class="test">Read it from thickness, polish versus brushing, dial busyness, strap and metal. The black-tie end is specific: thin, plain time-only dial, black leather strap, ideally precious metal. Bracelets, rubber and nylon read as casual.</td><td><span class="src"><a class="cite" href="#ref-5">[5]</a> <a class="cite" href="#ref-6">[6]</a></span></td></tr>
+      <tr><td>2. Robustness</td><td>What it survives</td><td class="test">Water resistance against your activities (30 m splash, 50 m casual swimming, 100 m snorkelling and surfing, 200 m recreational scuba), screw-down crown, lume and legibility, scratch-resistant crystal. A dress watch should never get wet.</td><td><span class="src"><a class="cite" href="#ref-9">[9]</a> <a class="cite" href="#ref-10">[10]</a> <a class="cite" href="#ref-6">[6]</a></span></td></tr>
+      <tr><td>3. Wearability</td><td>Comfort across a whole day</td><td class="test">Size and thickness for your wrist, weight, bracelet comfort and fine adjustment, and how easily the strap swaps. A watch you take off by mid-afternoon fails here, however fine it is.</td><td><span class="src"><a class="cite" href="#ref-4">[4]</a> <a class="cite" href="#ref-2">[2]</a></span></td></tr>
+      <tr><td>4. Useful complications</td><td>Functions you will use</td><td class="test">Score each complication on use, not prestige: date (daily), GMT (travel), chronograph (timing things), perpetual calendar (rarely needs setting, but delicate). Overlapping complications across the pair count against it.</td><td><span class="src"><a class="cite" href="#ref-2">[2]</a> <a class="cite" href="#ref-3">[3]</a></span></td></tr>
+      <tr><td>5. Practicality</td><td>The cost of ownership day to day</td><td class="test">Accuracy, power reserve (does it survive a weekend off the wrist?), automatic or hand-wound, serviceability. A hand-wound watch or a calendar that stops and needs resetting puts friction on a daily watch.</td><td><span class="src"><a class="cite" href="#ref-4">[4]</a> <a class="cite" href="#ref-3">[3]</a></span></td></tr>
+      <tr><td>6. Horological merit</td><td>Mechanical interest and craft</td><td class="test">Movement design and finishing, in-house work, innovation, dial craft. This is the “interesting mechanics” enthusiasts value and the reason several experts pick a hand-finished piece as their second watch.</td><td><span class="src"><a class="cite" href="#ref-1">[1]</a> <a class="cite" href="#ref-7">[7]</a> <a class="cite" href="#ref-3">[3]</a></span></td></tr>
+      <tr><td>7. Design integrity</td><td>Purpose, heritage, timelessness</td><td class="test">Is the design built for a purpose with historical roots? Will it still look right in twenty years? Is it neutral enough to go anywhere without inviting questions?</td><td><span class="src"><a class="cite" href="#ref-4">[4]</a> <a class="cite" href="#ref-7">[7]</a></span></td></tr>
+      <tr><td>8. Meaning</td><td>Attachment</td><td class="test">Would you save it from a fire? Does it mark something in your life? With only two watches, each one has to matter.</td><td><span class="src"><a class="cite" href="#ref-3">[3]</a> <a class="cite" href="#ref-4">[4]</a></span></td></tr>
+      <tr><td>9. Value</td><td>What the money buys</td><td class="test">Quality, finishing and engineering per unit of price. It drops out under a no-budget brief, but enthusiasts still credit a watch that over-delivers for its price.</td><td><span class="src"><a class="cite" href="#ref-2">[2]</a></span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>The occasion matrix</h2>
+  <p>Layer 2 turned into the brief's own question: can this watch go there? A pair passes coverage when every row you actually face has at least one watch marked <span class="y">fits</span>. The register of a typical watch type is shown; a particular watch can move a cell, for instance a diver on a leather strap.</p>
+  <div class="legend"><span><span class="y">●</span> fits</span><span><span class="p">◐</span> passable, draws notice</span><span><span class="n">○</span> wrong for the setting</span></div>
+  <div class="tbl wide m"><table>
+    <thead><tr><th>Occasion</th><th>Thin dress watch</th><th>Versatile steel sports (bracelet, 100 m)</th><th>Dive watch (200 m)</th><th>Chronograph</th><th>GMT</th><th>What it tests</th></tr></thead>
+    <tbody>
+      <tr><td>Black tie</td><td class="y">●</td><td class="p">◐</td><td class="n">○</td><td class="n">○</td><td class="p">◐</td><td style="text-align:left">Thin, time-only, black leather <a class="cite" href="#ref-5">[5]</a> <a class="cite" href="#ref-6">[6]</a></td></tr>
+      <tr><td>Suit, business formal</td><td class="y">●</td><td class="y">●</td><td class="p">◐</td><td class="p">◐</td><td class="y">●</td><td style="text-align:left">Fits under a cuff; restrained <a class="cite" href="#ref-6">[6]</a></td></tr>
+      <tr><td>Business casual</td><td class="y">●</td><td class="y">●</td><td class="y">●</td><td class="y">●</td><td class="y">●</td><td style="text-align:left">Almost anything goes <a class="cite" href="#ref-6">[6]</a></td></tr>
+      <tr><td>Dinner, night out</td><td class="y">●</td><td class="y">●</td><td class="p">◐</td><td class="y">●</td><td class="y">●</td><td style="text-align:left">Some presence; darker dials read as evening <a class="cite" href="#ref-6">[6]</a></td></tr>
+      <tr><td>Weekend casual</td><td class="p">◐</td><td class="y">●</td><td class="y">●</td><td class="y">●</td><td class="y">●</td><td style="text-align:left">Comfort, strap choice <a class="cite" href="#ref-6">[6]</a></td></tr>
+      <tr><td>Sport, outdoors, yard work</td><td class="n">○</td><td class="y">●</td><td class="y">●</td><td class="p">◐</td><td class="p">◐</td><td style="text-align:left">Shock, scratches, sweat <a class="cite" href="#ref-6">[6]</a></td></tr>
+      <tr><td>Swimming, beach</td><td class="n">○</td><td class="y">●</td><td class="y">●</td><td class="p">◐</td><td class="p">◐</td><td style="text-align:left">≥ 50–100 m, screw-down crown <a class="cite" href="#ref-9">[9]</a> <a class="cite" href="#ref-10">[10]</a></td></tr>
+      <tr><td>Scuba</td><td class="n">○</td><td class="p">◐</td><td class="y">●</td><td class="n">○</td><td class="n">○</td><td style="text-align:left">200 m, timing bezel, lume <a class="cite" href="#ref-9">[9]</a> <a class="cite" href="#ref-10">[10]</a></td></tr>
+      <tr><td>Travel across time zones</td><td class="p">◐</td><td class="p">◐</td><td class="p">◐</td><td class="p">◐</td><td class="y">●</td><td style="text-align:left">Second time zone <a class="cite" href="#ref-1">[1]</a> <a class="cite" href="#ref-2">[2]</a></td></tr>
+    </tbody>
+  </table></div>
+  <p class="lede" style="font-size:0.88rem">The cells are my synthesis of the cited dress-code and water-resistance guidance. No source scores watch types this way. The pair-level tests below are where the matrix gets used.</p>
+</section>
+
+<section style="--c: var(--l3)">
+  <span class="sec-tag">Layer 3</span>
+  <h2>The pair</h2>
+  <p>These properties belong to the collection, not to either watch. They are the hardest part of the two-watch problem, because with only two pieces every overlap is expensive.</p>
+  <div class="tbl wide"><table>
+    <thead><tr><th>Concept</th><th>Criterion and test</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>A. Coverage</td><td class="test">Every occasion row the wearer faces has at least one watch that fits it. Count the rows left uncovered, weighted by how often they occur.</td><td><span class="src"><a class="cite" href="#ref-1">[1]</a> <a class="cite" href="#ref-3">[3]</a> <a class="cite" href="#ref-6">[6]</a></span></td></tr>
+      <tr><td>B. Differentiation</td><td class="test">The redundancy audit: do the two differ in register, case size, dial colour, complications and strap? Two similar dark dials, two chronographs or two 40 mm steel bracelets are one watch twice.</td><td><span class="src"><a class="cite" href="#ref-2">[2]</a></span></td></tr>
+      <tr><td>C. Coherence</td><td class="test">Can you explain why each watch is there by the collection's logic, rather than by wanting it or finding a deal? Do they share values (era, design philosophy, mechanical interest) even while they look different?</td><td><span class="src"><a class="cite" href="#ref-2">[2]</a> <a class="cite" href="#ref-7">[7]</a></span></td></tr>
+      <tr><td>D. Anchor</td><td class="test">Name the watch you would keep if you lost the other. It should be the one that covers the most wear-days, and it sets the collection's centre of gravity.</td><td><span class="src"><a class="cite" href="#ref-2">[2]</a> <a class="cite" href="#ref-1">[1]</a></span></td></tr>
+      <tr><td>E. Tension point</td><td class="test">One deliberate contrast: brand origin, movement type, era or register. If nothing contrasts, reconsider one slot.</td><td><span class="src"><a class="cite" href="#ref-2">[2]</a> <a class="cite" href="#ref-7">[7]</a></span></td></tr>
+      <tr><td>F. Gap test</td><td class="test">Remove either watch. Does a real gap open, meaning a set of days or occasions the other cannot serve? If not, the second watch is not earning its place.</td><td><span class="src"><a class="cite" href="#ref-2">[2]</a></span></td></tr>
+      <tr><td>G. Wear balance</td><td class="test">Each watch should suit a distinct kind of day, so the morning choice is easy and neither sits in a drawer. If you would want a third watch, the pair has failed.</td><td><span class="src"><a class="cite" href="#ref-3">[3]</a></span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>The go-to pairs experts actually pick</h2>
+  <p>Four archetypes recur in the published picks. They are different answers to the same tests, mainly differing on how they trade coverage against horological interest.</p>
+  <div class="cards">
+    <div class="card"><h3>Dress + sport</h3><p>The textbook answer. One watch covers the formal end, the other covers everything rough or wet; the middle is shared.</p><p class="eg">Breguet Classique 7147 with Patek Philippe Aquanaut; A. Lange &amp; Söhne Odysseus with Vacheron Constantin Overseas Perpetual Calendar Ultra-Thin <a class="cite" href="#ref-1">[1]</a>. Gentleman's Gazette's dress-code mapping implies it <a class="cite" href="#ref-6">[6]</a>.</p></div>
+    <div class="card"><h3>Chronograph + diver</h3><p>Called “a default two-watch collection” by one writer: the chronograph for structured, dressier days, the diver for wet, travel and low-effort days.</p><p class="eg">Omega Speedmaster with Doxa Sub 300; the structure matters more than the brands <a class="cite" href="#ref-3">[3]</a>.</p></div>
+    <div class="card"><h3>Versatile daily + special</h3><p>One go-anywhere anchor worn most days, plus one piece chosen for craft or occasion rather than coverage.</p><p class="eg">Rolex GMT-Master II with Philippe Dufour Simplicity; Kikuchi Nakagawa Murakumo with Greubel Forsey Hand Made 1 <a class="cite" href="#ref-1">[1]</a>.</p></div>
+    <div class="card"><h3>Shared values, different looks</h3><p>Two watches of the same size and spirit that split dressy from sporty in finish, dial and bezel. It came about without a plan, and it shows that coherence can matter more than covering the extremes.</p><p class="eg">Blancpain Léman Ultra-Thin with Oris Divers Sixty-Five, both 38 mm steel <a class="cite" href="#ref-7">[7]</a>.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Where the criteria pull against each other</h2>
+  <div class="tensions">
+    <div class="tension"><b>Coverage against excellence at the ends.</b> A dress-plus-diver pair covers black tie and scuba but leaves the everyday middle to whichever watch compromises less. A versatile daily covers the middle well but leaves black tie to chance. Which is right depends on Layer 1: how often the extremes actually occur.</div>
+    <div class="tension"><b>Differentiation against coherence.</b> Maximum contrast can read as two unrelated watches. Maximum coherence can read as one watch twice. Both failures turn up in collection advice <a class="cite" href="#ref-2">[2]</a>.</div>
+    <div class="tension"><b>Horological merit against practicality.</b> The pieces enthusiasts admire most (hand-wound chronographs, perpetual calendars, precious metals) tend to be the most delicate and the least grab-and-go.</div>
+    <div class="tension"><b>Neutrality against identity.</b> One editor's ideal single watch draws no questions <a class="cite" href="#ref-4">[4]</a>. Other enthusiasts want their watches to say something.</div>
+    <div class="tension"><b>The wearer's pick against the judge's pick.</b> An outsider judging blind sees only the watches, not the wearer's life, so Layer 1 is invisible to them. They have to assume a typical wearer, and that pushes them toward the textbook archetypes.</div>
+  </div>
+</section>
+
+<section>
+  <h2>How this was built, and its limits</h2>
+  <ul class="limits">
+    <li>The sources are enthusiast journalism, a menswear guide and retailer blogs. They are informed opinion, not studies, and two of them belong to companies that sell watches. My searches found no survey or empirical study of how people actually use small collections.</li>
+    <li>I wrote this after seeing the judges' ranking, so it is not blind. I built it from the cited sources and have not yet scored the six pairs against it. That scoring is the next step.</li>
+    <li>The occasion-matrix cells and the grouping into three layers are my synthesis. The individual tests come from the cited sources.</li>
+    <li>Fetched pages were read through a summarising tool, so wording here is paraphrased except for the short quoted phrases.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>References</h2>
+  <ol class="refs">
+    <li id="ref-1">Luke Benedictus, <a href="https://timeandtidewatches.com/?p=45104">“What is the ultimate two-watch collection? The Time+Tide team have their say”</a>, Time+Tide, 25 August 2021.</li>
+    <li id="ref-2">European Watch Company, <a href="https://www.europeanwatch.com/blog/how-to-build-3-watch-collection-curation">“The Three-Watch Collection: A Buyer's Guide”</a>, 28 July 2026. A retailer's guide; source of the role, anchor, tension, gap and redundancy tests.</li>
+    <li id="ref-3">Michael Penate, <a href="https://twobrokewatchsnobs.com/?p=77900">“Why the Omega Speedmaster and Doxa Sub 300 Make the Best Two Watch Collection”</a>, Two Broke Watch Snobs, 2 June 2026.</li>
+    <li id="ref-4">Zach Kazan, <a href="https://wornandwound.com/the-tudor-black-bay-and-the-myth-of-the-one-watch-collection/">“The Tudor Black Bay and the Myth of the One Watch Collection”</a>, Worn &amp; Wound, 9 October 2025.</li>
+    <li id="ref-5">He Spoke Style, <a href="https://hespokestyle.com/dress-watches-with-tuxedo/">“Should You Wear A Watch With A Tuxedo?”</a>, 25 May 2022.</li>
+    <li id="ref-6">J. A. Shapira, <a href="https://www.gentlemansgazette.com/how-match-watches-your-outfit/">“How to Match Watches to Your Outfit”</a>, Gentleman's Gazette, 9 December 2016.</li>
+    <li id="ref-7">Logan Baker, <a href="https://hodinkee.jp/articles/two-watch-collection-logan-baker-blancpain-leman-oris-diver-65-caliber-400-38mm">“The Two Watch Collection”</a> (Blancpain Léman and Oris Divers Sixty-Five), Hodinkee Japan edition, 1 December 2022.</li>
+    <li id="ref-8">Teddy Baldassarre, <a href="https://youtu.be/bDePE9oVcV4">two-watch collection challenge</a> (video), source of the brief.</li>
+    <li id="ref-9">Timex, <a href="https://timex.com/pages/water-resistance-ratings">“Water Resistance Ratings”</a>.</li>
+    <li id="ref-10">Buffy Acacia, <a href="https://timeandtidewatches.com/?p=145734">“What is a dive watch?”</a>, Time+Tide, 1 July 2025. ISO 6425, the 200 m debate, and the features expected of a dive watch.</li>
+  </ol>
+  <p class="lede" style="font-size:0.88rem">Companion page: <a href="https://claude.ai/artifact/SuwkhmofAHidQ6dko5SsgW">Two-Watch Challenge Lineup</a>. Sources checked 14 November 2026.</p>
+</section>
+</div>

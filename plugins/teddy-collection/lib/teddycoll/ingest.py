@@ -100,7 +100,15 @@ def _reason(e):
     return f"{type(e).__name__}: {e}"
 
 
-def run_ingest(url, run, *, fetchers=None, any_channel=False) -> dict:
+PARTS = ("transcript", "comments", "video")  # metadata is always fetched: it verifies the channel
+
+
+def run_ingest(url, run, *, fetchers=None, any_channel=False, parts=PARTS) -> dict:
+    """Fetch metadata and the requested parts into <run>/<id>/; a part already on disk from an
+    earlier pass is left alone. Returns the status of metadata and of each requested part."""
+    unknown = set(parts) - set(PARTS)
+    if unknown:
+        raise ValueError(f"unknown part(s) {sorted(unknown)}; choose from {list(PARTS)}")
     vid = video_id(url)
     f = {**default_fetchers(), **(fetchers or {})}
     out = Path(run) / vid
@@ -122,23 +130,26 @@ def run_ingest(url, run, *, fetchers=None, any_channel=False) -> dict:
     if meta is not None:
         (out / "metadata.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
         status["metadata"] = {"status": "ok"}
-    try:
-        comments = f["comments"](vid, out)
-        (out / "comments.json").write_text(json.dumps(comments, indent=2), encoding="utf-8")
-        status["comments"] = {"status": "ok"}
-    except Exception as e:  # noqa: BLE001
-        status["comments"] = {"status": "unavailable", "reason": _reason(e)}
+    if "comments" in parts:
+        try:
+            comments = f["comments"](vid, out)
+            (out / "comments.json").write_text(json.dumps(comments, indent=2), encoding="utf-8")
+            status["comments"] = {"status": "ok"}
+        except Exception as e:  # noqa: BLE001
+            status["comments"] = {"status": "unavailable", "reason": _reason(e)}
 
-    try:
-        (out / "transcript.txt").write_text(format_transcript(f["transcript"](vid)), encoding="utf-8")
-        status["transcript"] = {"status": "ok"}
-    except Exception as e:  # noqa: BLE001
-        status["transcript"] = {"status": "unavailable", "reason": _reason(e)}
+    if "transcript" in parts:
+        try:
+            (out / "transcript.txt").write_text(format_transcript(f["transcript"](vid)), encoding="utf-8")
+            status["transcript"] = {"status": "ok"}
+        except Exception as e:  # noqa: BLE001
+            status["transcript"] = {"status": "unavailable", "reason": _reason(e)}
 
-    try:
-        f["video"](vid, out)
-        status["video"] = {"status": "ok"}
-    except Exception as e:  # noqa: BLE001
-        status["video"] = {"status": "unavailable", "reason": _reason(e)}
+    if "video" in parts:
+        try:
+            f["video"](vid, out)
+            status["video"] = {"status": "ok"}
+        except Exception as e:  # noqa: BLE001
+            status["video"] = {"status": "unavailable", "reason": _reason(e)}
 
-    return {k: status[k] for k in ("transcript", "metadata", "comments", "video")}
+    return {k: status[k] for k in ("transcript", "metadata", "comments", "video") if k in status}

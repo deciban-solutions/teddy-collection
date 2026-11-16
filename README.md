@@ -44,6 +44,18 @@ You can also paste a link and ask in your own words, for example "add this video
 
 Your data stays on your machine, in `~/.teddy-collection/` (or the folder named by the `TEDDY_COLLECTION_HOME` environment variable). Nothing you create is written inside the plug-in folder.
 
+### What it builds today
+
+Version 1 builds three kinds of video:
+
+- **Contests and tournaments**, where people pick or build something and it is judged, such as the two-watch challenge.
+- **Single-watch reviews**: a new release, a long-term ownership report or a novelty buy, such as "Grand Seiko Ushio 300 Diver" or "5 Years Owning a Sinn 556".
+- **Lists and tier guides**, where several watches are chosen or ranked against a theme or budget, such as "Best Quiet Luxury Watches" or "What $2,000 Buys You".
+
+Planned for version 2: brand and model-family guides ("The Tiers of Citizen"), collection building ("Building a Collection with $10,000") and people and their watches ("The Watches of a Teacher", "Watch Shopping with …"). Explainer, history and question-and-answer videos come later.
+
+Give it another kind and it says so after reading only the title and transcript, offers the nearest kind it does build with what that would lose, and stops if you ask, deleting what it downloaded.
+
 ### Sharing and privacy
 
 Every artifact the plug-in publishes is **private by default**. The plug-in never changes who can see a page. If you want to share one, you decide that yourself in Claude. Where Artifacts are not available, the plug-in writes a self-contained folder that opens in any browser.

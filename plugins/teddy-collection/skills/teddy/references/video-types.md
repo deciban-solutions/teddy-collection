@@ -24,7 +24,7 @@ Not built in version 1: brand or model-family guides ("What You Need to Know Bef
    - `review`: one watch on the wrist throughout; specs, pros and cons, a verdict on that watch.
    - `list`: repeated "next up", "number N", "moving on"; a price band or tier named per section; a stated theme for the selection.
 3. **When the two disagree**, the transcript wins, because titles are written to be clicked. Say so in `basis`.
-4. **When the video is a type version 1 does not build**, stop and tell the user: name its type, say version 1 does not build it, and name the nearest built type with what would be lost (for example, a brand guide read as a `list` loses the family map). Continue only if the user picks a built type.
+4. **When the video is a type version 1 does not build**, stop and tell the user: name its type, say version 1 does not build it, and name the nearest built type with what would be lost (for example, a brand guide read as a `list` loses the family map). Continue only if the user picks a built type. If they stop, discard the run as SKILL.md Step 2 says; only the metadata and transcript were fetched, so little was spent.
 5. **A related set** takes the type of its videos. If they differ, ask the user which type to build.
 
 ## The record

@@ -56,10 +56,14 @@ def register_dataset_add(sub):
 def _cmd_ingest(args):
     try:
         ids = [ingest.video_id(u) for u in args.urls]  # validate everything before touching disk
+        parts = tuple(p.strip() for p in args.parts.split(",") if p.strip())
+        unknown = set(parts) - set(ingest.PARTS)
+        if unknown or not parts:
+            raise ValueError(f"--parts takes a comma list of {list(ingest.PARTS)}; got {args.parts!r}")
         run = Path(args.run) if args.run else paths.new_run(ids)
         result = {}
         for u, vid in zip(args.urls, ids):
-            result[vid] = ingest.run_ingest(u, run, any_channel=args.any_channel)
+            result[vid] = ingest.run_ingest(u, run, any_channel=args.any_channel, parts=parts)
     except (ValueError, ingest.MetadataUnavailable) as e:
         print(f"error: {e}", file=sys.stderr)
         return 2
@@ -72,7 +76,30 @@ def register_ingest(sub):
     p.add_argument("urls", nargs="+")
     p.add_argument("--run", help="run directory (default: a new one under runs/)")
     p.add_argument("--any-channel", action="store_true", help="allow channels other than Teddy Baldassarre")
+    p.add_argument("--parts", default=",".join(ingest.PARTS),
+                   help="comma list of parts to fetch besides metadata (default: all): "
+                        "'transcript' first to classify cheaply, then 'comments,video' with --run")
     p.set_defaults(func=_cmd_ingest)
+
+
+def _cmd_discard_run(args):
+    runs = (paths.data_home() / "runs").resolve()
+    target = Path(args.run).expanduser()
+    real = target.resolve()
+    if target.is_symlink() or real.parent != runs or not real.is_dir():
+        print(f"error: {args.run} is not a run folder under {runs}; nothing removed", file=sys.stderr)
+        return 2
+    import shutil
+    size = sum(f.stat().st_size for f in real.rglob("*") if f.is_file())
+    shutil.rmtree(real)
+    print(json.dumps({"removed": str(real), "bytes": size}))
+    return 0
+
+
+def register_discard_run(sub):
+    p = sub.add_parser("discard-run", help="delete one run folder under runs/ (a run the user stopped)")
+    p.add_argument("run", help="path to <data home>/runs/<run>")
+    p.set_defaults(func=_cmd_discard_run)
 
 
 def _cmd_frames(args):
@@ -555,7 +582,7 @@ def register_import_example(sub):
 
 
 # Append-only: later tasks add their register_* function here.
-REGISTRARS = [register_paths, register_dataset_add, register_ingest, register_frames,
+REGISTRARS = [register_paths, register_dataset_add, register_ingest, register_discard_run, register_frames,
               register_verify_links, register_coding, register_taxonomy, register_infer,
               register_build, register_publish, register_setup_check, register_import_example,
               register_subject_check]

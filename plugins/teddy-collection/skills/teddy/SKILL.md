@@ -59,7 +59,7 @@ Every publish (the child, the parent, an older child's republish) goes through t
 
 | File | Written in | Holds |
 |---|---|---|
-| `<run>/<video id>/` | Step 1 | `metadata.json`, `transcript.txt`, `comments.json`, `video.mp4` (each may be missing; see the ingest report) |
+| `<run>/<video id>/` | Steps 1–2 | `metadata.json`, `transcript.txt`, `comments.json`, `video.mp4` (each may be missing; see the ingest report) |
 | `<run>/type.json` | Step 2 | The video type and the evidence for it |
 | `<run>/records.json` | Steps 3–5 | `videos`, `appearances` and `watches` for the dataset |
 | `<run>/peers.json` | Step 7 | Watches the video does not show (landscape peers, left-out candidates), in the same watch format; never added to the dataset |
@@ -70,16 +70,19 @@ Every publish (the child, the parent, an older child's republish) goes through t
 | `<run>/build/` | Step 10 | The built child set |
 | `<run>/hashes.json` | Step 10 | The frozen page hashes |
 
-## Step 1: Check, then ingest
+## Step 1: Check, then fetch the text
 
 1. Take the video id from each URL (the `v=` value, or the path of a `youtu.be` link). Run `python3 -I "${CLAUDE_PLUGIN_ROOT}/scripts/teddy.py" check-new <id> [<id> …]`.
    - Exit 3 means a video is already in a published video analysis; the message names its link. Stop and tell the user that this video already has a published video analysis, with its link. If they want to rebuild it, rerun with `--rebuild`; the rebuilt set replaces the registry entry, and the old artifact stays as it was.
-2. Run `python3 -I "${CLAUDE_PLUGIN_ROOT}/scripts/teddy.py" ingest <url> [<url> …]`. It prints the run folder and, per video, which parts (transcript, metadata, comments, video) are `ok` or `unavailable` with a reason. Exit 2 means the channel or metadata could not be verified: tell the user; use `--any-channel` only if they ask.
+2. Run `python3 -I "${CLAUDE_PLUGIN_ROOT}/scripts/teddy.py" ingest <url> [<url> …] --parts transcript`. It fetches only the metadata and the transcript, which is all classification needs, and prints the run folder and, per video, whether each part is `ok` or `unavailable` with a reason. Exit 2 means the channel or metadata could not be verified: tell the user; use `--any-channel` only if they ask.
+
+## Step 2: Classify, then fetch the rest
+
+1. Classify with `references/video-types.md` (title rules, then transcript cues). Write `<run>/type.json`. Tell the user the type and the one-line basis, and that they can override it. If the type is not one version 1 builds, follow that file's step 4.
+2. Once the type is one version 1 builds, run `python3 -I "${CLAUDE_PLUGIN_ROOT}/scripts/teddy.py" ingest <url> [<url> …] --run <run> --parts comments,video`. The video file is the large download (often 100 MB or more), so it is never fetched for a video the run will not build.
 3. Tell the user which parts are unavailable and what that costs: no transcript means no quotes with timestamps; no video file means no frames, so photos fall back to credited ones; no comments means no Viewer pulse.
 
-## Step 2: Classify the video
-
-Classify with `references/video-types.md` (title rules, then transcript cues). Write `<run>/type.json`. Tell the user the type and the one-line basis, and that they can override it. If the type is not one version 1 builds, follow that file's step 4.
+**If the user stops the run** before Step 4 adds anything to the dataset, run `python3 -I "${CLAUDE_PLUGIN_ROOT}/scripts/teddy.py" discard-run <run>` and tell the user the run's downloaded files were removed; nothing else needs cleaning up. After Step 4, keep the run folder (the dataset's photos live in it) and say so.
 
 ## Step 3: Identify the watches
 

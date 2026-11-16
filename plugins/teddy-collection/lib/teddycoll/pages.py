@@ -37,10 +37,10 @@ PAGE_META = {
     "overview": ("Overview", "The video and the short answer"),
     "gallery": ("Gallery", "Every watch shown, with photo and source"),
     "criteria-inference": ("Criteria inference", "Which criteria reproduce the ranking"),
-    "taxonomy": ("Taxonomy", "The concepts and tests behind the category"),
+    "taxonomy": ("Buyer's checklist", "What to check in this category, and why"),
     "wearers": ("Wearer profiles", "What each person wore, and why they picked"),
     "landscape": ("Landscape", "Where the watches sit among alternatives"),
-    "scorecard": ("Scorecard", "The watch scored against the taxonomy"),
+    "scorecard": ("Scorecard", "The watch measured against the checklist"),
     "list-criteria": ("Implied criteria", "What the list actually rewards"),
     "left-out": ("Left out", "Strong candidates the list omits"),
     "viewers": ("Viewer pulse", "What the comments said, coded twice"),
@@ -50,7 +50,7 @@ PAGE_META = {
     "parent-overview": ("Overview", "The collection and its sample"),
     "timeline": ("Timeline", "Videos by upload date, with watch-world events"),
     "watch-index": ("Watch index", "Every watch once, with status and where it appears"),
-    "taxonomy-library": ("Taxonomy library", "Criteria sets, versions and labels"),
+    "taxonomy-library": ("Checklist library", "Every buyer's checklist, its versions and how far each is checked"),
     "child-list": ("Video analyses", "Every analysis, by video type and date"),
 }
 TYPE_PAGES = {"contest": ["criteria-inference", "taxonomy", "wearers"],
@@ -385,6 +385,18 @@ def _run_taxonomy(run: Path):
     taxonomy.parse_id(t["version_id"])
     if t.get("label") not in taxonomy.LABELS:
         raise ValueError(f"{f}: label must be one of {taxonomy.LABELS}, got {t.get('label')!r}")
+    try:
+        lib = taxonomy.get(t["version_id"])
+    except (OSError, ValueError, KeyError):
+        lib = None
+    if isinstance(lib, dict):
+        if lib.get("label") != t["label"]:
+            raise ValueError(f"{f}: label {t['label']!r} disagrees with the library's "
+                             f"{lib.get('label')!r} for {t['version_id']}")
+        t["warrant"] = lib.get("warrant")
+        t.update(render._branch_info(lib))
+    elif t["label"] == "compiled":
+        t["warrant"] = None
     return t
 
 

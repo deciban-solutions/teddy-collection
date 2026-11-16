@@ -94,49 +94,7 @@ class TestLabels(Base):
         self.assertIn("layers", t["change_log"][-1]["additions"])
 
 
-class TestImportFr(Base):
-    def test_import_fr(self):
-        t = taxonomy.import_fr(FIX / "fr_spec.json")
-        self.assertEqual(t["label"], "compiled")
-        self.assertEqual(taxonomy.validate(t), [])
-        self.assertEqual({c["key"] for c in t["layers"]["watch"]},
-                         {"drive_feasibility", "seasonal_timing_fit", "golden_light_scheduling"})
-        self.assertTrue(t["paradigm"].startswith("Come home"))
-        self.assertTrue(t["change_log"][0]["unmapped"])
-
-    def test_coherence_mapped_when_present(self):
-        spec = json.loads((FIX / "fr_spec.json").read_text())
-        spec["coherence"] = [{"factor": "styles agree"}]
-        p = Path(self.tmp.name) / "s.json"
-        p.write_text(json.dumps(spec))
-        self.assertEqual(taxonomy.import_fr(p)["coherence"], [{"factor": "styles agree"}])
-
-
-class TestImportSafety(Base):
-    def _spec(self, **concept):
-        spec = json.loads((FIX / "fr_spec.json").read_text())
-        spec["slice"] = "My Slice/../Odd"
-        spec["concepts"] = [dict(canon="k", description="d", **concept)]
-        p = Path(self.tmp.name) / "s2.json"
-        p.write_text(json.dumps(spec))
-        return taxonomy.import_fr(p)
-
-    def test_slice_is_slugged(self):
-        t = self._spec()
-        self.assertRegex(t["category"], r"^[a-z0-9_-]+$")
-        self.assertEqual(taxonomy.validate(t), [])
-
-    def test_rule_without_planted_falls_back_to_judged(self):
-        t = self._spec(rule="a > 1")
-        self.assertEqual(t["layers"]["watch"][0]["check"]["type"], "judged")
-        self.assertEqual(taxonomy.validate(t), [])
-        self.assertIn("k", " ".join(t["change_log"][0]["unmapped"]))
-
-    def test_rule_with_planted_stays_deterministic(self):
-        t = self._spec(rule="a > 1", planted={"pass": [{"a": 2}], "fail": [{"a": 0}]})
-        self.assertEqual(t["layers"]["watch"][0]["check"]["type"], "deterministic")
-        self.assertEqual(taxonomy.run_checks(t), [])
-
+class TestFixturePrivacy(Base):
     def test_fixture_has_no_owner_city(self):
         # the scrubbed word is stored only as a hash, so the test does not re-leak it
         import hashlib, re

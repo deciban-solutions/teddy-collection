@@ -27,16 +27,22 @@ The template adds the commercial-context note. All sections come from your fragm
 
 ## `taxonomy` (Taxonomy)
 
-The build adds the taxonomy version and its label above your fragment.
+The build adds, above your fragment, the checklist version, one sentence on what the checklist is for, and how far that version has been checked. Readers see this page as the **Buyer's checklist**: write "checklist" in its prose, not "taxonomy", and avoid the format's own terms (kind, evidence class, layer, paradigm, deterministic).
 
 - **Sections:**
-  1. *The stance:* the taxonomy's paradigm, the buyer's stance, in a sentence.
-  2. *The layers:* the wearer (inputs, not properties of any watch), each watch, and the pair or collection. One table per layer: criterion, statement, kind (must hold, more is better, settled by evidence), evidence class (deductive or standard, published research, practitioner consensus, contested taste) and check (deterministic rule, or judged).
-  3. *The occasion matrix* the scorers used, when the contest is about covering a life.
-  4. *Coherence factors:* combinations judged together, such as two fine watches that make a redundant pair.
-  5. *Teddy's principles:* his recurring principles as practitioner consensus, quoted with video and timestamp. The template adds the commercial-context note.
-  6. *Where the criteria pull against each other.*
-  7. *How this was built, and its limits:* compiled or provisional; whether this run branched it or drafted it, and why; the sources and their kind.
+  1. *What this page is for:* one or two plain sentences: this is the checklist the analysis measures the watches against, and where the result is (the Scorecard for a review, the Criteria inference page for a contest).
+  2. *The buyer it serves:* the checklist's stance in a sentence, said as one reasonable buyer's view, not the only one.
+  3. *The checklist:* what to know about the wearer (facts about the buyer, not properties of any watch), what to check on each watch, and, where there is one, what to check across the pair or collection. One table for each, with these columns:
+     - **Criterion**;
+     - **What it means**, in a sentence;
+     - **How strict**: must hold, more is better, or depends on evidence;
+     - **Based on**: a rule or standard, published research, what practitioners agree on, or a matter of taste;
+     - **Tested by**: a script, from the specs (name the rule in words), or judgement.
+  4. *The occasion matrix* the scorers used, when the contest is about covering a life.
+  5. *Combinations judged together:* where two things are fine alone but not together, such as two fine watches that make a redundant pair.
+  6. *Teddy's principles:* his recurring principles, as what practitioners agree on, quoted with video and timestamp. The template adds the commercial-context note.
+  7. *Where the items pull against each other.*
+  8. *How this was built, and its limits:* compiled or provisional; whether this run branched it or drafted it, and why; the sources and what kind each is.
 - **Required numbers:** none.
 - **Required caveats:** a provisional taxonomy has not been compiled or ratified; sources that sell watches are named as such; a taxonomy written after seeing the result is not blind.
 

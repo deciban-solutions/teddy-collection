@@ -124,6 +124,30 @@ claude plugin validate ./plugins/teddy-collection
 
 Tests that build pages need `ffmpeg` and are skipped without it. To try local changes without installing: `claude --plugin-dir ./plugins/teddy-collection`.
 
+### Shipping a compiled checklist
+
+Pages call a taxonomy a **buyer's checklist**. A compiled one is built offline with formalized-reasoner and converted with:
+
+```bash
+python3 -I plugins/teddy-collection/scripts/teddy.py taxonomy import-fr <compile>/spec.json \
+  --checks <compile>/teddy-checks.json [--ratification <ratification record>.json] \
+  --category gmt --version 2 --out plugins/teddy-collection/taxonomies/shipped/gmt@2.json
+```
+
+`teddy-checks.json` is written during the compile, for this plug-in. It holds three things:
+
+- `spec_fields`: every field a rule reads, as in a shipped taxonomy;
+- `ratifier_role`: who ratified, by role ("the builder", "an independent expert"), never by name;
+- `criteria`: an entry for each concept the compile keeps, keyed by its `canon`. Each entry gives its `layer` (`wearer`, `watch` or `pair`) and optional `sources`. A script-tested criterion adds a `rule` in the plug-in's safe expression language, with `planted` pass and fail cases.
+
+The import guesses nothing:
+
+- a criterion's strictness comes from the strictest owner desideratum it serves;
+- its evidence class comes from the weakest source among them;
+- every rule must pass its planted cases.
+
+A compile with no paradigm, no frozen pre-registration, an unvalidated coherence factor or a concept missing from the sidecar is refused, with every reason listed. The result carries a `warrant`, and the pages show it next to the version: whether the checklist was ratified, by whom (as a role), how many planted flaws the grader caught, and what the plug-in judges instead of testing. That last list includes every coherence factor for now, since scoring them needs facts about the buyer.
+
 ## License
 
 Copyright 2026 Deciban Solutions LLC.

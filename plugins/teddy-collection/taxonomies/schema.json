@@ -3,50 +3,137 @@
   "title": "teddy-collection taxonomy",
   "description": "Documentation of the format. Runtime validation is taxonomy.validate(), which needs no third-party library.",
   "type": "object",
-  "required": ["id", "category", "version", "label", "paradigm", "created", "change_log", "layers"],
+  "required": [
+    "id",
+    "category",
+    "version",
+    "label",
+    "paradigm",
+    "created",
+    "change_log",
+    "layers"
+  ],
   "properties": {
-    "id": {"type": "string", "pattern": "^(shipped:[a-z0-9_-]+@[0-9]+|user:[a-z0-9_-]+@[0-9]+\\.[0-9]+)$"},
-    "category": {"type": "string", "pattern": "^[a-z0-9_-]+$"},
-    "version": {"type": "string", "description": "<n> for shipped, <n>.<m> for user; must agree with id"},
-    "label": {"enum": ["compiled", "provisional"]},
-    "paradigm": {"type": "string"},
-    "created": {"type": "string"},
-    "change_log": {"type": "array", "items": {"type": "object"}},
-    "layers": {
-      "type": "object",
-      "required": ["wearer", "watch"],
-      "properties": {
-        "wearer": {"type": "array", "items": {"$ref": "#/definitions/criterion"}},
-        "watch": {"type": "array", "items": {"$ref": "#/definitions/criterion"}},
-        "pair": {"type": "array", "items": {"$ref": "#/definitions/criterion"}}
+    "id": {
+      "type": "string",
+      "pattern": "^(shipped:[a-z0-9_-]+@[0-9]+|user:[a-z0-9_-]+@[0-9]+\\.[0-9]+)$"
+    },
+    "category": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$"
+    },
+    "version": {
+      "type": "string",
+      "description": "<n> for shipped, <n>.<m> for user; must agree with id"
+    },
+    "label": {
+      "enum": [
+        "compiled",
+        "provisional"
+      ]
+    },
+    "paradigm": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string"
+    },
+    "change_log": {
+      "type": "array",
+      "items": {
+        "type": "object"
       }
     },
-    "coherence": {"type": "array", "items": {"type": "object"}},
+    "layers": {
+      "type": "object",
+      "required": [
+        "wearer",
+        "watch"
+      ],
+      "properties": {
+        "wearer": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/criterion"
+          }
+        },
+        "watch": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/criterion"
+          }
+        },
+        "pair": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/criterion"
+          }
+        }
+      }
+    },
+    "coherence": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
     "teddy_principles": {
       "type": "array",
-      "items": {"type": "object", "required": ["quote", "video", "timestamp"]}
+      "items": {
+        "type": "object",
+        "required": [
+          "quote",
+          "video",
+          "timestamp"
+        ]
+      }
     },
     "sources": {
       "type": "array",
       "description": "optional registry of every URL the criteria, coherence factors and brief cite, with its provenance",
       "items": {
         "type": "object",
-        "required": ["url", "title", "publisher", "date", "checked"],
+        "required": [
+          "url",
+          "title",
+          "publisher",
+          "date",
+          "checked"
+        ],
         "properties": {
-          "url": {"type": "string"},
-          "title": {"type": "string"},
-          "publisher": {"type": "string"},
-          "date": {"type": "string", "description": "YYYY-MM-DD, or \"not stated on page\""},
-          "author": {"type": "string"},
-          "note": {"type": "string", "description": "evidence caveat, e.g. that the publisher sells watches"},
-          "checked": {"type": "string", "description": "YYYY-MM-DD the URL was last fetched and confirmed"}
+          "url": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "description": "YYYY-MM-DD, or \"not stated on page\""
+          },
+          "author": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string",
+            "description": "evidence caveat, e.g. that the publisher sells watches"
+          },
+          "checked": {
+            "type": "string",
+            "description": "YYYY-MM-DD the URL was last fetched and confirmed"
+          }
         }
       }
     },
     "spec_fields": {
       "type": "object",
       "description": "optional; the contract for rule fields: every name a deterministic rule reads, mapped to its meaning and type. Watch records should carry these keys in specs, strings lower-case; a missing, null or \"unknown\" value scores \"not assessable\" (taxonomy.score)",
-      "additionalProperties": {"type": "string"}
+      "additionalProperties": {
+        "type": "string"
+      }
     },
     "brief": {
       "type": "object",
@@ -55,33 +142,127 @@
     "principles_note": {
       "type": "string",
       "description": "optional; how teddy_principles were sourced (captions, timestamps) and their commercial context"
+    },
+    "warrant": {
+      "type": "object",
+      "description": "compiled versions only, written by taxonomy import-fr: how far this version was checked. source_slice, freeze_commit and prereg name the formalized-reasoner compile; ratified, ratified_by (a role, never a name), catch_power and ratified_on come from its ratification record; unresolved_debt counts its open debt entries; edges counts its cause-and-effect links; not_enforced_here lists what the compile validated but the plug-in only judges.",
+      "required": [
+        "ratified"
+      ],
+      "properties": {
+        "ratified": {
+          "type": "boolean"
+        },
+        "ratified_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "catch_power": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "ratified_on": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "not_enforced_here": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     }
   },
   "definitions": {
     "criterion": {
       "type": "object",
-      "required": ["key", "statement", "kind", "evidence_class", "check", "sources"],
+      "required": [
+        "key",
+        "statement",
+        "kind",
+        "evidence_class",
+        "check",
+        "sources"
+      ],
       "properties": {
-        "key": {"type": "string"},
-        "statement": {"type": "string"},
-        "kind": {"enum": ["must", "more_is_better", "evidence_settled"]},
-        "evidence_class": {"enum": ["deductive", "research", "practitioner", "contested"]},
+        "key": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "must",
+            "more_is_better",
+            "evidence_settled"
+          ]
+        },
+        "evidence_class": {
+          "enum": [
+            "deductive",
+            "research",
+            "practitioner",
+            "contested"
+          ]
+        },
         "check": {
           "type": "object",
-          "required": ["type"],
+          "required": [
+            "type"
+          ],
           "properties": {
-            "type": {"enum": ["deterministic", "judged"]},
-            "rule": {"type": "string", "description": "safe expression over spec fields; required when deterministic"},
+            "type": {
+              "enum": [
+                "deterministic",
+                "judged"
+              ]
+            },
+            "rule": {
+              "type": "string",
+              "description": "safe expression over spec fields; required when deterministic"
+            },
             "planted": {
               "type": "object",
               "properties": {
-                "pass": {"type": "array", "minItems": 1, "items": {"type": "object"}},
-                "fail": {"type": "array", "minItems": 1, "items": {"type": "object"}}
+                "pass": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "fail": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object"
+                  }
+                }
               }
             }
           }
         },
-        "sources": {"type": "array", "items": {"type": "string"}}
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "serves": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "optional; compiled versions: the owner desiderata ids this criterion serves"
+        }
       }
     }
   }

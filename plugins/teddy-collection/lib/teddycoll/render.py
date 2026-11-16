@@ -172,15 +172,54 @@ def footer_parent(built) -> str:
 
 # ---------- child pages ----------
 
-def taxonomy_used(tax) -> str:
-    """The run's taxonomy version and label, or a visible note that it was not recorded."""
+def _how_checked(label, warrant, tax=None) -> str:
+    """One plain sentence on how far this checklist version has been checked."""
+    tax = tax or {}
+    if label != "compiled":
+        if tax.get("base_label") == "compiled" and tax.get("derived_from"):
+            return (f"It is a <b>provisional</b> branch of the compiled {esc(tax['derived_from'])}: "
+                    "what it adds has not been compiled or ratified.")
+        return ("It is <b>provisional</b>: this plug-in drafted it from published sources, and it "
+                "has not been compiled or ratified.")
+    if not isinstance(warrant, dict):
+        return "It is <b>compiled</b>, but this version records no warrant saying how it was checked."
+    s = "It is <b>compiled</b>: built offline with formalized-reasoner"
+    if warrant.get("freeze_commit"):
+        s += " from a frozen pre-registration"
+    if warrant.get("ratified"):
+        cp = warrant.get("catch_power")
+        caught = "every planted flaw" if cp == 1 else "some of the planted flaws"
+        when = f" on {esc(warrant['ratified_on'])}" if warrant.get("ratified_on") else ""
+        s += (f", and ratified by {esc(warrant.get('ratified_by') or 'an unnamed grader')}{when}, "
+              f"who caught {caught} in its test pages.")
+    else:
+        s += ", and not yet ratified by a grader."
+    def _names(k):
+        v = warrant.get(k)
+        return [str(n).replace("_", " ") for n in v] if isinstance(v, list) else []
+    if _names("not_enforced_here"):
+        s += (" Validated in the compile but judged here rather than tested by a script: "
+              + esc(", ".join(_names("not_enforced_here"))) + ".")
+    if _names("not_validated_in_compile"):
+        s += (" Judged in the compile too, with no validated test: "
+              + esc(", ".join(_names("not_validated_in_compile"))) + ".")
+    return s
+
+
+def taxonomy_used(tax, warrant=None) -> str:
+    """The run's checklist version, what the checklist is for, and how far it has been checked;
+    or a visible note that the version was not recorded."""
     if not tax:
-        return ('<p class="note taxver"><b>Taxonomy version not recorded for this run.</b> '
-                "The criteria pages cannot say which taxonomy version they used.</p>")
+        return ('<p class="note taxver"><b>Checklist version not recorded for this run.</b> '
+                "The criteria pages cannot say which version of the buyer's checklist they used.</p>")
     label = tax["label"]
-    return (f'<p class="taxver">Taxonomy used: {esc(tax.get("category"))} '
+    if warrant is None:
+        warrant = tax.get("warrant")
+    return (f'<p class="taxver">Checklist used: {esc(tax.get("category"))} '
             f'<span class="ref">{esc(tax["version_id"])}</span> '
-            f'<span class="badge {esc(label)}">{esc(label)}</span></p>')
+            f'<span class="badge {esc(label)}">{esc(label)}</span></p>'
+            '<p class="note">This is the checklist the analysis measures the watches against. '
+            f"{_how_checked(label, warrant, tax)}</p>")
 
 
 def overview_child(videos, vtype, confs, nav, strip, fragment, no_transcript, tax=None) -> str:
@@ -350,10 +389,20 @@ def watch_index(cards) -> str:
     return f'<div class="grid">{"".join(cards)}</div>'
 
 
+def _branch_info(t) -> dict:
+    """{derived_from, base_label} for a user branch, from its last change-log entry."""
+    log = [e for e in t.get("change_log") or [] if isinstance(e, dict) and e.get("derived_from")]
+    if not log:
+        return {}
+    e = log[-1]
+    return {"derived_from": e["derived_from"],
+            "base_label": "compiled" if "base_ratified" in e else None}
+
+
 def taxonomy_library(taxes) -> str:
     """taxes: [(index, taxonomy dict), ...]"""
     if not taxes:
-        return '<p class="note">No taxonomies installed yet.</p>'
+        return '<p class="note">No checklists installed yet.</p>'
     out = []
     for i, t in taxes:
         label = t.get("label", "provisional")
@@ -364,6 +413,7 @@ def taxonomy_library(taxes) -> str:
                    f'<span class="badge {esc(label)}">{esc(label)}</span></div>'
                    f'<p class="note">Created {esc(t.get("created"))} · '
                    f"{num(f'taxonomies.{i}.criteria')} criteria</p>"
+                   f'<p class="note">{_how_checked(label, t.get("warrant"), _branch_info(t))}</p>'
                    f"<p>{esc(t.get('paradigm'))}</p><h3>Change log</h3><ul class=\"log\">{log}</ul></article>")
     return "".join(out)
 

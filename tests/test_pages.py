@@ -235,7 +235,36 @@ class TestChildBuild(Home):
         pages.build_child(self.run_dir, ["v1"], "contest", {})
         html = self.built()
         for pid in ("overview", "taxonomy"):
-            self.assertIn("Taxonomy version not recorded for this run", self._view(html, pid), pid)
+            self.assertIn("Checklist version not recorded for this run", self._view(html, pid), pid)
+
+    def test_compiled_taxonomy_shows_its_warrant(self):
+        self.one_video()
+        taxonomy.SHIPPED_DIR.mkdir()
+        t = {"id": "shipped:gmt@2", "category": "gmt", "version": "2", "label": "compiled",
+             "paradigm": "p", "created": "2026-12-01", "change_log": [],
+             "layers": {"wearer": [], "watch": []},
+             "warrant": {"ratified": True, "ratified_by": "an independent expert",
+                         "catch_power": 1.0, "ratified_on": "2026-12-01",
+                         "not_enforced_here": []}}
+        (taxonomy.SHIPPED_DIR / "gmt@2.json").write_text(json.dumps(t))
+        (self.run_dir / "taxonomy.json").write_text(json.dumps(
+            {"category": "gmt", "version_id": "shipped:gmt@2", "label": "compiled"}))
+        pages.build_child(self.run_dir, ["v1"], "contest", {})
+        body = self._view(self.built(), "taxonomy")
+        self.assertIn("ratified by an independent expert", body)
+        self.assertIn("every planted flaw", body)
+
+    def test_run_label_must_match_library(self):  # M7
+        self.one_video()
+        taxonomy.SHIPPED_DIR.mkdir()
+        t = {"id": "shipped:gmt@1", "category": "gmt", "version": "1", "label": "provisional",
+             "paradigm": "p", "created": "2026-11-15", "change_log": [],
+             "layers": {"wearer": [], "watch": []}}
+        (taxonomy.SHIPPED_DIR / "gmt@1.json").write_text(json.dumps(t))
+        (self.run_dir / "taxonomy.json").write_text(json.dumps(
+            {"category": "gmt", "version_id": "shipped:gmt@1", "label": "compiled"}))
+        with self.assertRaises(ValueError):
+            pages.build_child(self.run_dir, ["v1"], "contest", {})
 
     def test_taxonomy_bad_label_refused(self):
         self.one_video()

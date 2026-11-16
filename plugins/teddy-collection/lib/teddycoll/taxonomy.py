@@ -22,6 +22,8 @@ EVIDENCE_CLASSES = ("deductive", "research", "practitioner", "contested")
 CHECK_TYPES = ("deterministic", "judged")
 REQUIRED = ("id", "category", "version", "label", "paradigm", "created", "change_log", "layers")
 CRITERION_KEYS = ("key", "statement", "kind", "evidence_class", "check", "sources")
+RATIFIER_ROLES = ("the builder", "an independent expert", "independent experts")
+FR_ENFORCEMENT = ("machine_gate", "judged_review")
 _SLUG = re.compile(r"^[a-z0-9_-]+$")
 _ID = re.compile(r"^(shipped|user):([a-z0-9_-]+)@(\d+)(?:\.(\d+))?$")
 
@@ -103,10 +105,34 @@ def validate(t) -> list:
                 for name in sorted(_rule_fields(chk.get("rule")) - set(fields)):
                     errs.append(f"layers.{layer}.{c.get('key')}: rule reads {name!r}, "
                                 "which is not listed in spec_fields")
+    if "warrant" in t:
+        errs.extend(_warrant_errors(t["warrant"], t.get("label")))
     for i, p in enumerate(t.get("teddy_principles", []) or []):
         for k in ("quote", "video", "timestamp"):
             if not isinstance(p, dict) or k not in p:
                 errs.append(f"teddy_principles[{i}] missing {k}")
+    return errs
+
+
+def _warrant_errors(w, label) -> list:
+    if not isinstance(w, dict) or not isinstance(w.get("ratified"), bool):
+        return ["warrant must be an object with a boolean ratified"]
+    errs = []
+    if label != "compiled":
+        errs.append("only a compiled taxonomy carries a warrant")
+    for k in ("freeze_commit", "prereg"):
+        if not (isinstance(w.get(k), str) and w[k].strip()):
+            errs.append(f"warrant.{k} must be a non-empty string")
+    if w["ratified"]:
+        if w.get("ratified_by") not in RATIFIER_ROLES:
+            errs.append(f"warrant.ratified_by must be one of {RATIFIER_ROLES}")
+        cp = w.get("catch_power")
+        if isinstance(cp, bool) or not isinstance(cp, (int, float)) or not 0 < cp <= 1:
+            errs.append("warrant.catch_power must be a number in (0, 1] when ratified")
+    for k in ("not_enforced_here", "not_validated_in_compile"):
+        v = w.get(k, [])
+        if not isinstance(v, list) or not all(isinstance(x, str) for x in v):
+            errs.append(f"warrant.{k} must be a list of strings")
     return errs
 
 
@@ -136,6 +162,8 @@ def _validate_criterion(c, where) -> list:
         elif chk["type"] == "deterministic":
             if not isinstance(chk.get("rule"), str) or not chk["rule"].strip():
                 errs.append(f"{where}.check.rule required for deterministic checks")
+            else:
+                errs.extend(f"{where}.check: {e}" for e in rule_syntax_errors(chk["rule"]))
             pl = chk.get("planted")
             if not isinstance(pl, dict) or not isinstance(pl.get("pass"), list) \
                     or not isinstance(pl.get("fail"), list) or not pl["pass"] or not pl["fail"]:
@@ -213,8 +241,12 @@ def branch(version_id: str, additions: dict, reason: str) -> str:
     new_id = f"user:{cat}@{n}.{new_minor}"
     t.update(id=new_id, version=f"{n}.{new_minor}", label="provisional",
              created=date.today().isoformat())
-    t["change_log"] = list(base.get("change_log", [])) + [
-        {"date": date.today().isoformat(), "reason": reason, "additions": additions}]
+    t.pop("warrant", None)  # a branch is provisional; the base's warrant does not cover its additions
+    entry = {"date": date.today().isoformat(), "reason": reason, "additions": additions,
+             "derived_from": version_id}
+    if base.get("label") == "compiled":
+        entry["base_ratified"] = bool((base.get("warrant") or {}).get("ratified"))
+    t["change_log"] = list(base.get("change_log", [])) + [entry]
     errs = validate(t)
     if errs:
         raise ValueError("branch would be invalid: " + "; ".join(errs))
@@ -276,6 +308,53 @@ def _ev(node, spec):
     if isinstance(node, (ast.List, ast.Tuple)):
         return [_const(e) for e in node.elts]
     raise ValueError(f"disallowed expression element: {type(node).__name__}")
+
+
+def _static(node):
+    """Raise ValueError unless every node is one `_ev` accepts, on every branch."""
+    if isinstance(node, ast.Expression):
+        return _static(node.body)
+    if isinstance(node, ast.BoolOp) and isinstance(node.op, (ast.And, ast.Or)):
+        for v in node.values:
+            _static(v)
+        return
+    if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.Not):
+        return _static(node.operand)
+    if (isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.USub)
+            and isinstance(node.operand, ast.Constant)
+            and isinstance(node.operand.value, (int, float))
+            and not isinstance(node.operand.value, bool)):
+        return
+    if isinstance(node, ast.Compare):
+        for op in node.ops:
+            if type(op) not in _CMP:
+                raise ValueError(f"disallowed operator: {type(op).__name__}")
+        for n in (node.left, *node.comparators):
+            _static(n)
+        return
+    if isinstance(node, ast.Name):
+        return
+    if isinstance(node, ast.Constant):
+        _const(node)
+        return
+    if isinstance(node, (ast.List, ast.Tuple)):
+        for e in node.elts:
+            _const(e)
+        return
+    raise ValueError(f"disallowed expression element: {type(node).__name__}")
+
+
+def rule_syntax_errors(rule) -> list:
+    """[] when `rule` parses and uses only the safe language on every branch."""
+    if not isinstance(rule, str) or not rule.strip():
+        return ["rule must be a non-empty string"]
+    try:
+        _static(ast.parse(rule, mode="eval"))
+    except SyntaxError as e:
+        return [f"syntax error in rule {rule!r}: {e.msg}"]
+    except ValueError as e:
+        return [f"rule {rule!r}: {e}"]
+    return []
 
 
 def evaluate(rule: str, spec: dict):
@@ -394,49 +473,313 @@ def score(tax: dict, record: dict) -> dict:
 
 # ---------- formalized-reasoner import ----------
 
-def import_fr(spec_json: Path) -> dict:
-    """Convert a compiled formalized-reasoner spec.json into a `compiled` taxonomy dict."""
-    spec = json.loads(Path(spec_json).read_text(encoding="utf-8"))
-    category = re.sub(r"[^a-z0-9_-]+", "-", str(spec.get("slice", "imported")).lower()).strip("-") \
-        or "imported"
-    unmapped = []
-    criteria = []
-    for c in spec.get("concepts", []):
-        key = c.get("canon") or c.get("name")
-        if not key:
-            unmapped.append("concept without canon/name")
+class ImportRefused(ValueError):
+    """A compile the importer cannot carry without guessing; `reasons` lists every problem."""
+
+    def __init__(self, reasons):
+        self.reasons = list(reasons)
+        super().__init__("import refused: " + "; ".join(self.reasons))
+
+
+# formalized-reasoner kinds and evidence sources, mapped onto this format's own
+_FR_KIND = {"constraining": "must", "adaptive": "evidence_settled", "value": "more_is_better"}
+_KIND_STRICTNESS = ("must", "evidence_settled", "more_is_better")      # strictest first
+_FR_SOURCE = {"A": "deductive", "B": "deductive", "C": "research", "D": "practitioner",
+              "E": "contested"}
+_CLASS_STRENGTH = ("deductive", "research", "practitioner", "contested")  # strongest first
+_NOT_ENFORCED_NOTE = ("Validated in the compile but not enforced by the plug-in: criteria "
+                      "listed here are judged on the pages, and the plug-in does not yet score "
+                      "coherence factors, which need facts about the buyer.")
+
+
+def _load_json(path, what, reasons):
+    try:
+        return json.loads(Path(path).read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        reasons.append(f"cannot read {what} {path}: {e}")
+        return None
+
+
+def _list(spec, key, reasons, *, dicts=True):
+    """spec[key] as a list (of dicts when `dicts`), [] when absent; a reason when malformed."""
+    v = spec.get(key)
+    if v is None:
+        return []
+    if not isinstance(v, list) or (dicts and not all(isinstance(x, dict) for x in v)):
+        reasons.append(f"{key} must be a list" + (" of objects" if dicts else ""))
+        return []
+    return v
+
+
+def _canon_set(spec, key, reasons) -> set:
+    """accepted / rejected: a list of canon strings, or an object keyed by canon."""
+    v = spec.get(key)
+    if v is None:
+        return set()
+    keys = list(v) if isinstance(v, (list, dict)) else None
+    if keys is None or not all(isinstance(k, str) for k in keys):
+        reasons.append(f"{key} must be a list of concept canons or an object keyed by them")
+        return set()
+    return set(keys)
+
+
+def _name_tokens(ratifier) -> set:
+    """Words of the ratifier's name (the parenthesised part when there is one), longer than
+    two characters, lower-case; used to refuse a shipped file that would carry the name."""
+    if not isinstance(ratifier, str):
+        return set()
+    m = re.search(r"\(([^)]*)\)", ratifier)
+    text = m.group(1) if m else ratifier
+    roles = {"author", "builder", "owner", "the", "independent", "expert", "experts", "panel"}
+    return {w for w in re.findall(r"[a-z]+", text.lower()) if len(w) > 2 and w not in roles}
+
+
+def _ratification(rec, rec_bytes, spec, side, reasons) -> dict:
+    """The warrant's ratification fields. A record counts only when it is bound to this
+    compile (its slice and freeze_commit match, or the sidecar names its sha256) and its
+    fields are well formed. The ratifier's name is never copied: the sidecar states a role."""
+    import hashlib
+    out = {"ratified": False, "ratified_by": None, "catch_power": None, "ratified_on": None,
+           "ratification_sha256": None}
+    if rec is None:
+        return out
+    if not isinstance(rec, dict):
+        reasons.append("ratification record must be a JSON object")
+        return out
+    digest = hashlib.sha256(rec_bytes).hexdigest()
+    bound = ((rec.get("slice") == spec.get("slice") and spec.get("slice"))
+             and rec.get("freeze_commit") == spec.get("freeze_commit")) \
+        or side.get("ratification_sha256") == digest
+    if not bound:
+        reasons.append("ratification record is not bound to this compile: it must carry this "
+                       "compile's slice and freeze_commit, or the sidecar must name its "
+                       "ratification_sha256")
+        return out
+    cp, fp = rec.get("catch_power"), rec.get("false_positive_on_coherent")
+    if not isinstance(rec.get("ratified"), bool):
+        reasons.append("ratification record: ratified must be true or false")
+    if isinstance(cp, bool) or not isinstance(cp, (int, float)) or not 0 <= cp <= 1:
+        reasons.append("ratification record: catch_power must be a number from 0 to 1")
+        cp = None
+    if not isinstance(fp, list):
+        reasons.append("ratification record: false_positive_on_coherent must be a list")
+    graded = rec.get("graded")
+    out.update(catch_power=cp, ratification_sha256=digest,
+               ratified_on=graded[:10] if isinstance(graded, str) and graded else None)
+    if rec.get("ratified") is True and cp and isinstance(fp, list) and not fp:
+        role = side.get("ratifier_role")
+        if role not in RATIFIER_ROLES:
+            reasons.append(f"ratifier_role must be one of {RATIFIER_ROLES} (a role, never a "
+                           f"name), got {role!r}")
+        out.update(ratified=True, ratified_by=role if role in RATIFIER_ROLES else None)
+    return out
+
+
+def import_fr(spec_json, checks_json, *, category: str, version: str,
+              ratification_json=None) -> dict:
+    """Convert a formalized-reasoner compile into a `compiled` shipped taxonomy.
+
+    - `spec_json`: the compile's spec.json (paradigm, owner_desiderata, concepts with `canon`
+      and `serves`, accepted/rejected, edges, coherence_factors, debt, freeze_commit, prereg).
+    - `checks_json`: the sidecar the compile writes for this plug-in: `spec_fields`,
+      `ratifier_role`, optional `ratification_sha256` and `sources`, and `criteria` keyed by
+      concept canon, each with its `layer`, optional `sources` and, for a script-tested
+      criterion, a `rule` in this format's safe language with `planted` pass and fail cases.
+    - `ratification_json`: the coherence-ratification record, when there is one.
+
+    Nothing is defaulted: a kind comes from the strictest desideratum the concept serves,
+    an evidence class from the weakest source among them, a layer from the sidecar. Concepts
+    the compile kept as judged (neither accepted nor rejected) are carried and disclosed.
+    Every problem is collected and raised together as ImportRefused.
+    """
+    reasons = []
+    if not (isinstance(category, str) and _SLUG.match(category)):
+        reasons.append(f"category must match ^[a-z0-9_-]+$, got {category!r}")
+    if not (isinstance(version, str) and version.isdigit()):
+        reasons.append(f"version must be a whole number for a shipped taxonomy, got {version!r}")
+    spec = _load_json(spec_json, "spec", reasons)
+    side = _load_json(checks_json, "sidecar", reasons)
+    rec = rec_bytes = None
+    if ratification_json is not None:
+        rec = _load_json(ratification_json, "ratification record", reasons)
+        try:
+            rec_bytes = Path(ratification_json).read_bytes()
+        except OSError:
+            rec_bytes = b""
+    for obj, what in ((spec, "spec"), (side, "sidecar")):
+        if obj is not None and not isinstance(obj, dict):
+            reasons.append(f"{what} is not a JSON object")
+    if not isinstance(spec, dict) or not isinstance(side, dict):
+        raise ImportRefused(reasons)
+
+    par = spec.get("paradigm")
+    stance = par.get("culture") if isinstance(par, dict) else None
+    if not (isinstance(stance, str) and stance.strip()):
+        reasons.append("paradigm missing: the compile has no paradigm with a stance sentence "
+                       "(culture)")
+    for k in ("freeze_commit", "prereg"):
+        if not (isinstance(spec.get(k), str) and spec[k].strip()):
+            reasons.append(f"{k} missing: a compiled taxonomy must name its frozen "
+                           "pre-registration")
+    desid = {}
+    for d in _list(spec, "owner_desiderata", reasons):
+        did = d.get("id")
+        if not isinstance(did, str) or not did:
+            reasons.append("a desideratum has no string id")
+        elif did in desid:
+            reasons.append(f"desideratum {did} is listed twice")
+        else:
+            desid[did] = d
+            if d.get("kind") not in _FR_KIND:
+                reasons.append(f"desideratum {did}: unknown kind {d.get('kind')!r}")
+            if d.get("source") not in _FR_SOURCE:
+                reasons.append(f"desideratum {did}: unknown evidence source {d.get('source')!r}")
+    if not desid:
+        reasons.append("owner_desiderata missing: the compile records no owner desiderata")
+
+    fields = side.get("spec_fields") or {}
+    if not isinstance(fields, dict) or not all(isinstance(v, str) for v in fields.values()):
+        reasons.append("sidecar spec_fields must be an object of field: meaning-and-type strings")
+        fields = fields if isinstance(fields, dict) else {}
+    entries = side.get("criteria")
+    if not isinstance(entries, dict):
+        reasons.append("sidecar criteria must be an object keyed by concept canon")
+        entries = {}
+    registry = side.get("sources")
+    if registry is not None:
+        need = ("url", "title", "publisher", "date", "checked")
+        if not isinstance(registry, list) or not all(
+                isinstance(r, dict) and all(isinstance(r.get(k), str) for k in need) for r in registry):
+            reasons.append(f"sidecar sources must be a list of objects with {need}")
+    accepted = _canon_set(spec, "accepted", reasons)
+    rejected = _canon_set(spec, "rejected", reasons)
+
+    layers = {"wearer": [], "watch": [], "pair": []}
+    not_enforced, not_validated, dropped, seen, canons = [], [], [], set(), set()
+    for c in _list(spec, "concepts", reasons):
+        key = c.get("canon")
+        if not (isinstance(key, str) and _SLUG.match(key)):
+            reasons.append(f"a concept has no usable canon ({c.get('name')!r}); the sidecar is "
+                           "keyed by canon, so none is guessed")
             continue
-        text = c.get("description") or c.get("name") or key
-        check = {"type": "judged", "planted": {"pass": [], "fail": []}}
-        rule = c.get("rule")
-        if isinstance(rule, str) and rule.strip():
-            planted = c.get("planted")
-            try:
-                ast.parse(rule, mode="eval")
-                if isinstance(planted, dict) and planted.get("pass") and planted.get("fail"):
-                    check = {"type": "deterministic", "rule": rule, "planted": planted}
-                else:
-                    unmapped.append(f"{key}: rule has no planted pass and fail cases; imported as judged")
-            except SyntaxError:
-                unmapped.append(f"{key}: rule is not a safe expression; imported as judged")
-        criteria.append({"key": key, "statement": text, "kind": "more_is_better",
-                         "evidence_class": "contested", "check": check, "sources": []})
+        if key in canons:
+            reasons.append(f"{key}: the concept is listed twice")
+            continue
+        canons.add(key)
+        if key in rejected:
+            dropped.append(key)
+            continue
+        seen.add(key)
+        serves = c.get("serves")
+        if not isinstance(serves, list) or not serves or not all(isinstance(s, str) for s in serves):
+            reasons.append(f"{key}: serves no owner desideratum (a non-empty list of ids is "
+                           "needed), so its kind cannot be set")
+            continue
+        unknown = [s for s in serves if s not in desid]
+        if unknown:
+            reasons.append(f"{key}: serves unknown desiderata {unknown}")
+            continue
+        kinds = {_FR_KIND.get(desid[s].get("kind")) for s in serves}
+        classes = {_FR_SOURCE.get(desid[s].get("source")) for s in serves}
+        if None in kinds or None in classes:
+            continue  # reported with the desideratum
+        kind = next(k for k in _KIND_STRICTNESS if k in kinds)
+        evidence = next(k for k in reversed(_CLASS_STRENGTH) if k in classes)
+        entry = entries.get(key)
+        if not isinstance(entry, dict):
+            reasons.append(f"{key}: no sidecar entry (every kept concept needs its layer, "
+                           "and its plug-in rule if it is script-tested)")
+            continue
+        layer = entry.get("layer")
+        if not isinstance(layer, str) or layer not in layers:
+            reasons.append(f"{key}: layer must be wearer, watch or pair, got {layer!r}")
+            continue
+        if "rule" in entry:
+            rule = entry["rule"]
+            check = {"type": "deterministic", "rule": rule, "planted": entry.get("planted")}
+            crit_errs = _validate_criterion(
+                {"key": key, "statement": "-", "kind": kind, "evidence_class": evidence,
+                 "check": check, "sources": []}, key)
+            if crit_errs:
+                reasons.extend(crit_errs)
+                continue
+            missing = sorted(_rule_fields(rule) - set(fields))
+            if missing:
+                reasons.append(f"{key}: rule reads {missing}, not listed in spec_fields")
+                continue
+            errs = run_checks({"layers": {layer: [{"key": key, "check": check}]}})
+            if errs:
+                reasons.extend(errs)
+                continue
+        elif "planted" in entry:
+            reasons.append(f"{key}: planted cases given but no rule")
+            continue
+        else:
+            check = {"type": "judged"}
+            (not_enforced if key in accepted else not_validated).append(key)
+        sources = entry.get("sources", [])
+        if not isinstance(sources, list) or not all(isinstance(x, str) for x in sources):
+            reasons.append(f"{key}: sources must be a list of URL strings")
+            continue
+        desc = c.get("description") or c.get("name") or key
+        layers[layer].append({"key": key, "statement": str(desc), "kind": kind,
+                              "evidence_class": evidence, "check": check,
+                              "sources": sources, "serves": list(serves)})
+    for extra in sorted(set(entries) - seen - rejected):
+        reasons.append(f"sidecar names {extra!r}, which is not a kept concept in the compile")
+    for ghost in sorted(accepted - canons):
+        reasons.append(f"accepted names {ghost!r}, which is not a concept in the compile")
+
     coherence = []
-    for ckey in ("coherence", "coherence_factors"):
-        for f in spec.get(ckey, []) or []:
-            coherence.append(f if isinstance(f, dict) else {"factor": str(f)})
-    if not coherence:
-        unmapped.append("no coherence factors present in spec")
-    if spec.get("edges"):
-        unmapped.append(f"{len(spec['edges'])} concept edges not mapped")
-    if spec.get("accepted"):
-        unmapped.append("accepted measure code not mapped (kept judged unless a rule was present)")
-    unmapped.append("kind and evidence_class defaulted to more_is_better / contested")
+    for f in _list(spec, "coherence_factors", reasons):
+        name = f.get("name")
+        if not (isinstance(name, str) and name):
+            reasons.append("a coherence factor has no name")
+            continue
+        if f.get("validated") is not True:
+            reasons.append(f"coherence factor {name}: not validated in the compile")
+            continue
+        if f.get("enforcement") not in FR_ENFORCEMENT:
+            reasons.append(f"coherence factor {name}: enforcement must be one of "
+                           f"{FR_ENFORCEMENT}, got {f.get('enforcement')!r}")
+            continue
+        coherence.append({k: f[k] for k in ("name", "scope", "kind", "enforcement", "rationale")
+                          if k in f})
+        if f["enforcement"] == "machine_gate":
+            not_enforced.append(name)
+
+    edges = _list(spec, "edges", reasons)
+    debt = _list(spec, "debt", reasons)
+    warrant = {"source_slice": spec.get("slice"), "freeze_commit": spec.get("freeze_commit"),
+               "prereg": spec.get("prereg"),
+               **_ratification(rec, rec_bytes or b"", spec, side, reasons),
+               "unresolved_debt": sum(1 for d in debt if not d.get("resolved")),
+               "edges": {"total": len(edges),
+                         "validated": sum(1 for e in edges if e.get("warrant") == "validated")},
+               "not_enforced_here": not_enforced, "not_validated_in_compile": not_validated,
+               "not_enforced_note": _NOT_ENFORCED_NOTE}
+    if reasons:
+        raise ImportRefused(reasons)
+
     today = date.today().isoformat()
-    t = {"id": f"shipped:{category}@1", "category": category, "version": "1",
-         "label": "compiled", "paradigm": str(spec.get("culture", "")), "created": today,
-         "change_log": [{"date": today, "reason": "imported from formalized-reasoner compiled spec",
-                         "additions": {"criteria": len(criteria)}, "unmapped": unmapped}],
-         "layers": {"wearer": [], "watch": criteria}, "coherence": coherence,
-         "teddy_principles": []}
+    t = {"id": f"shipped:{category}@{version}", "category": category, "version": version,
+         "label": "compiled", "paradigm": stance.strip(), "created": today,
+         "change_log": [{"date": today,
+                         "reason": f"imported from formalized-reasoner compile {spec.get('slice')!r} "
+                                   f"(freeze {spec.get('freeze_commit')})",
+                         "additions": {"criteria": sum(len(v) for v in layers.values())},
+                         "dropped_rejected_concepts": dropped}],
+         "spec_fields": fields,
+         "layers": {k: v for k, v in layers.items() if v or k != "pair"},
+         "coherence": coherence, "teddy_principles": [], "warrant": warrant}
+    if registry is not None:
+        t["sources"] = registry
+    names = _name_tokens(rec.get("ratifier")) if isinstance(rec, dict) else set()
+    words = set(re.findall(r"[a-z]+", json.dumps(t).lower()))
+    if names & words:
+        raise ImportRefused([f"the ratifier's name ({len(names & words)} word(s) of it) appears in "
+                             "the compile's text; a shipped file must not carry a person's name"])
+    errs = validate(t)
+    if errs:
+        raise ImportRefused(errs)
     return t

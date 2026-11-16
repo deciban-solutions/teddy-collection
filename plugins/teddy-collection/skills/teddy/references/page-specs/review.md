@@ -25,7 +25,7 @@ The template adds the commercial-context note, since the scorecard sets Teddy's 
 
 - **Sections:**
   1. *The verdict, then the evidence:* a `<div class="answer">`: Teddy's verdict in his words (timestamp link), then where the taxonomy agrees or disagrees with it.
-  2. *Criterion by criterion:* one row per taxonomy criterion: the criterion and its kind, the mark (`y` meets, `p` partly, `n` does not, or `not assessable`), the evidence (the spec value and its source, or the judgement and its reason) and whether Teddy addressed it (quote and timestamp, or "not mentioned").
+  2. *Criterion by criterion:* one row per taxonomy criterion: the criterion and how strict it is (must hold, more is better, depends on evidence), the mark (`y` meets, `p` partly, `n` does not, or `not assessable`), the evidence (the spec value and its source, or the judgement and its reason) and whether Teddy addressed it (quote and timestamp, or "not mentioned").
      - For a deterministic criterion, take the mark from the library, never by eye. It prints `{"taxonomy", "watch", "marks"}`, with `marks` keyed `<layer>.<key>` and each mark `y`, `n` or `not assessable`:
 
        ```bash

@@ -1,7 +1,7 @@
 {
   "name": "teddy-collection",
   "displayName": "Teddy Collection",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Builds a private, sourced collection of the watches in Teddy Baldassarre's videos: one video analysis per video, with taxonomies of his criteria, published as private pages and linked from a collection page.",
   "author": {
     "name": "Deciban Solutions LLC",

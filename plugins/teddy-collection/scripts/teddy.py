@@ -321,7 +321,32 @@ def _cmd_taxonomy(args):
             print(json.dumps({"id": t["id"], "errors": len(errs)}))
             return 1 if errs else 0
         else:
-            out = taxonomy.import_fr(Path(args.arg))
+            missing = [f for f, v in (("--checks", args.checks), ("--category", args.category),
+                                      ("--version", args.version)) if not v]
+            if not args.arg or missing:
+                print("error: import-fr needs <spec.json> and " + ", ".join(missing or ["<spec.json>"]),
+                      file=sys.stderr)
+                return 2
+            if args.out:
+                dest = Path(args.out).resolve()
+                want = f"{args.category}@{args.version}.json"
+                if dest.parent == Path(taxonomy.SHIPPED_DIR).resolve() and dest.name != want:
+                    print(f"refused: a shipped file's name must match its id: {want}, not {dest.name}",
+                          file=sys.stderr)
+                    return 2
+            try:
+                out = taxonomy.import_fr(Path(args.arg), Path(args.checks), category=args.category,
+                                         version=args.version,
+                                         ratification_json=Path(args.ratification) if args.ratification else None)
+            except taxonomy.ImportRefused as e:
+                for r in e.reasons:
+                    print(f"refused: {r}", file=sys.stderr)
+                return 2
+            except (TypeError, AttributeError) as e:  # backstop: a malformed input not yet named
+                print(f"error: malformed compile input ({type(e).__name__}: {e})", file=sys.stderr)
+                return 1
+            if args.out:
+                Path(args.out).write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
     except (KeyError, ValueError, OSError) as e:
         print(f"error: {e}", file=sys.stderr)
         return 1
@@ -337,6 +362,11 @@ def register_taxonomy(sub):
     p.add_argument("rest", nargs="*", help="score: <records.json> <watch id>")
     p.add_argument("--additions", help="branch: JSON file of additions")
     p.add_argument("--reason", help="branch: why")
+    p.add_argument("--checks", help="import-fr: the compile's plug-in sidecar (layers, rules, planted cases)")
+    p.add_argument("--ratification", help="import-fr: the compile's ratification record, if any")
+    p.add_argument("--category", help="import-fr: the taxonomy category, for example gmt")
+    p.add_argument("--version", help="import-fr: the shipped version number")
+    p.add_argument("--out", help="import-fr: also write the taxonomy to this file")
     p.set_defaults(func=_cmd_taxonomy)
 
 

@@ -11,7 +11,7 @@ Read and adopt `${CLAUDE_PLUGIN_ROOT}/skills/teddy/references/priming.md`. This 
 
 A run turns one Teddy Baldassarre video, or a few related videos, into a **child set**: its own private artifact with the shared pages (Overview, Gallery, Viewer pulse, Teddy's criteria, Sources and method) and the pages its video type adds. It adds the run's records to the user's dataset and republishes the **parent collection**, which lists every child set.
 
-This skill analyses what a video shows and says. It is not a fact check and not a full Bayesian analysis, and it never runs `/fact-check` or `/analyze`; it may offer them at the end.
+This skill analyses what a video shows and says. It does not check whether the video's claims are true, and its pages never say or imply that it did.
 
 First time with an empty collection? `python3 -I "${CLAUDE_PLUGIN_ROOT}/scripts/teddy.py" import-example two-watch-challenge` loads the shipped sample (the 2026-11-14 two-watch challenge) so the parent page has something to show; add `--url <link>` if you have published that example's page yourself. Offer it once, and only when the dataset is empty.
 
@@ -192,4 +192,4 @@ Write `<run>/fragments/teddy-criteria.html` per `references/page-specs/shared.md
 4. Run `python3 -I "${CLAUDE_PLUGIN_ROOT}/scripts/teddy.py" build-parent`. Publish the build folder it prints per "Publishing a build" (staged as `parent`): to the registry's parent `url` if there is one, else as a new artifact. If the publish fails, use the fallback there.
 5. Run `python3 -I "${CLAUDE_PLUGIN_ROOT}/scripts/teddy.py" registry add parent <parent build> --url <parent url>`, with the original `<data home>/parent/build`.
    - **First run only** (the registry had no parent at Step 10.2): give the new child its link back. Rerun `build-child` exactly as in Step 10.3; the link sits outside the frozen page bodies, and the build date is not hashed, so `python3 -I "${CLAUDE_PLUGIN_ROOT}/scripts/teddy.py" freeze verify <run>/build <run>/hashes.json` must exit 0, even on a later day. Then republish the child to its `url` per "Publishing a build". A first run thus publishes the parent once and the child twice; publishing the parent first instead would publish it twice and show the run's watches without photos in between.
-6. Give the user both links, named as readers see them: the video analysis and the collection, the type, the taxonomy version and its label, and anything the run could not do. Offer, in one line, a `/fact-check` of a factual claim the video makes or an `/analyze` of a contested question it raises. Never run either unless the user asks.
+6. Give the user both links, named as readers see them: the video analysis and the collection, the type, the taxonomy version and its label, and anything the run could not do.

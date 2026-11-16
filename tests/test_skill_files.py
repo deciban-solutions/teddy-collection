@@ -74,17 +74,12 @@ class TestSkillFiles(unittest.TestCase):
                 self.fail(f"teddy.py {sub} {action}: {action!r} is not one of {sorted(nested)}")
         self.assertIn("import-example", _text(SKILL))
 
-    def test_no_default_factcheck(self):
-        text = _text(SKILL)
-        self.assertRegex(text, r"(?i)\boffer")
-        guard = re.compile(r"(?i)\b(offer|never|do not|don't|unless|only if|only when|if the user)\b")
-        imperative = re.compile(r"(?i)^\W*(?:\d+\.\s*)?(?:then\s+)?(?:run|invoke|call|launch|start|use)\b"
-                                r"[^.]*?/(?:fact-check|analyze)")
-        for line in text.splitlines():
-            if re.search(r"/(?:fact-check|analyze)\b", line):
-                self.assertRegex(line, guard, f"unguarded hand-off line: {line!r}")
-                if imperative.search(line):
-                    self.assertRegex(line, r"(?i)\b(never|do not|don't)\b", f"imperative run: {line!r}")
+    def test_names_no_outside_skills(self):
+        # a friend who installs the plug-in has no /fact-check or /analyze,
+        # so neither the skill nor the README may offer or mention them
+        files = list(PLUGIN.rglob("*.md")) + [ROOT / "README.md"]
+        for f in files:
+            self.assertNotRegex(_text(f), r"/(?:fact-check|analyze)\b", str(f))
 
     def test_page_specs_cover_built_pages(self):
         spec_text = {s: _text(SKILL_DIR / "references" / "page-specs" / f"{s}.md") for s in PAGE_SPECS}
@@ -149,7 +144,7 @@ class TestSkillFiles(unittest.TestCase):
 
     def test_reader_wording_video_analysis(self):
         # F20: what the user and readers see says "video analysis", not "child set".
-        step11 = self._section("## Step 11", "Never run either unless")
+        step11 = self._section("## Step 11", "anything the run could not do.")
         self.assertNotRegex(step11, r"(?i)\"superseded by\"[^.]*child set")
         give = [l for l in step11.splitlines() if "Give the user" in l]
         self.assertTrue(give)
@@ -170,7 +165,7 @@ class TestSkillFiles(unittest.TestCase):
         # the child republished with its back-link on a first run.
         step10 = self._section("## Step 10", "## Step 11")
         self.assertNotRegex(step10, r"(?i)build and publish the parent first")
-        step11 = self._section("## Step 11", "Never run either unless")
+        step11 = self._section("## Step 11", "anything the run could not do.")
         self.assertRegex(step11, r"(?i)first run")
         self.assertIn("freeze verify <run>/build <run>/hashes.json", step11)
         self.assertIn("series-candidates", step11)

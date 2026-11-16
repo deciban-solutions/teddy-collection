@@ -52,9 +52,9 @@ Every artifact the plug-in publishes is **private by default**. The plug-in neve
 
 Teddy's videos state that his store is an authorized dealer for over 35 brands. Keep that in mind when reading the criteria he states or the watches he favours. Every page that presents his criteria carries this note.
 
-### Checks that are never run automatically
+### What the pages are not
 
-The `/teddy` skill analyses what a video shows and says. It is not a fact check and not a full Bayesian analysis. It never runs `/fact-check` or `/analyze` on its own; at the end it may offer one, and it runs one only if you ask. The pages never use the channel's logo or branding, and always name the video as their source.
+The `/teddy` skill reports what a video shows and says. It does not check whether the video's claims are true. The pages never use the channel's logo or branding, and always name the video as their source.
 
 ## Examples
 

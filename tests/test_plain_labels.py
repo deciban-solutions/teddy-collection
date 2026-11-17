@@ -97,6 +97,15 @@ class TestReviewFixesRender(unittest.TestCase):
         self.assertIn("No checklists", render.taxonomy_library([]))
 
 
+class TestNotExportedRender(unittest.TestCase):
+    def test_left_out_concepts_named_with_reasons(self):
+        w = {**TestTaxonomyUsed.WARRANT, "not_exported": [
+            {"key": "page_value_dominance", "kind": "must", "reason": "judges the whole page"}]}
+        html = render.taxonomy_used(TestTaxonomyUsed.TAX, w)
+        self.assertIn("Left out of the plug-in", html)
+        self.assertIn("page value dominance (must hold: judges the whole page)", html)
+
+
 class TestPageSpecs(unittest.TestCase):
     def test_taxonomy_table_uses_plain_headings(self):
         text = (SPECS / "contest.md").read_text()

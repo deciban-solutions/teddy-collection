@@ -133,6 +133,11 @@ def _warrant_errors(w, label) -> list:
         v = w.get(k, [])
         if not isinstance(v, list) or not all(isinstance(x, str) for x in v):
             errs.append(f"warrant.{k} must be a list of strings")
+    ne = w.get("not_exported", [])
+    if not isinstance(ne, list) or not all(
+            isinstance(x, dict) and isinstance(x.get("key"), str) and isinstance(x.get("reason"), str)
+            and x.get("kind") in KINDS for x in ne):
+        errs.append("warrant.not_exported must be a list of {key, kind, reason}")
     return errs
 
 
@@ -653,9 +658,25 @@ def import_fr(spec_json, checks_json, *, category: str, version: str,
             reasons.append(f"sidecar sources must be a list of objects with {need}")
     accepted = _canon_set(spec, "accepted", reasons)
     rejected = _canon_set(spec, "rejected", reasons)
+    left_out = {}
+    raw = side.get("not_exported", [])
+    if not isinstance(raw, list):
+        reasons.append("sidecar not_exported must be a list of {canon, reason} objects")
+        raw = []
+    for e in raw:
+        if not (isinstance(e, dict) and isinstance(e.get("canon"), str)
+                and isinstance(e.get("reason"), str) and e["reason"].strip()):
+            reasons.append(f"sidecar not_exported entry {e!r} needs a canon and a non-empty reason")
+        elif e["canon"] in left_out:
+            reasons.append(f"sidecar not_exported lists {e['canon']!r} twice")
+        else:
+            left_out[e["canon"]] = e["reason"].strip()
+    for k in sorted(set(left_out) & set(entries)):
+        reasons.append(f"{k}: listed in both criteria and not_exported")
 
     layers = {"wearer": [], "watch": [], "pair": []}
     not_enforced, not_validated, dropped, seen, canons = [], [], [], set(), set()
+    not_exported = []
     for c in _list(spec, "concepts", reasons):
         key = c.get("canon")
         if not (isinstance(key, str) and _SLUG.match(key)):
@@ -685,6 +706,10 @@ def import_fr(spec_json, checks_json, *, category: str, version: str,
             continue  # reported with the desideratum
         kind = next(k for k in _KIND_STRICTNESS if k in kinds)
         evidence = next(k for k in reversed(_CLASS_STRENGTH) if k in classes)
+        if key in left_out:
+            if key not in entries:
+                not_exported.append({"key": key, "kind": kind, "reason": left_out[key]})
+            continue
         entry = entries.get(key)
         if not isinstance(entry, dict):
             reasons.append(f"{key}: no sidecar entry (every kept concept needs its layer, "
@@ -727,6 +752,8 @@ def import_fr(spec_json, checks_json, *, category: str, version: str,
                               "sources": sources, "serves": list(serves)})
     for extra in sorted(set(entries) - seen - rejected):
         reasons.append(f"sidecar names {extra!r}, which is not a kept concept in the compile")
+    for k in sorted(set(left_out) - seen):
+        reasons.append(f"not_exported names {k!r}, which is not a kept concept in the compile")
     for ghost in sorted(accepted - canons):
         reasons.append(f"accepted names {ghost!r}, which is not a concept in the compile")
 
@@ -757,6 +784,7 @@ def import_fr(spec_json, checks_json, *, category: str, version: str,
                "edges": {"total": len(edges),
                          "validated": sum(1 for e in edges if e.get("warrant") == "validated")},
                "not_enforced_here": not_enforced, "not_validated_in_compile": not_validated,
+               "not_exported": not_exported,
                "not_enforced_note": _NOT_ENFORCED_NOTE}
     if reasons:
         raise ImportRefused(reasons)

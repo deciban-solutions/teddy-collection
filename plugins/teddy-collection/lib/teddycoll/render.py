@@ -200,6 +200,14 @@ def _how_checked(label, warrant, tax=None) -> str:
     if _names("not_enforced_here"):
         s += (" Validated in the compile but judged here rather than tested by a script: "
               + esc(", ".join(_names("not_enforced_here"))) + ".")
+    left = warrant.get("not_exported")
+    if isinstance(left, list) and left:
+        strict = {"must": "must hold", "more_is_better": "more is better",
+                  "evidence_settled": "depends on evidence"}
+        items = [f"{str(e.get('key', '')).replace('_', ' ')} "
+                 f"({strict.get(e.get('kind'), 'unknown')}: {e.get('reason', '')})"
+                 for e in left if isinstance(e, dict)]
+        s += " Left out of the plug-in, with the compile's reasons: " + esc("; ".join(items)) + "."
     if _names("not_validated_in_compile"):
         s += (" Judged in the compile too, with no validated test: "
               + esc(", ".join(_names("not_validated_in_compile"))) + ".")

@@ -448,3 +448,52 @@ class TestReviewFixes(Base):
                              "--out", str(shipped / "gmt@3.json")])
         self.assertEqual(rc, 2)
         self.assertIn("gmt@2.json", err.getvalue())
+
+
+class TestNotExported(Base):
+    """Decision 47 of the GMT compile: concepts that judge the whole page, not a watch, are
+    listed in the sidecar's not_exported with a reason and disclosed in the warrant."""
+
+    def checks(self, reason="judges the whole recommendation page, not a watch"):
+        c = copy.deepcopy(CHECKS)
+        del c["criteria"]["fair_value"]
+        c["not_exported"] = [{"canon": "fair_value", "reason": reason}]
+        return c
+
+    def test_listed_concept_is_left_out_and_disclosed(self):
+        t = self.imp(checks=self.checks())
+        with self.assertRaises(KeyError):
+            self.crit(t, "fair_value")
+        self.assertEqual(t["warrant"]["not_exported"],
+                         [{"key": "fair_value", "kind": "more_is_better",
+                           "reason": "judges the whole recommendation page, not a watch"}])
+        self.assertNotIn("fair_value", t["warrant"]["not_enforced_here"])
+        self.assertEqual(taxonomy.validate(t), [])
+
+    def test_reason_required(self):
+        self.assertIn("fair_value", self.refused(checks=self.checks(reason="")))
+
+    def test_not_both_exported_and_not(self):
+        c = self.checks()
+        c["criteria"]["fair_value"] = {"layer": "watch"}
+        self.assertIn("fair_value", self.refused(checks=c))
+
+    def test_unknown_or_rejected_name_refused(self):
+        c = self.checks()
+        c["not_exported"].append({"canon": "ghost", "reason": "x"})
+        self.assertIn("ghost", self.refused(checks=c))
+
+    def test_malformed_list_refused(self):
+        for bad in ({"fair_value": "x"}, ["fair_value"], [{"canon": "fair_value"}],
+                    [{"canon": "fair_value", "reason": "a"}, {"canon": "fair_value", "reason": "b"}]):
+            c = copy.deepcopy(CHECKS)
+            del c["criteria"]["fair_value"]
+            c["not_exported"] = bad
+            self.assertIn("not_exported", self.refused(checks=c), bad)
+
+    def test_must_concepts_can_be_left_out_but_are_named(self):
+        c = copy.deepcopy(CHECKS)
+        del c["criteria"]["second_time_zone"]
+        c["not_exported"] = [{"canon": "second_time_zone", "reason": "page-level"}]
+        w = self.imp(checks=c)["warrant"]
+        self.assertEqual(w["not_exported"][0]["kind"], "must")

@@ -145,7 +145,7 @@
     },
     "warrant": {
       "type": "object",
-      "description": "compiled versions only, written by taxonomy import-fr: how far this version was checked. source_slice, freeze_commit and prereg name the formalized-reasoner compile; ratified, ratified_by (a role, never a name), catch_power and ratified_on come from its ratification record; unresolved_debt counts its open debt entries; edges counts its cause-and-effect links; not_enforced_here lists what the compile validated but the plug-in only judges.",
+      "description": "compiled versions only, written by taxonomy import-fr: how far this version was checked. source_slice, freeze_commit and prereg name the formalized-reasoner compile; ratified, ratified_by (a role, never a name), catch_power and ratified_on come from its ratification record; unresolved_debt counts its open debt entries; edges counts its cause-and-effect links; not_enforced_here lists what the compile validated but the plug-in only judges. not_exported lists, as {key, kind, reason}, concepts the compile keeps but the plug-in cannot score (page-level), each with the compile's reason.",
       "required": [
         "ratified"
       ],
@@ -175,6 +175,32 @@
           "type": "array",
           "items": {
             "type": "string"
+          }
+        },
+        "not_exported": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "key",
+              "kind",
+              "reason"
+            ],
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "must",
+                  "more_is_better",
+                  "evidence_settled"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
           }
         }
       }

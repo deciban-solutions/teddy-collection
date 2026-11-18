@@ -37,7 +37,7 @@ The build adds, above your fragment, the checklist version, one sentence on what
      - **What it means**, in a sentence;
      - **How strict**: must hold, more is better, or depends on evidence;
      - **Based on**: a rule or standard, published research, what practitioners agree on, or a matter of taste;
-     - **Tested by**: a script, from the specs (name the rule in words), or judgement.
+     - **Tested by**: a script, from the specs (name the rule in words), or judgement. When the criterion's check has `checks_only`, write "partly by a script: <what it checks>; the rest by judgement", never just "a script".
   4. *The occasion matrix* the scorers used, when the contest is about covering a life.
   5. *Combinations judged together:* where two things are fine alone but not together, such as two fine watches that make a redundant pair.
   6. *Teddy's principles:* his recurring principles, as what practitioners agree on, quoted with video and timestamp. The template adds the commercial-context note.

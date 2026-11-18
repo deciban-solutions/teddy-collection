@@ -22,10 +22,23 @@ class TestVersions(Base):
         self.ship(tax(version="1"))
         self.ship(tax(version="2", **{"id": "shipped:dive@2"}))
         self.assertEqual(taxonomy.resolve("dive")["id"], "shipped:dive@2")
-        ids = [taxonomy.branch("shipped:dive@1", {}, "r") for _ in range(10)]
-        self.assertEqual(ids[-1], "user:dive@1.10")
-        self.assertEqual(taxonomy.resolve("dive")["id"], "user:dive@1.10")
-        self.assertEqual(taxonomy.resolve("dive")["version"], "1.10")
+        ids = [taxonomy.branch("shipped:dive@2", {}, "r") for _ in range(10)]
+        self.assertEqual(ids[-1], "user:dive@2.10")
+        self.assertEqual(taxonomy.resolve("dive")["id"], "user:dive@2.10")
+        self.assertEqual(taxonomy.resolve("dive")["version"], "2.10")
+
+    def test_branch_of_older_shipped_yields_to_newer_shipped(self):
+        self.ship(tax(version="1"))
+        old = taxonomy.branch("shipped:dive@1", {}, "r")
+        self.assertEqual(taxonomy.resolve("dive")["id"], old)
+        self.ship(tax(version="2", **{"id": "shipped:dive@2"}))
+        self.assertEqual(taxonomy.resolve("dive")["id"], "shipped:dive@2")
+        self.assertEqual(taxonomy.get(old)["id"], old)  # still in the library by id
+
+    def test_user_draft_without_shipped(self):
+        t = tax(version="0.1", **{"id": "user:dive@0.1"})
+        (Path(taxonomy.USER_DIR) / "dive@0.1.json").write_text(__import__("json").dumps(t))
+        self.assertEqual(taxonomy.resolve("dive")["id"], "user:dive@0.1")
 
     def test_unknown(self):
         with self.assertRaises(KeyError):

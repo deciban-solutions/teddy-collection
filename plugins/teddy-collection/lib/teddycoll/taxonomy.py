@@ -173,6 +173,10 @@ def _validate_criterion(c, where) -> list:
             if not isinstance(pl, dict) or not isinstance(pl.get("pass"), list) \
                     or not isinstance(pl.get("fail"), list) or not pl["pass"] or not pl["fail"]:
                 errs.append(f"{where}.check.planted needs at least one pass case and one fail case")
+            if "checks_only" in chk and not (isinstance(chk["checks_only"], str)
+                                             and chk["checks_only"].strip()):
+                errs.append(f"{where}.check.checks_only must be a non-empty string: what part "
+                            "of the statement the rule tests")
     if "sources" in c and not isinstance(c["sources"], list):
         errs.append(f"{where}.sources must be a list")
     return errs
@@ -206,11 +210,20 @@ def list_versions(category: str = None) -> list:
 
 
 def resolve(category: str) -> dict:
-    """The user's newest branch for the category, else the newest shipped version."""
-    for kind in ("user", "shipped"):
-        ids = [v for v in list_versions(category) if v.startswith(kind + ":")]
-        if ids:
-            return get(ids[-1])
+    """The user's newest branch of the newest shipped version, else that shipped version.
+
+    A branch of an older shipped version (user:gmt@1.1 once shipped:gmt@2 exists) no longer
+    wins: a plug-in update that ships a newer, better-checked version takes effect. The old
+    branch stays in the library and can still be named by id."""
+    ids = list_versions(category)
+    shipped = [v for v in ids if v.startswith("shipped:")]
+    user = [v for v in ids if v.startswith("user:")]
+    if shipped:
+        newest = parse_id(shipped[-1])[2]
+        current = [v for v in user if parse_id(v)[2] >= newest]
+        return get(current[-1] if current else shipped[-1])
+    if user:
+        return get(user[-1])
     raise KeyError(f"no taxonomy for category: {category}")
 
 
@@ -476,6 +489,18 @@ def score(tax: dict, record: dict) -> dict:
     return out
 
 
+def partial_rules(tax: dict) -> dict:
+    """{"<layer>.<key>": checks_only} for every deterministic criterion whose rule tests only
+    part of its statement; a rule mark there settles that part, not the whole criterion."""
+    out = {}
+    for layer, crits in tax.get("layers", {}).items():
+        for c in crits:
+            chk = c.get("check", {})
+            if isinstance(chk, dict) and chk.get("type") == "deterministic" and chk.get("checks_only"):
+                out[f"{layer}.{c.get('key')}"] = chk["checks_only"]
+    return out
+
+
 # ---------- formalized-reasoner import ----------
 
 class ImportRefused(ValueError):
@@ -722,6 +747,20 @@ def import_fr(spec_json, checks_json, *, category: str, version: str,
         if "rule" in entry:
             rule = entry["rule"]
             check = {"type": "deterministic", "rule": rule, "planted": entry.get("planted")}
+            only, whole = entry.get("checks_only"), entry.get("rule_covers_statement")
+            if only is not None and whole is not None:
+                reasons.append(f"{key}: give checks_only or rule_covers_statement, not both")
+                continue
+            if only is not None:
+                if not (isinstance(only, str) and only.strip()):
+                    reasons.append(f"{key}: checks_only must say, in words, what part of the "
+                                   "statement the rule tests")
+                    continue
+                check["checks_only"] = only.strip()
+            elif whole is not True:
+                reasons.append(f"{key}: a rule must declare its scope: checks_only (the part of "
+                               "the statement it tests) or rule_covers_statement: true")
+                continue
             crit_errs = _validate_criterion(
                 {"key": key, "statement": "-", "kind": kind, "evidence_class": evidence,
                  "check": check, "sources": []}, key)

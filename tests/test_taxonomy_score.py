@@ -120,5 +120,22 @@ class TestNotAssessableValues(unittest.TestCase):
         self.assertEqual(self.score({"has_date": True}, boolean_rule)["watch.date"], "y")
 
 
+
+class TestPartialInScoreOutput(unittest.TestCase):
+    def test_cli_names_partial_rules(self):
+        tax = json.loads(json.dumps(TAX))
+        tax["layers"]["watch"][0]["check"]["checks_only"] = "only the depth rating"
+        with tempfile.TemporaryDirectory() as d:
+            tf, rf = Path(d, "t.json"), Path(d, "r.json")
+            tf.write_text(json.dumps(tax))
+            rf.write_text(json.dumps({"watches": [{"id": "w1", "specs": {"water_resistance_m": 300}}]}))
+            out = subprocess.run([sys.executable, "-I", str(SCRIPT), "taxonomy", "score",
+                                  str(tf), str(rf), "w1"], capture_output=True, text=True)
+        self.assertEqual(out.returncode, 0, out.stderr)
+        got = json.loads(out.stdout)
+        self.assertEqual(got["marks"]["watch.depth"], "y")
+        self.assertEqual(got["partial"], {"watch.depth": "only the depth rating"})
+
+
 if __name__ == "__main__":
     unittest.main()

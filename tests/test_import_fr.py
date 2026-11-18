@@ -62,10 +62,12 @@ CHECKS = {
         "second_time_zone": {"layer": "watch", "rule": "'gmt' in complications",
                              "planted": {"pass": [{"complications": ["gmt", "date"]}],
                                          "fail": [{"complications": ["date"]}]},
+                             "rule_covers_statement": True,
                              "sources": ["https://example.org/gmt-guide"]},
         "sapphire_crystal": {"layer": "watch", "rule": "crystal_material == 'sapphire'",
                              "planted": {"pass": [{"crystal_material": "sapphire"}],
-                                         "fail": [{"crystal_material": "mineral"}]}},
+                                         "fail": [{"crystal_material": "mineral"}]},
+                             "rule_covers_statement": True},
         "zone_pattern": {"layer": "wearer"},
         "fair_value": {"layer": "watch"},
     },
@@ -308,6 +310,44 @@ class TestCli(Base):
         rc, _, err = self.run_cli(str(s))
         self.assertEqual(rc, 2)
         self.assertIn("--checks", err)
+
+
+
+class TestRuleScope(Base):
+    """A rule declares how much of its statement it tests, so a passing rule never reads as the
+    whole criterion passing (GMT compile: the type rule cannot see the buyer's use)."""
+
+    def test_scope_required(self):
+        c = copy.deepcopy(CHECKS)
+        del c["criteria"]["sapphire_crystal"]["rule_covers_statement"]
+        self.assertIn("declare its scope", self.refused(checks=c))
+
+    def test_checks_only_kept_on_the_check(self):
+        c = copy.deepcopy(CHECKS)
+        e = c["criteria"]["second_time_zone"]
+        del e["rule_covers_statement"]
+        e["checks_only"] = "  that the watch has a second time zone  "
+        t = self.imp(checks=c)
+        chk = self.crit(t, "second_time_zone")[1]["check"]
+        self.assertEqual(chk["checks_only"], "that the watch has a second time zone")
+        self.assertEqual(taxonomy.validate(t), [])
+        self.assertEqual(taxonomy.partial_rules(t),
+                         {"watch.second_time_zone": "that the watch has a second time zone"})
+
+    def test_both_or_blank_or_false_refused(self):
+        for patch in ({"checks_only": "x"}, {"rule_covers_statement": False},
+                      {"rule_covers_statement": None, "checks_only": " "}):
+            c = copy.deepcopy(CHECKS)
+            e = c["criteria"]["sapphire_crystal"]
+            if "rule_covers_statement" in patch:
+                del e["rule_covers_statement"]
+            e.update({k: v for k, v in patch.items() if v is not None})
+            self.assertIn("sapphire_crystal", self.refused(checks=c), patch)
+
+    def test_validator_rejects_blank_checks_only(self):
+        t = self.imp()
+        t["layers"]["watch"][0]["check"]["checks_only"] = ""
+        self.assertTrue(any("checks_only" in e for e in taxonomy.validate(t)))
 
 
 if __name__ == "__main__":

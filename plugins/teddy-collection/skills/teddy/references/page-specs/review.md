@@ -26,13 +26,14 @@ The template adds the commercial-context note, since the scorecard sets Teddy's 
 - **Sections:**
   1. *The verdict, then the evidence:* a `<div class="answer">`: Teddy's verdict in his words (timestamp link), then where the taxonomy agrees or disagrees with it.
   2. *Criterion by criterion:* one row per taxonomy criterion: the criterion and how strict it is (must hold, more is better, depends on evidence), the mark (`y` meets, `p` partly, `n` does not, or `not assessable`), the evidence (the spec value and its source, or the judgement and its reason) and whether Teddy addressed it (quote and timestamp, or "not mentioned").
-     - For a deterministic criterion, take the mark from the library, never by eye. It prints `{"taxonomy", "watch", "marks"}`, with `marks` keyed `<layer>.<key>` and each mark `y`, `n` or `not assessable`:
+     - For a deterministic criterion, take the mark from the library, never by eye. It prints `{"taxonomy", "watch", "marks", "partial"}`, with `marks` keyed `<layer>.<key>` and each mark `y`, `n` or `not assessable`, and `partial` naming, for each criterion whose rule tests only part of its statement, the part it tests:
 
        ```bash
        python3 -I "${CLAUDE_PLUGIN_ROOT}/scripts/teddy.py" taxonomy score <version id> <run>/records.json <watch id>
        ```
 
      - A `not assessable` mark (a field the rule reads is missing, null, `unknown` or the wrong type) is shown as "not assessable" with the missing field named. It is never turned into `n`, guessed or judged by eye.
+     - A criterion listed in `partial` is checked in two parts. The script's mark settles only the part `partial` names; say so in the evidence ("the script checks only that …"). A script `n` or `not assessable` is the criterion's mark. After a script `y`, judge the rest of the statement and give the reason: the mark is `y` only when the rest holds too, and `p` when it does not or cannot be told.
      - A judged criterion says it is judged and gives the reason.
   3. *What the review leaves out:* criteria the taxonomy weighs that the review does not discuss.
 - **Required numbers:** none. Do not total the marks; there is no producer for a total.

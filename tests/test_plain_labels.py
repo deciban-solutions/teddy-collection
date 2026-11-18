@@ -114,6 +114,10 @@ class TestPageSpecs(unittest.TestCase):
             self.assertIn(h, section)
         self.assertNotIn("evidence class (", section)
 
+    def test_partial_rules_in_page_specs(self):
+        self.assertIn("partly by a script", (SPECS / "contest.md").read_text())
+        self.assertIn("`partial`", (SPECS / "review.md").read_text())
+
     def test_scorecard_row_says_how_strict(self):
         text = (SPECS / "review.md").read_text()
         self.assertIn("how strict it is", text)

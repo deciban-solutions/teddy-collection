@@ -1,0 +1,404 @@
+{
+  "id": "shipped:gmt@2",
+  "category": "gmt",
+  "version": "2",
+  "label": "compiled",
+  "paradigm": "Match the watch to how this buyer actually uses a second time zone and to their wrist, then get the most watch for the money they set. Heritage, brand and reviewers' enthusiasm inform the choice but never outrank use, fit and verified value. The stance is opportunistic in finding unique pieces that justify their inclusion by value proposition given their distinctiveness.",
+  "created": "2026-11-18",
+  "change_log": [
+    {
+      "date": "2026-11-18",
+      "reason": "imported from formalized-reasoner compile \"rank, explain and present a shortlist of new GMT watches for one US buyer's brief (second-zone use, budget or ceiling, wrist, tastes), from a cited basis of watch records, so that the page is coherent with the owner's paradigm and desiderata\" (freeze f159884)",
+      "additions": {
+        "criteria": 11
+      },
+      "dropped_rejected_concepts": [
+        "distinctive_placement"
+      ]
+    }
+  ],
+  "spec_fields": {
+    "gmt_type": "string: 'caller' (office: the 24-hour hand is set on its own) or 'flyer' (traveller: the local hour hand jumps in hour steps); unknown if the source does not settle it",
+    "warranty_years": "number: the maker's warranty in years for a new watch bought in the US",
+    "water_resistance_m": "number: rated water resistance in metres",
+    "crystal_material": "string: 'sapphire', 'mineral' or 'acrylic'",
+    "lug_to_lug_mm": "number: lug-to-lug length in millimetres",
+    "thickness_mm": "number: case thickness in millimetres"
+  },
+  "layers": {
+    "wearer": [
+      {
+        "key": "budget_conformance",
+        "statement": "Top three are at or under budget; any stretch is <= 30% over the budget, labelled with the dollar amount over; prices straddling the line are labelled indistinguishable rather than in or out. Alternative considered: judging stretch acceptability holistically; rejected because the cap, amount label and straddle rule are arithmetic on price_usd and the brief.",
+        "kind": "must",
+        "evidence_class": "deductive",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [],
+        "serves": [
+          "D3"
+        ]
+      },
+      {
+        "key": "stretch_justification",
+        "statement": "Each stretch pick carries a reason grounded in use fit, build or distinctiveness that a reader would accept as worth the extra money. Alternative considered: treating any non-empty 'why' as sufficient (static); rejected because whether the reason actually justifies the overrun is value-laden.",
+        "kind": "must",
+        "evidence_class": "deductive",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [],
+        "serves": [
+          "D3"
+        ]
+      },
+      {
+        "key": "wrist_fit",
+        "statement": "Lug-to-lug is compared with the buyer's flat-wrist width via fit(): <= width - 2 mm fits, within +-2 mm is indistinguishable with a try-on advisory, > width + 2 mm is misfit and excluded from ranks; thickness is within the buyer's limit (default 14 mm). Alternative considered: a general 'wearability' concept including taste in size; rejected because the band rule is mechanical and taste belongs to taste_honouring.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [],
+        "serves": [
+          "D6"
+        ]
+      },
+      {
+        "key": "taste_honouring",
+        "statement": "No ranked watch carries a must_not style; stated preferences (mechanical, display back, preferred brands) are applied rather than overridden, and any price of honouring them is recorded on the page. Alternative considered: a judged concept; rejected for the exclusion and preference application, which assess() checks, leaving tone of the trade-off to rationale_adjacency.",
+        "kind": "must",
+        "evidence_class": "contested",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [],
+        "serves": [
+          "D11"
+        ]
+      }
+    ],
+    "watch": [
+      {
+        "key": "gmt_type_use_match",
+        "statement": "Every ranked watch is a true 24-hour second-zone GMT (gmt_type caller or flyer, not None) and its labelled type matches the record's type and the buyer's use both ways (office -> caller; traveller or both -> flyer). Alternative considered: a single 'GMT correctness' concept folding in date behaviour; rejected because type/use matching is a pure record-vs-brief check while date disclosure is a presence check on the page, and they fail independently.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "deterministic",
+          "rule": "gmt_type in ['caller', 'flyer']",
+          "planted": {
+            "pass": [
+              {
+                "gmt_type": "caller"
+              },
+              {
+                "gmt_type": "flyer"
+              }
+            ],
+            "fail": [
+              {
+                "gmt_type": "worldtimer"
+              }
+            ]
+          },
+          "checks_only": "only that the watch is a caller or flyer GMT; whether its type matches the buyer's use is judged"
+        },
+        "sources": [],
+        "serves": [
+          "D1",
+          "D2"
+        ]
+      },
+      {
+        "key": "current_availability_and_warranty",
+        "statement": "Each ranked and worth-knowing watch is buyable new now from the brand or an authorised US dealer (open pre-order with stated delivery window allowed and labelled), and its warranty length is stated. Alternative considered: trusting record fields as of price_date (static); rejected because availability changes after the record date and needs a live reference check.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "deterministic",
+          "rule": "warranty_years >= 1",
+          "planted": {
+            "pass": [
+              {
+                "warranty_years": 3
+              }
+            ],
+            "fail": [
+              {
+                "warranty_years": 0
+              }
+            ]
+          },
+          "checks_only": "only that the maker's warranty is at least one year; current availability and the stated warranty length are judged"
+        },
+        "sources": [],
+        "serves": [
+          "D4",
+          "D16"
+        ]
+      },
+      {
+        "key": "ten_year_cost",
+        "statement": "Each ranked watch states a ten-year service range with basis (brand price or labelled class estimate, or service_unpriced) and a total_10y range equal to price plus that range; value comparisons use this total. Alternative considered: putting service under value_pick_dominance; kept separate because a page can state costs correctly yet rank badly, and vice versa.",
+        "kind": "must",
+        "evidence_class": "research",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [],
+        "serves": [
+          "D7"
+        ]
+      },
+      {
+        "key": "build_and_water_spec",
+        "statement": "Ranked watches meet the water-resistance floor (50 m, 100 m if the buyer swims), with sapphire crystal and higher water resistance preferred in ordering and an exhibition case back treated as a bonus, never a requirement. Alternative considered: separate concepts for crystal, water and case back; merged because all are record-attribute preferences applied the same way in ranking.",
+        "kind": "must",
+        "evidence_class": "contested",
+        "check": {
+          "type": "deterministic",
+          "rule": "water_resistance_m >= 50",
+          "planted": {
+            "pass": [
+              {
+                "water_resistance_m": 100
+              }
+            ],
+            "fail": [
+              {
+                "water_resistance_m": 30
+              }
+            ]
+          },
+          "checks_only": "only the 50 m water-resistance floor; the 100 m floor for swimmers, crystal and case-back preferences are judged"
+        },
+        "sources": [],
+        "serves": [
+          "D10",
+          "D15"
+        ]
+      },
+      {
+        "key": "distinctiveness_claim_validity",
+        "statement": "Each distinctiveness or remarkable claim names an accepted kind (Q15/Q20) and is supported by its non-interested cited source in substance, not just in form. Alternative considered: a static check that a kind and non-interested URL are present; that presence check lives in source_coverage_and_interest, while whether the claim really is remarkable is contested.",
+        "kind": "must",
+        "evidence_class": "practitioner",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [],
+        "serves": [
+          "D12",
+          "D16"
+        ]
+      },
+      {
+        "key": "context_fact",
+        "statement": "Each ranked watch carries exactly one cited history or context fact that is accurate and genuinely informative. Alternative considered: counting cited facts (static); the count is trivial but accuracy and relevance of the fact need judgement.",
+        "kind": "more_is_better",
+        "evidence_class": "research",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [],
+        "serves": [
+          "D14"
+        ]
+      }
+    ],
+    "pair": [
+      {
+        "key": "value_pick_dominance",
+        "statement": "No other fitting, in-budget candidate in the record pool beats rank 1 on function and build at lower total ten-year cost (checked by rerunning rank/assess over the pool). Alternative considered: a judged 'best value' opinion; rejected because dominance over the recorded attributes is computable from the pool.",
+        "kind": "more_is_better",
+        "evidence_class": "contested",
+        "check": {
+          "type": "judged"
+        },
+        "sources": [],
+        "serves": [
+          "D8"
+        ]
+      }
+    ]
+  },
+  "coherence": [
+    {
+      "name": "reason_matches_key",
+      "scope": [
+        "ranked[].why",
+        "records",
+        "brief"
+      ],
+      "kind": "identity",
+      "enforcement": "machine_gate",
+      "rationale": "D9 and Step 0c: a rationale's stated reason must be the element of the owner-confirmed ranking key that actually separates the two watches; a true number with the wrong reason misleads."
+    },
+    {
+      "name": "extra_buys_hold",
+      "scope": [
+        "extra_buys",
+        "ranked[0]",
+        "records"
+      ],
+      "kind": "identity",
+      "enforcement": "machine_gate",
+      "rationale": "Q60: a watch over the preferred spend earns its place by what the extra buys; each claim must be true of the two records it compares."
+    },
+    {
+      "name": "date_text_matches_type",
+      "scope": [
+        "ranked[].date_behaviour",
+        "ranked[].gmt_type_claimed"
+      ],
+      "kind": "identity",
+      "enforcement": "machine_gate",
+      "rationale": "D2: the date behaviour stated by type must be the behaviour of the type the page claims."
+    },
+    {
+      "name": "total_is_price_plus_service",
+      "scope": [
+        "ranked[].total_10y",
+        "ranked[].price_usd",
+        "ranked[].service_10y"
+      ],
+      "kind": "identity",
+      "enforcement": "machine_gate",
+      "rationale": "D7: value is judged on price plus the ten-year service range; the stated total must be that sum."
+    },
+    {
+      "name": "try_on_label_matches_fit",
+      "scope": [
+        "ranked[].labels",
+        "ranked[].fit"
+      ],
+      "kind": "identity",
+      "enforcement": "machine_gate",
+      "rationale": "D6 and Q57: a borderline fit carries a try-on advisory, and only a borderline fit does."
+    },
+    {
+      "name": "order_follows_key",
+      "scope": [
+        "ranked[1:]",
+        "records",
+        "brief"
+      ],
+      "kind": "strategic",
+      "enforcement": "machine_gate",
+      "rationale": "Round 12: below rank 1, the shortlist follows the owner-confirmed ranking key except where D13 places the distinctive pick."
+    },
+    {
+      "name": "stretch_amount_matches",
+      "scope": [
+        "ranked[].stretch_usd",
+        "ranked[].price_usd",
+        "brief.budget"
+      ],
+      "kind": "identity",
+      "enforcement": "machine_gate",
+      "rationale": "D3: a stretch option is labelled with the amount it is over the budget."
+    },
+    {
+      "name": "rationale_respects_taste",
+      "scope": [
+        "ranked[].why",
+        "brief.must_not_styles",
+        "brief.prefer_*"
+      ],
+      "kind": "hedonic",
+      "enforcement": "judged_review",
+      "rationale": "D11: stated tastes are honoured and never argued away; whether the prose does so is a reading judgement for the expert."
+    },
+    {
+      "name": "distinctive_pick_earns_place",
+      "scope": [
+        "ranked[].why",
+        "records.remarkable"
+      ],
+      "kind": "hedonic",
+      "enforcement": "judged_review",
+      "rationale": "D12 and D13: the distinctive pick must read as worth its place and its cost to this buyer; the machine checks the sourced claim, the expert judges the appeal."
+    }
+  ],
+  "teddy_principles": [],
+  "warrant": {
+    "source_slice": "rank, explain and present a shortlist of new GMT watches for one US buyer's brief (second-zone use, budget or ceiling, wrist, tastes), from a cited basis of watch records, so that the page is coherent with the owner's paradigm and desiderata",
+    "freeze_commit": "f159884",
+    "prereg": "docs/prereg-gmt-selection-compile.md",
+    "ratified": false,
+    "ratified_by": null,
+    "catch_power": null,
+    "ratified_on": null,
+    "ratification_sha256": null,
+    "unresolved_debt": 40,
+    "edges": {
+      "total": 32,
+      "validated": 0
+    },
+    "not_enforced_here": [
+      "budget_conformance",
+      "wrist_fit",
+      "ten_year_cost",
+      "taste_honouring",
+      "reason_matches_key",
+      "extra_buys_hold",
+      "date_text_matches_type",
+      "total_is_price_plus_service",
+      "try_on_label_matches_fit",
+      "order_follows_key",
+      "stretch_amount_matches"
+    ],
+    "not_validated_in_compile": [
+      "stretch_justification",
+      "value_pick_dominance",
+      "distinctiveness_claim_validity",
+      "context_fact"
+    ],
+    "not_exported": [
+      {
+        "key": "date_behaviour_disclosure",
+        "kind": "must",
+        "reason": "page-level (D2): a statement the shortlist page makes about each ranked watch"
+      },
+      {
+        "key": "source_coverage_and_interest",
+        "kind": "must",
+        "reason": "page-level (D5): sourcing of the values a shortlist page shows"
+      },
+      {
+        "key": "source_url_resolution",
+        "kind": "must",
+        "reason": "page-level (D5, D17): the page's cited URLs"
+      },
+      {
+        "key": "rationale_number_grounding",
+        "kind": "must",
+        "reason": "page-level (D9, Q47): a ranked page's reasons use only record numbers"
+      },
+      {
+        "key": "rationale_adjacency",
+        "kind": "must",
+        "reason": "page-level (D9, Q47): each rank's reason against its neighbours on the page"
+      },
+      {
+        "key": "worth_knowing_section",
+        "kind": "must",
+        "reason": "page-level (D16, Q47): the page's 'worth knowing about' list"
+      },
+      {
+        "key": "photo_provenance",
+        "kind": "must",
+        "reason": "page-level (D17, Q47): the page's credited photos"
+      },
+      {
+        "key": "no_fit_honesty",
+        "kind": "must",
+        "reason": "page-level (D18, Q47): what the page says when no watch clears every line"
+      }
+    ],
+    "not_enforced_note": "Validated in the compile but not enforced by the plug-in: criteria listed here are judged on the pages, and the plug-in does not yet score coherence factors, which need facts about the buyer."
+  }
+}

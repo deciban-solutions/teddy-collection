@@ -255,6 +255,10 @@
               "type": "string",
               "description": "safe expression over spec fields; required when deterministic"
             },
+            "checks_only": {
+              "type": "string",
+              "description": "optional; set when the rule tests only part of the statement: that part, in words. The rest of the criterion is judged, and a rule mark of y settles only this part (taxonomy.partial_rules)"
+            },
             "planted": {
               "type": "object",
               "properties": {

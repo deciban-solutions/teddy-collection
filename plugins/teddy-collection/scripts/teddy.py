@@ -310,7 +310,8 @@ def _cmd_taxonomy(args):
             w = {x.get("id"): x for x in records.get("watches", [])}.get(args.rest[1])
             if w is None:
                 raise KeyError(f"no watch {args.rest[1]!r} in {args.rest[0]}")
-            out = {"taxonomy": t.get("id"), "watch": args.rest[1], "marks": taxonomy.score(t, w)}
+            out = {"taxonomy": t.get("id"), "watch": args.rest[1], "marks": taxonomy.score(t, w),
+                   "partial": taxonomy.partial_rules(t)}
         elif a == "check":
             t = taxonomy.get(args.arg) if ":" in args.arg else taxonomy.resolve(args.arg)
             errs = taxonomy.validate(t)

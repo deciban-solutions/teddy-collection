@@ -139,6 +139,7 @@ python3 -I plugins/teddy-collection/scripts/teddy.py taxonomy import-fr <compile
 - `spec_fields`: every field a rule reads, as in a shipped taxonomy;
 - `ratifier_role`: who ratified, by role ("the builder", "an independent expert"), never by name;
 - `criteria`: an entry for each concept the compile keeps, keyed by its `canon`. Each entry gives its `layer` (`wearer`, `watch` or `pair`) and optional `sources`. A script-tested criterion adds a `rule` in the plug-in's safe expression language, with `planted` pass and fail cases.
+- Every criterion with a `rule` declares how much of its statement the rule tests: `rule_covers_statement: true` when the rule is the whole statement, or `checks_only` with the part it tests, in words, when the rest needs facts the record lacks (such as the buyer's use). The checklist page names that part under "Tested by", and the scorecard marks the criterion "partly" unless judgement settles the rest.
 - `not_exported` (optional): concepts the compile keeps but the plug-in can't score, because they judge the whole recommendation page rather than a watch, a wearer or a pair. Each entry is `{canon, reason}`. Every kept concept must appear either in `criteria` or here, and the pages list the ones left out, with their reasons.
 
 The import guesses nothing:

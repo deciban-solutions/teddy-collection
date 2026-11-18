@@ -20,7 +20,20 @@ def criteria(t):
 class TestShippedTaxonomies(unittest.TestCase):
     def test_shipped_set_is_complete(self):
         self.assertEqual(sorted(p.stem for p in SHIPPED.glob("*.json")),
-                         sorted(f"{c}@1" for c in EXPECTED))
+                         sorted([f"{c}@1" for c in EXPECTED] + ["gmt@2"]))
+
+    def test_compiled_gmt2(self):
+        t = json.loads((SHIPPED / "gmt@2.json").read_text(encoding="utf-8"))
+        self.assertEqual(taxonomy.validate(t), [])
+        self.assertEqual(taxonomy.run_checks(t), [])
+        self.assertEqual((t["id"], t["label"]), ("shipped:gmt@2", "compiled"))
+        w = t["warrant"]
+        self.assertFalse(w["ratified"])
+        self.assertIsNone(w["ratified_by"])
+        self.assertTrue(w["freeze_commit"])
+        for c in criteria(t):
+            if c["check"]["type"] == "deterministic":
+                self.assertTrue(c["check"].get("checks_only"), c["key"])
 
     def test_shipped_valid(self):
         for cat in EXPECTED:

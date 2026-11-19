@@ -183,7 +183,7 @@
       },
       {
         "key": "distinctiveness_claim_validity",
-        "statement": "Each distinctiveness or remarkable claim names an accepted kind (Q15/Q20) and is supported by its non-interested cited source in substance, not just in form. Alternative considered: a static check that a kind and non-interested URL are present; that presence check lives in source_coverage_and_interest, while whether the claim really is remarkable is contested.",
+        "statement": "Each distinctiveness or remarkable claim names an accepted kind (an unusual mechanism or layout, a material, documented design history, a small maker, or a limited run) and is supported by its non-interested cited source in substance, not just in form. Alternative considered: a static check that a kind and non-interested URL are present; that presence check lives in source_coverage_and_interest, while whether the claim really is remarkable is contested.",
         "kind": "must",
         "evidence_class": "practitioner",
         "check": {
@@ -235,7 +235,7 @@
       ],
       "kind": "identity",
       "enforcement": "machine_gate",
-      "rationale": "D9 and Step 0c: a rationale's stated reason must be the element of the owner-confirmed ranking key that actually separates the two watches; a true number with the wrong reason misleads."
+      "rationale": "The reason given for ranking one watch above another must be the thing that actually separates them in the buyer's agreed order of priorities; a true number given with the wrong reason misleads."
     },
     {
       "name": "extra_buys_hold",
@@ -246,7 +246,7 @@
       ],
       "kind": "identity",
       "enforcement": "machine_gate",
-      "rationale": "Q60: a watch over the preferred spend earns its place by what the extra buys; each claim must be true of the two records it compares."
+      "rationale": "A watch that costs more than the buyer prefers to spend earns its place by what the extra money buys; each such claim must be true of the two watches it compares."
     },
     {
       "name": "date_text_matches_type",
@@ -256,7 +256,7 @@
       ],
       "kind": "identity",
       "enforcement": "machine_gate",
-      "rationale": "D2: the date behaviour stated by type must be the behaviour of the type the page claims."
+      "rationale": "What the page says the date does when local time changes must match the kind of GMT the page says the watch is."
     },
     {
       "name": "total_is_price_plus_service",
@@ -267,7 +267,7 @@
       ],
       "kind": "identity",
       "enforcement": "machine_gate",
-      "rationale": "D7: value is judged on price plus the ten-year service range; the stated total must be that sum."
+      "rationale": "Value is judged on the price plus the expected cost of servicing over ten years; the stated total must be exactly that sum."
     },
     {
       "name": "try_on_label_matches_fit",
@@ -277,7 +277,7 @@
       ],
       "kind": "identity",
       "enforcement": "machine_gate",
-      "rationale": "D6 and Q57: a borderline fit carries a try-on advisory, and only a borderline fit does."
+      "rationale": "A watch that may or may not fit the buyer's wrist carries a 'try it on first' note, and only such a watch does."
     },
     {
       "name": "order_follows_key",
@@ -288,7 +288,7 @@
       ],
       "kind": "strategic",
       "enforcement": "machine_gate",
-      "rationale": "Round 12: below rank 1, the shortlist follows the owner-confirmed ranking key except where D13 places the distinctive pick."
+      "rationale": "Below first place, the shortlist follows the buyer's agreed order of priorities, except where one distinctive watch is deliberately placed."
     },
     {
       "name": "stretch_amount_matches",
@@ -299,7 +299,7 @@
       ],
       "kind": "identity",
       "enforcement": "machine_gate",
-      "rationale": "D3: a stretch option is labelled with the amount it is over the budget."
+      "rationale": "A watch over the budget is labelled with exactly how much it is over."
     },
     {
       "name": "rationale_respects_taste",
@@ -310,7 +310,7 @@
       ],
       "kind": "hedonic",
       "enforcement": "judged_review",
-      "rationale": "D11: stated tastes are honoured and never argued away; whether the prose does so is a reading judgement for the expert."
+      "rationale": "The buyer's stated tastes are honoured and never argued away; whether the wording does so is for a reader to judge."
     },
     {
       "name": "distinctive_pick_earns_place",
@@ -320,7 +320,7 @@
       ],
       "kind": "hedonic",
       "enforcement": "judged_review",
-      "rationale": "D12 and D13: the distinctive pick must read as worth its place and its cost to this buyer; the machine checks the sourced claim, the expert judges the appeal."
+      "rationale": "The distinctive watch must read as worth its place and its cost to this buyer; the checks confirm its sourced claim, and a reader judges its appeal."
     }
   ],
   "teddy_principles": [],
@@ -361,42 +361,42 @@
       {
         "key": "date_behaviour_disclosure",
         "kind": "must",
-        "reason": "page-level (D2): a statement the shortlist page makes about each ranked watch"
+        "reason": "This is about what the shortlist page tells the buyer (what the date does when local time changes), not about the watch itself, so it cannot be checked here."
       },
       {
         "key": "source_coverage_and_interest",
         "kind": "must",
-        "reason": "page-level (D5): sourcing of the values a shortlist page shows"
+        "reason": "This checks that every figure on the shortlist page has a dated source and that the brand's own pages are flagged as such; it applies to the page, not to one watch."
       },
       {
         "key": "source_url_resolution",
         "kind": "must",
-        "reason": "page-level (D5, D17): the page's cited URLs"
+        "reason": "This checks the links cited on the shortlist page; it applies to the page, not to one watch."
       },
       {
         "key": "rationale_number_grounding",
         "kind": "must",
-        "reason": "page-level (D9, Q47): a ranked page's reasons use only record numbers"
+        "reason": "This checks that the reasons for each ranking on the shortlist page use only numbers from the watches' records; there is no ranking to check here."
       },
       {
         "key": "rationale_adjacency",
         "kind": "must",
-        "reason": "page-level (D9, Q47): each rank's reason against its neighbours on the page"
+        "reason": "This checks that each ranked watch's reason explains why it sits above the next and below the previous; there is no ranking to check here."
       },
       {
         "key": "worth_knowing_section",
         "kind": "must",
-        "reason": "page-level (D16, Q47): the page's 'worth knowing about' list"
+        "reason": "This checks the shortlist page's short list of remarkable watches outside the buyer's brief; it applies to the page, not to one watch."
       },
       {
         "key": "photo_provenance",
         "kind": "must",
-        "reason": "page-level (D17, Q47): the page's credited photos"
+        "reason": "This checks that each photo on the shortlist page is credited to the brand's or a dealer's page; it applies to the page, not to one watch."
       },
       {
         "key": "no_fit_honesty",
         "kind": "must",
-        "reason": "page-level (D18, Q47): what the page says when no watch clears every line"
+        "reason": "This checks what the shortlist page says when no watch meets every requirement; it applies to the page, not to one watch."
       }
     ],
     "not_enforced_note": "Validated in the compile but not enforced by the plug-in: criteria listed here are judged on the pages, and the plug-in does not yet score coherence factors, which need facts about the buyer."

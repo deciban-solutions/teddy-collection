@@ -12,7 +12,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "lib"))
 
 from teddycoll import (coding, dataset, frames, freeze, importer, infer, ingest, links, pages,  # noqa: E402
-                       paths, publish, setupcheck, taxonomy)
+                       paths, publish, setupcheck, specs, taxonomy)
 
 
 def _cmd_paths(args):
@@ -29,13 +29,15 @@ def register_paths(sub):
 def _cmd_dataset_add(args):
     records = json.loads(Path(args.records).read_text(encoding="utf-8"))
     ds = dataset.load()
+    prior = specs.prior_values(exclude_run=Path(args.records).resolve().parent, ds=ds)
+    spec_errors = specs.unknown_errors(records.get("watches"), prior, "records.json")
     for v in records.get("videos", []):
         dataset.add_video(ds, v)
     for a in records.get("appearances", []):
         dataset.add_appearance(ds, a)
     for w in records.get("watches", []):
         dataset.upsert_watch(ds, w)
-    errors = dataset.validate(ds)
+    errors = spec_errors + dataset.validate(ds)
     if errors:
         for e in errors:
             print(f"error: {e}", file=sys.stderr)

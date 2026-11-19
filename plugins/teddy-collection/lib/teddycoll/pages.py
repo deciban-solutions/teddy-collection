@@ -21,7 +21,7 @@ from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 
-from . import coding, dataset, frames, paths, publish, render, sanitize, taxonomy
+from . import coding, dataset, frames, paths, publish, render, sanitize, specs, taxonomy
 from .sanitize import safe_url, scope_css, split_style
 
 PLUGIN = Path(__file__).resolve().parents[2]
@@ -477,6 +477,13 @@ def build_child(run: Path, video_ids: list, type: str, fragments: dict) -> Path:
             raise ValueError("subjects.json names watches the run did not record: "
                              + ", ".join(unmatched) + ". Add each as a `mentioned` appearance "
                              "(with a photo) or a peer in peers.json, then rebuild")
+    pf = run / "peers.json"
+    if pf.is_file():
+        peer_watches = (json.loads(pf.read_text(encoding="utf-8")) or {}).get("watches")
+        errs = specs.unknown_errors(peer_watches, specs.prior_values(exclude_run=run, ds=ds),
+                                    "peers.json")
+        if errs:
+            raise ValueError("; ".join(errs))
     wmap = {w["id"]: w for w in ds["watches"]}
     ids = {v["id"] for v in videos}
     apps = [a for a in ds["appearances"] if a["video_id"] in ids]
